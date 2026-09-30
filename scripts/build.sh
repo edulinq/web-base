@@ -52,7 +52,8 @@ function main() {
 
     # Cleanup before build.
     rm -rf "${BUILD_DIR}"
-    mkdir "${BUILD_DIR}"
+    mkdir -p "${BUILD_DIR}"
+    mkdir -p "${DIST_DIR}"
 
     # Fetch version.
     local version=$(grep 'const VERSION' "${JS_INDEX_PATH}" | sed "s/^const VERSION = '\(.*\)';$/\1/")
