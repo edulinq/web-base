@@ -1,0 +1,15 @@
+*.swp
+.DS_Store
+.idea
+
+/bin/
+/dist/
+/test/
+/build/
+
+/.coverage/
+/coverage/
+node_modules/
+old/
+
+/.test-build/

@@ -1,0 +1,43 @@
+{
+    "name": "edq-web",
+    "version": "0.0.0",
+    "description": "The base web elements for EduLinq web development.",
+    "homepage": "https://github.com/edulinq/web-base#readme",
+    "bugs": {
+        "url": "https://github.com/edulinq/web-base/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/edulinq/web-base.git"
+    },
+    "license": "MIT",
+    "author": "Eriq Augustine <eriq@edulinq.org>",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "build": "./scripts/build.sh",
+        "build-prod": "./scripts/build.sh --prod",
+        "test": "./scripts/run_tests.sh"
+    },
+    "devDependencies": {
+        "@types/jest": "30.0.0",
+        "esbuild": "0.28.2",
+        "jest": "^30.0.5",
+        "jest-fixed-jsdom": "^0.0.9",
+        "serve": "14.2.6",
+        "typescript": "7.0.2"
+    },
+    "jest": {
+        "testEnvironment": "jest-fixed-jsdom",
+        "clearMocks": true,
+        "collectCoverage": true,
+        "coverageDirectory": ".coverage",
+        "coveragePathIgnorePatterns": [
+            "vendor",
+            "index.js"
+        ],
+        "rootDir": ".test-build",
+        "transform": {},
+        "verbose": true
+    }
+}
