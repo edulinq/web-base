@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!-- TEST - Lightmode Selector -->
-<html lang='en-US'>
+<html class='no-brightness-selection' lang='en-US'>
     <head>
         <meta charset='utf-8'/>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta name='color-scheme' content='dark light'>
 
         <title>Sample EduLinq Website</title>
 
@@ -18,6 +18,24 @@
     <body>
         <div class='page primary-color'>
             <div class='header primary-accent-color'>
+                <div class='site-nav'>
+                </div>
+                <div class='site-branding'>
+                </div>
+                <div class='site-context'>
+                    <div class='brightmode-toggle'>
+                        <div>
+                            <svg class='lightmode selector lightmode-only icon' role='img' aria-labelledby='brightmode-toggle-moon-label'>
+                                <title id='brightmode-toggle-moon-label'>Toggle Light Mode</title>
+                                <use href="images/icons.svg#icon-moon-light"></use>
+                            </svg>
+                            <svg class='darkmode selector darkmode-only icon' role='img' aria-labelledby='brightmode-toggle-sun-label'>
+                                <title id='brightmode-toggle-sun-label'>Toggle Dark Mode</title>
+                                <use href="images/icons.svg#icon-sun-dark"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class='content primary-color'>

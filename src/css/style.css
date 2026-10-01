@@ -54,7 +54,146 @@ table.standard-table tr:not(:last-child) {
     border-bottom: 1px solid var(--color-text-secondary);
 }
 
+h1 {
+    font-size: 2.00rem;
+}
 
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.50rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h1, h2, h3, h4,
+p, span,
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+.page p {
+    margin-bottom: 1em;
+}
+
+.page ul,
+.page ol {
+    margin-left: 2em;
+}
+
+fieldset {
+    padding: 0;
+    outline: none;
+    border: none;
+}
+
+.header {
+    padding-left: min(1.0em, 1vw);
+    padding-right: min(1.0em, 1vw);
+    text-align: center;
+    font-size: var(--font-size-smaller);
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header > div {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    word-break: keep-all;
+
+    padding-top: 1.0em;
+    padding-bottom: 1.0em;
+}
+
+.header .site-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    /* Remove the padding from the nav itself.
+     * The padding will be put on each nav link for better hover effects. */
+    padding-top: 0em;
+    padding-bottom: 0em;
+}
+
+.header .nav-highlight {
+    border-bottom: solid var(--color-bg-accent-tertiary);
+}
+
+.header .nav-link,
+.header .site-branding {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: min(0.5em, 0.5vw);
+}
+
+.header .nav-link {
+    /* Add padding to the nav link class for better hover effects. */
+    padding-top: 1.5em;
+    padding-right: min(1em, 1vw);
+    padding-bottom: 1.5em;
+    padding-left: min(1em, 1vw);
+}
+
+.header .site-branding {
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    height: fit-content;
+    width: fit-content;
+}
+
+.header .site-branding svg {
+    height: var(--logo-size-small);
+    width: var(--logo-size-small);
+}
+
+.header .nav-link:hover {
+    background: var(--color-highlighter);
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.header .site-context {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: min(1.0em, 1.0vw);
+}
+
+.brightmode-toggle {
+    cursor: pointer;
+    color: var(--color-text-accent-low);
+}
+
+.brightmode-toggle span.active {
+    font-weight: var(--font-weight-bold);
+    text-decoration: underline;
+    color: var(--color-text-accent);
+}
 
 
 
@@ -144,43 +283,28 @@ input[type="checkbox"]:focus {
     box-shadow: 2px 2px 1px var(--color-bg-shadow);
 }
 
-/* Set basic relative font sizing. */
-h1 {
-    font-size: 2.00rem;
+.footer {
+    height: 1.5em;
+    padding: 0.5em 1em 0.5em 1em;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
 }
 
-h2 {
-    font-size: 1.75rem;
+.footer div {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-h3 {
-    font-size: 1.50rem;
-}
-
-h4 {
-    font-size: 1.25rem;
-}
-
-h1, h2, h3, h4,
-p, span,
-ul, ol {
-    margin: 0;
-    padding: 0;
-}
-
-.page p {
-    margin-bottom: 1em;
-}
-
-.page ul,
-.page ol {
-    margin-left: 2em;
-}
-
-fieldset {
-    padding: 0;
-    outline: none;
-    border: none;
+.footer div.right {
+    gap: 1em;
+    justify-content: flex-end;
 }
 
 .loading-container {
@@ -282,140 +406,9 @@ fieldset {
 
 @media (max-width: 700px) {
     .header .nav-link svg,
-    .header .page-branding svg {
+    .header .site-branding svg {
         display: none;
     }
-}
-
-.bright-mode-toggle {
-    cursor: pointer;
-    color: var(--color-text-accent-low);
-}
-
-.bright-mode-toggle span.active {
-    font-weight: var(--font-weight-bold);
-    text-decoration: underline;
-    color: var(--color-text-accent);
-}
-
-.page {
-    display: flex;
-    flex-direction: column;
-
-    min-height: 100vh;
-}
-
-.header {
-    padding-left: min(1.0em, 1vw);
-    padding-right: min(1.0em, 1vw);
-    text-align: center;
-    font-size: var(--font-size-smaller);
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header > div {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-    flex-basis: 0;
-    word-break: keep-all;
-
-    padding-top: 1.0em;
-    padding-bottom: 1.0em;
-}
-
-.header .nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-
-    /* Remove the padding from the nav itself.
-     * The padding will be put on each nav link for better hover effects. */
-    padding-top: 0em;
-    padding-bottom: 0em;
-}
-
-.header .nav-highlight {
-    border-bottom: solid var(--color-bg-accent-tertiary);
-}
-
-.header .nav-link,
-.header .page-branding {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: min(0.5em, 0.5vw);
-}
-
-.header .nav-link {
-    /* Add padding to the nav link class for better hover effects. */
-    padding-top: 1.5em;
-    padding-right: min(1em, 1vw);
-    padding-bottom: 1.5em;
-    padding-left: min(1em, 1vw);
-}
-
-.header .page-branding {
-    align-items: center;
-    justify-content: center;
-    font-weight: var(--font-weight-bold);
-    height: fit-content;
-    width: fit-content;
-}
-
-.header .page-branding svg {
-    height: var(--logo-size-small);
-    width: var(--logo-size-small);
-}
-
-.header .nav-link:hover {
-    background: var(--color-highlighter);
-}
-
-.header a {
-    text-decoration: none;
-}
-
-.header .user-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    gap: min(1.0em, 1.0vw);
-}
-
-.header .user-info .current-user {
-    font-size: var(--font-size-small);
-}
-
-.footer {
-    height: 1.5em;
-    padding: 0.5em 1em 0.5em 1em;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-}
-
-.footer div {
-    flex-grow: 1;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.footer div.right {
-    gap: 1em;
-    justify-content: flex-end;
 }
 
 .page-body {

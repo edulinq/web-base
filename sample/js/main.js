@@ -29,11 +29,11 @@ function _placeIcons(iconIDs) {
         lines.push(`
             <div>
                 <div class="icon secondary-accent-color-bg-low">
-                    <svg class="light-only" role="img" aria-labelledby="icon-label-${baseName}-light">
+                    <svg class="lightmode-only" role="img" aria-labelledby="icon-label-${baseName}-light">
                         <title id="icon-label-${baseName}-light">${edq.util.strings.titleCase(baseName)}</title>
                         <use href="${ICONS_URL}#${baseName}-light"></use>
                     </svg>
-                    <svg class="dark-only" role="img" aria-labelledby="icon-label-${baseName}-dark">
+                    <svg class="darkmode-only" role="img" aria-labelledby="icon-label-${baseName}-dark">
                         <title id="icon-label-${baseName}-dark">${edq.util.strings.titleCase(baseName)}</title>
                         <use href="${ICONS_URL}#${baseName}-dark"></use>
                     </svg>
@@ -65,6 +65,8 @@ function loadIcons() {
 }
 
 function main() {
+    edq.util.brightness.initBrightmode();
+
     loadIcons();
 }
 
