@@ -1,0 +1,160 @@
+/* EduLinq Hnadling for Light/Dark Mode */
+
+/* Default to light colors. */
+html {
+    --color-bg-primary: var(--color-light-bg-primary);
+    --color-bg-secondary: var(--color-light-bg-secondary);
+    --color-bg-tertiary: var(--color-light-bg-tertiary);
+
+    --color-bg-accent-primary: var(--color-light-bg-accent-primary);
+    --color-bg-accent-primary-low: var(--color-light-bg-accent-primary-low);
+    --color-bg-accent-secondary: var(--color-light-bg-accent-secondary);
+    --color-bg-accent-secondary-low: var(--color-light-bg-accent-secondary-low);
+    --color-bg-accent-tertiary: var(--color-light-bg-accent-tertiary);
+    --color-bg-accent-tertiary-low: var(--color-light-bg-accent-tertiary-low);
+    --color-bg-accent-gradient: var(--color-light-bg-accent-gradient);
+    --color-bg-error: var(--color-light-bg-error);
+
+    --color-text-primary: var(--color-light-text-primary);
+    --color-text-secondary: var(--color-light-text-secondary);
+    --color-text-tertiary: var(--color-light-text-tertiary);
+
+    --color-text-accent: var(--color-light-text-accent);
+    --color-text-accent-low: var(--color-light-text-accent-low);
+
+    --color-text-link: var(--color-light-text-link);
+    --color-text-link-low: var(--color-light-text-link-low);
+
+    --color-text-primary-low: var(--color-light-text-primary-low);
+    --color-text-secondary-low: var(--color-light-text-secondary-low);
+    --color-text-tertiary-low: var(--color-light-text-tertiary-low);
+}
+
+/* Let system setting override default color scheme. */
+@media (prefers-color-scheme: light) {
+    html {
+        --color-bg-primary: var(--color-light-bg-primary);
+        --color-bg-secondary: var(--color-light-bg-secondary);
+        --color-bg-tertiary: var(--color-light-bg-tertiary);
+
+        --color-bg-accent-primary: var(--color-light-bg-accent-primary);
+        --color-bg-accent-primary-low: var(--color-light-bg-accent-primary-low);
+        --color-bg-accent-secondary: var(--color-light-bg-accent-secondary);
+        --color-bg-accent-secondary-low: var(--color-light-bg-accent-secondary-low);
+        --color-bg-accent-tertiary: var(--color-light-bg-accent-tertiary);
+        --color-bg-accent-tertiary-low: var(--color-light-bg-accent-tertiary-low);
+        --color-bg-accent-gradient: var(--color-light-bg-accent-gradient);
+        --color-bg-error: var(--color-light-bg-error);
+
+        --color-text-primary: var(--color-light-text-primary);
+        --color-text-secondary: var(--color-light-text-secondary);
+        --color-text-tertiary: var(--color-light-text-tertiary);
+
+        --color-text-accent: var(--color-light-text-accent);
+        --color-text-accent-low: var(--color-light-text-accent-low);
+
+        --color-text-link: var(--color-light-text-link);
+        --color-text-link-low: var(--color-light-text-link-low);
+
+        --color-text-primary-low: var(--color-light-text-primary-low);
+        --color-text-secondary-low: var(--color-light-text-secondary-low);
+        --color-text-tertiary-low: var(--color-light-text-tertiary-low);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        --color-bg-primary: var(--color-dark-bg-primary);
+        --color-bg-secondary: var(--color-dark-bg-secondary);
+        --color-bg-tertiary: var(--color-dark-bg-tertiary);
+
+        --color-bg-accent-primary: var(--color-dark-bg-accent-primary);
+        --color-bg-accent-primary-low: var(--color-dark-bg-accent-primary-low);
+        --color-bg-accent-secondary: var(--color-dark-bg-accent-secondary);
+        --color-bg-accent-secondary-low: var(--color-dark-bg-accent-secondary-low);
+        --color-bg-accent-tertiary: var(--color-dark-bg-accent-tertiary);
+        --color-bg-accent-tertiary-low: var(--color-dark-bg-accent-tertiary-low);
+        --color-bg-accent-gradient: var(--color-dark-bg-accent-gradient);
+        --color-bg-error: var(--color-dark-bg-error);
+
+        --color-text-primary: var(--color-dark-text-primary);
+        --color-text-secondary: var(--color-dark-text-secondary);
+        --color-text-tertiary: var(--color-dark-text-tertiary);
+
+        --color-text-accent: var(--color-dark-text-accent);
+        --color-text-accent-low: var(--color-dark-text-accent-low);
+
+        --color-text-link: var(--color-dark-text-link);
+        --color-text-link-low: var(--color-dark-text-link-low);
+
+        --color-text-primary-low: var(--color-dark-text-primary-low);
+        --color-text-secondary-low: var(--color-dark-text-secondary-low);
+        --color-text-tertiary-low: var(--color-dark-text-tertiary-low);
+    }
+}
+
+/* Let explicit setting override system default. */
+.lightmode {
+    --color-bg-primary: var(--color-light-bg-primary);
+    --color-bg-secondary: var(--color-light-bg-secondary);
+    --color-bg-tertiary: var(--color-light-bg-tertiary);
+
+    --color-bg-accent-primary: var(--color-light-bg-accent-primary);
+    --color-bg-accent-primary-low: var(--color-light-bg-accent-primary-low);
+    --color-bg-accent-secondary: var(--color-light-bg-accent-secondary);
+    --color-bg-accent-secondary-low: var(--color-light-bg-accent-secondary-low);
+    --color-bg-accent-tertiary: var(--color-light-bg-accent-tertiary);
+    --color-bg-accent-tertiary-low: var(--color-light-bg-accent-tertiary-low);
+    --color-bg-accent-gradient: var(--color-light-bg-accent-gradient);
+    --color-bg-error: var(--color-light-bg-error);
+
+    --color-text-primary: var(--color-light-text-primary);
+    --color-text-secondary: var(--color-light-text-secondary);
+    --color-text-tertiary: var(--color-light-text-tertiary);
+
+    --color-text-accent: var(--color-light-text-accent);
+    --color-text-accent-low: var(--color-light-text-accent-low);
+
+    --color-text-link: var(--color-light-text-link);
+    --color-text-link-low: var(--color-light-text-link-low);
+
+    --color-text-primary-low: var(--color-light-text-primary-low);
+    --color-text-secondary-low: var(--color-light-text-secondary-low);
+    --color-text-tertiary-low: var(--color-light-text-tertiary-low);
+}
+
+.darkmode {
+    --color-bg-primary: var(--color-dark-bg-primary);
+    --color-bg-secondary: var(--color-dark-bg-secondary);
+    --color-bg-tertiary: var(--color-dark-bg-tertiary);
+
+    --color-bg-accent-primary: var(--color-dark-bg-accent-primary);
+    --color-bg-accent-primary-low: var(--color-dark-bg-accent-primary-low);
+    --color-bg-accent-secondary: var(--color-dark-bg-accent-secondary);
+    --color-bg-accent-secondary-low: var(--color-dark-bg-accent-secondary-low);
+    --color-bg-accent-tertiary: var(--color-dark-bg-accent-tertiary);
+    --color-bg-accent-tertiary-low: var(--color-dark-bg-accent-tertiary-low);
+    --color-bg-accent-gradient: var(--color-dark-bg-accent-gradient);
+    --color-bg-error: var(--color-dark-bg-error);
+
+    --color-text-primary: var(--color-dark-text-primary);
+    --color-text-secondary: var(--color-dark-text-secondary);
+    --color-text-tertiary: var(--color-dark-text-tertiary);
+
+    --color-text-accent: var(--color-dark-text-accent);
+    --color-text-accent-low: var(--color-dark-text-accent-low);
+
+    --color-text-link: var(--color-dark-text-link);
+    --color-text-link-low: var(--color-dark-text-link-low);
+
+    --color-text-primary-low: var(--color-dark-text-primary-low);
+    --color-text-secondary-low: var(--color-dark-text-secondary-low);
+    --color-text-tertiary-low: var(--color-dark-text-tertiary-low);
+}
+
+html.no-brightness-selection .darkmode-only,
+html.no-brightness-selection .lightmode-only,
+html.lightmode .darkmode-only,
+html.darkmode .lightmode-only {
+    display: none;
+}

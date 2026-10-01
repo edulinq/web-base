@@ -1,0 +1,255 @@
+/* EduLinq Style Constants */
+
+/**
+ * EduLinq web projects typically use a three-color scheme with support for light and dark modes.
+ * The colors are ordered as: `primary`, `secondary`, and `tertiary`.
+ * If more colors are needed, these should be cycled through again.
+ * Accents can be used as small splashes of color on their respective background.
+ */
+
+:root {
+    /* Light Mode */
+
+    --color-light-bg-primary: #dcdcfb;
+    --color-light-bg-secondary: #ebebff;
+    --color-light-bg-tertiary: #ffffff;
+
+    --color-light-bg-accent-primary: rgb(134, 114, 231);
+    --color-light-bg-accent-primary-low: rgba(134, 114, 231, 0.8);
+    --color-light-bg-accent-secondary: rgb(151, 227, 254);
+    --color-light-bg-accent-secondary-low: rgba(151, 227, 254, 0.8);
+    --color-light-bg-accent-tertiary: rgb(217, 4, 142);
+    --color-light-bg-accent-tertiary-low: rgba(217, 4, 142, 0.8);
+
+    --color-light-bg-accent-gradient: linear-gradient(60deg, var(--color-light-bg-tertiary) 0%, var(--color-light-bg-secondary) 50%, var(--color-light-bg-primary) 100%);
+
+    --color-light-text-primary: rgba(0, 0, 0, 0.90);
+    --color-light-text-secondary: rgba(0, 0, 0, 0.75);
+    --color-light-text-tertiary: rgba(0, 0, 0, 0.65);
+    --color-light-text-accent: rgba(0, 0, 0, 0.90);
+
+    --color-light-text-link: rgb(0, 68, 204);
+    --color-light-text-link-low: rgb(0, 68, 204, 0.8);
+
+    --color-light-text-primary-low: rgba(0, 0, 0, 0.60);
+    --color-light-text-secondary-low: rgba(0, 0, 0, 0.55);
+    --color-light-text-tertiary-low: rgba(0, 0, 0, 0.45);
+    --color-light-text-accent-low: rgba(0, 0, 0, 0.45);
+
+    /* Dark Mode */
+
+    --color-dark-bg-primary: #2c2934;
+    --color-dark-bg-secondary: #171322;
+    --color-dark-bg-tertiary: #0b0812;
+
+    --color-dark-text-primary: rgba(255, 255, 255, 0.90);
+    --color-dark-text-secondary: rgba(255, 255, 255, 0.80);
+    --color-dark-text-tertiary: rgba(255, 255, 255, 0.70);
+    --color-dark-text-accent: rgba(255, 255, 255, 0.90);
+
+    --color-dark-text-link: rgb(122, 170, 255);
+    --color-dark-text-link-low: rgb(122, 170, 255, 0.8);
+
+    --color-dark-text-primary-low: rgba(255, 255, 255, 0.50);
+    --color-dark-text-secondary-low: rgba(255, 255, 255, 0.45);
+    --color-dark-text-tertiary-low: rgba(255, 255, 255, 0.40);
+    --color-dark-text-accent-low: rgba(255, 255, 255, 0.45);
+
+    --color-dark-bg-accent-primary: rgb(134, 114, 231);
+    --color-dark-bg-accent-primary-low: rgb(134, 114, 231, 0.8);
+    --color-dark-bg-accent-secondary: rgba(176, 0, 120, 1);
+    --color-dark-bg-accent-secondary-low: rgba(176, 0, 120, 0.8);
+    --color-dark-bg-accent-tertiary: rgb(77, 204, 233);
+    --color-dark-bg-accent-tertiary-low: rgba(77, 204, 233, 0.8);
+    --color-dark-bg-accent-gradient: linear-gradient(60deg, var(--color-dark-bg-tertiary) 0%, var(--color-dark-bg-secondary) 50%, var(--color-dark-bg-primary) 100%);
+
+    /* Additional Colors */
+
+    --color-highlighter: rgba(255, 255, 255, 0.1);
+    --color-bg-shadow: #0c0814;
+    --color-text-error: #f40055;
+    --color-light-bg-error: rgba(0, 0, 0, 0.1);
+    --color-dark-bg-error: rgba(255, 255, 255, 0.1);
+
+    /* Additional Constants */
+
+    --curve-radius-small: 8px;
+    --curve-radius-large: 16px;
+
+    --logo-size-large: 144px;
+    --logo-size-normal: 54px;
+    --logo-size-small: 42px;
+
+    --icon-size-larger: 48px;
+    --icon-size-large: 42px;
+    --icon-size-normal: 36px;
+    --icon-size-small: 30px;
+    --icon-size-smaller: 24px;
+
+    --font-size-larger: 1.40rem;
+    --font-size-large: 1.30rem;
+    --font-size-normal: 1.15rem;
+    --font-size-small: 1.00rem;
+    --font-size-smaller: 0.90rem;
+
+    --font-weight-normal: 450;
+    --font-weight-bold: 650;
+}
+
+.primary-color {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+.primary-color-low {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary-low);
+}
+
+.primry-color hr {
+    border-color: var(--color-text-primary);
+}
+
+.primry-color-low hr {
+    border-color: var(--color-text-primary-low);
+}
+
+.secondary-color {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
+}
+
+.secondary-color a {
+    color: var(--color-text-secondary);
+}
+
+.secondary-color hr {
+    border-color: var(--color-text-secondary);
+}
+
+.secondary-color-low {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-secondary-low);
+}
+
+.secondary-color-low a {
+    color: var(--color-text-secondary-low);
+}
+
+.secondary-color-low hr {
+    border-color: var(--color-text-secondary-low);
+}
+
+.tertiary-color {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-tertiary);
+}
+
+.tertiary-color a {
+    color: var(--color-text-tertiary);
+}
+
+.tertiary-color hr {
+    border-color: var(--color-text-tertiary);
+}
+
+.tertiary-color-low {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-tertiary-low);
+}
+
+.tertiary-color-low a {
+    color: var(--color-text-tertiary-low);
+}
+
+.tertiary-color-low hr {
+    border-color: var(--color-text-tertiary-low);
+}
+.primary-accent-color {
+    background-color: var(--color-bg-accent-primary);
+    color: var(--color-text-accent);
+}
+
+.primary-accent-color a {
+    color: var(--color-text-accent);
+}
+
+.primary-accent-color-text-low {
+    background-color: var(--color-bg-accent-primary);
+    color: var(--color-text-accent-low);
+}
+
+.primary-accent-color-text-low a {
+    color: var(--color-text-accent-low);
+}
+
+.primary-accent-color-bg-low {
+    background-color: var(--color-bg-accent-primary-low);
+}
+
+.secondary-accent-color {
+    background-color: var(--color-bg-accent-secondary);
+    color: var(--color-text-accent);
+}
+
+.secondary-accent-color a {
+    color: var(--color-text-accent);
+}
+
+.secondary-accent-color-text-low {
+    background-color: var(--color-bg-accent-secondary);
+    color: var(--color-text-accent-low);
+}
+
+.secondary-accent-color-text-low a {
+    color: var(--color-text-accent-low);
+}
+
+.secondary-accent-color-bg-low {
+    background-color: var(--color-bg-accent-secondary-low);
+    color: var(--color-text-accent-low);
+}
+
+.tertiary-accent-color {
+    background-color: var(--color-bg-accent-tertiary);
+    color: var(--color-text-accent);
+}
+
+.tertiary-accent-color a {
+    color: var(--color-text-accent);
+}
+
+.tertiary-accent-color-text-low {
+    background-color: var(--color-bg-accent-tertiary);
+    color: var(--color-text-accent-low);
+}
+
+.tertiary-accent-color-text-low a {
+    color: var(--color-text-accent-low);
+}
+
+.tertiary-accent-color-bg-low {
+    background-color: var(--color-bg-accent-tertiary-low);
+    color: var(--color-text-accent-low);
+}
+
+.gradient-accent-color {
+    background: var(--color-bg-accent-gradient);
+}
+
+.error-color {
+    background-color: var(--color-bg-error);
+    color: var(--color-text-error);
+}
+
+a {
+    color: var(--color-text-link);
+}
+
+.link-color a {
+    color: var(--color-text-link);
+}
+
+.link-color-low a {
+    color: var(--color-text-link-low);
+}
