@@ -7,10 +7,13 @@ readonly URL='https://github.com/edulinq/web-base'
 readonly THIS_DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd | xargs realpath)"
 readonly ROOT_DIR="${THIS_DIR}/.."
 
-readonly BUILD_DIR="${ROOT_DIR}/build"
-readonly DIST_DIR="${ROOT_DIR}/dist"
 readonly SAMPLE_DIR="${ROOT_DIR}/sample"
 readonly SOURCE_DIR="${ROOT_DIR}/src"
+
+readonly BUILD_DIR="${ROOT_DIR}/build"
+
+readonly DIST_BASE_DIR="${ROOT_DIR}/dist"
+readonly SAMPLE_DIST_BASE_DIR="${DIST_BASE_DIR}/sample"
 
 readonly ESBUILD_BIN="${ROOT_DIR}/node_modules/.bin/esbuild"
 
@@ -41,11 +44,16 @@ function main() {
         prod=true
     fi
 
-    local prodArgs=''
     local outJSPath="${JS_BASE_OUT_PATH}"
+    local distDir="${DIST_BASE_DIR}/dev"
+    local sampleDistDir="${SAMPLE_DIST_BASE_DIR}/dev"
+
+    local prodArgs=''
     if [[ "${prod}" = true ]]; then
         prodArgs='--minify'
         outJSPath=$(echo "${outJSPath}" | sed 's/.js$/.min.js/')
+        distDir="${DIST_BASE_DIR}/prod"
+        sampleDistDir="${SAMPLE_DIST_BASE_DIR}/prod"
     fi
 
     set -e
@@ -54,9 +62,9 @@ function main() {
     cd "${ROOT_DIR}"
 
     # Cleanup before build.
-    rm -rf "${BUILD_DIR}"
-    mkdir -p "${BUILD_DIR}"
-    mkdir -p "${DIST_DIR}"
+    rm -rf "${BUILD_DIR}" && mkdir -p "${BUILD_DIR}"
+    rm -rf "${distDir}" && mkdir -p "${distDir}"
+    rm -rf "${sampleDistDir}" && mkdir -p "${sampleDistDir}"
 
     # Fetch version.
     local version=$(grep 'const VERSION' "${JS_INDEX_PATH}" | sed "s/^const VERSION = '\(.*\)';$/\1/")
@@ -76,10 +84,11 @@ function main() {
     cp -r "${IMAGES_DIR}" "${BUILD_DIR}/"
 
     # Copy build output to the distribution dir.
-    cp -r "${BUILD_DIR}/"* "${DIST_DIR}/"
+    cp -r "${BUILD_DIR}"/* "${distDir}/"
 
-    # Overlay the sample onto the build dir.
-    cp -r "${SAMPLE_DIR}/"* "${BUILD_DIR}/"
+    # Build the sample.
+    cp -r "${distDir}" "${sampleDistDir}/edq"
+    cp -r "${SAMPLE_DIR}"/* "${sampleDistDir}/"
 
     return 0
 }

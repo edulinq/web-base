@@ -1,6 +1,6 @@
-import * as edq from './edq.js';
+import * as edq from '../edq/js/edq.js';
 
-const ICONS_URL = 'images/icons.svg';
+const ICONS_URL = 'edq/images/icons.svg';
 
 function _placeIcons(iconIDs) {
     let baseNames = new Set();
