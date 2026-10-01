@@ -40,6 +40,19 @@ hr {
     border-radius: var(--curve-radius-large);
 }
 
+table.standard-table {
+    border-collapse: collapse;
+}
+
+table.standard-table th,
+table.standard-table td {
+    padding: 0.50em;
+}
+
+table.standard-table th,
+table.standard-table tr:not(:last-child) {
+    border-bottom: 1px solid var(--color-text-secondary);
+}
 
 
 
@@ -168,22 +181,6 @@ fieldset {
     padding: 0;
     outline: none;
     border: none;
-}
-
-svg {
-    height: var(--icon-size-small);
-    width: var(--icon-size-small);
-}
-
-.page-body .icon {
-    padding: 1.0em;
-    border-radius: var(--curve-radius-large);
-}
-
-.page-body svg {
-    flex-shrink: 1;
-    height: var(--icon-size-larger);
-    width: var(--icon-size-larger);
 }
 
 .loading-container {
@@ -580,20 +577,6 @@ svg {
 
 .home-content > div p {
     margin-bottom: 0em;
-}
-
-table.standard-table {
-    border-collapse: collapse;
-}
-
-table.standard-table th,
-table.standard-table td {
-    padding: 0.50em;
-}
-
-table.standard-table th,
-table.standard-table tr:not(:last-child) {
-    border-bottom: 1px solid var(--color-text-secondary);
 }
 
 .page-controls {

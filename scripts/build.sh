@@ -25,6 +25,7 @@ readonly CSS_PATHS=(
     "${SOURCE_DIR}/css/constants.css"
     "${SOURCE_DIR}/css/vendor/normalize.css"
     "${SOURCE_DIR}/css/lightdark.css"
+    "${SOURCE_DIR}/css/icons.css"
     "${SOURCE_DIR}/css/style.css"
 )
 
