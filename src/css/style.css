@@ -195,7 +195,10 @@ fieldset {
     color: var(--color-text-accent);
 }
 
-
+.page > .content {
+    max-width: 80rem;
+    margin: 10px auto;
+}
 
 
 
