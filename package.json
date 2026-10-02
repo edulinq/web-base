@@ -38,6 +38,9 @@
         ],
         "rootDir": ".test-build",
         "transform": {},
-        "verbose": true
+        "verbose": true,
+        "setupFilesAfterEnv": [
+            "<rootDir>/testing/setup.js"
+        ]
     }
 }
