@@ -10,10 +10,6 @@ html {
     word-break: break-word;
 }
 
-.hidden {
-    display: none;
-}
-
 /* Add additional selection elements to increase the power of the selector. */
 .page-body .content .hidden {
     display: none;
@@ -36,7 +32,7 @@ hr {
 .subsection,
 .subsubsection {
     margin: min(1.5rem, 1vw);
-    padding: 1.5em;
+    padding: 1.5rem;
     border-radius: var(--curve-radius-large);
 }
 
@@ -46,7 +42,7 @@ table.standard-table {
 
 table.standard-table th,
 table.standard-table td {
-    padding: 0.50em;
+    padding: 0.50rem;
 }
 
 table.standard-table th,
@@ -54,27 +50,41 @@ table.standard-table tr:not(:last-child) {
     border-bottom: 1px solid var(--color-text-secondary);
 }
 
-h1 {
-    font-size: 2.00rem;
-}
-
-h2 {
-    font-size: 1.75rem;
-}
-
-h3 {
-    font-size: 1.50rem;
-}
-
-h4 {
-    font-size: 1.25rem;
-}
-
-h1, h2, h3, h4,
+h1, h2, h3, h4, h5, h6,
 p, span,
 ul, ol {
     margin: 0;
     padding: 0;
+}
+
+h1 {
+    font-size: 2.00rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.875rem;
+}
+
+h3 {
+    font-size: 1.50rem;
+    margin-bottom: 0.75rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+}
+
+h5 {
+    font-size: 1.00rem;
+    margin-bottom: 0.5rem;
+}
+
+h6 {
+    font-size: 0.75rem;
+    margin-bottom: 0.375rem;
 }
 
 .page {
@@ -85,12 +95,12 @@ ul, ol {
 }
 
 .page p {
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
 .page ul,
 .page ol {
-    margin-left: 2em;
+    margin-left: 2rem;
 }
 
 fieldset {
@@ -100,8 +110,8 @@ fieldset {
 }
 
 .header {
-    padding-left: min(1.0em, 1vw);
-    padding-right: min(1.0em, 1vw);
+    padding-left: min(1.0rem, 1vw);
+    padding-right: min(1.0rem, 1vw);
     text-align: center;
     font-size: var(--font-size-smaller);
 
@@ -119,8 +129,8 @@ fieldset {
     flex-basis: 0;
     word-break: keep-all;
 
-    padding-top: 1.0em;
-    padding-bottom: 1.0em;
+    padding-top: 1.0rem;
+    padding-bottom: 1.0rem;
 }
 
 .header .site-nav {
@@ -131,8 +141,8 @@ fieldset {
 
     /* Remove the padding from the nav itself.
      * The padding will be put on each nav link for better hover effects. */
-    padding-top: 0em;
-    padding-bottom: 0em;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
 }
 
 .header .nav-highlight {
@@ -144,15 +154,15 @@ fieldset {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: min(0.5em, 0.5vw);
+    gap: min(0.5rem, 0.5vw);
 }
 
 .header .nav-link {
     /* Add padding to the nav link class for better hover effects. */
-    padding-top: 1.5em;
-    padding-right: min(1em, 1vw);
-    padding-bottom: 1.5em;
-    padding-left: min(1em, 1vw);
+    padding-top: 1.5rem;
+    padding-right: min(1rem, 1vw);
+    padding-bottom: 1.5rem;
+    padding-left: min(1rem, 1vw);
 }
 
 .header .site-branding {
@@ -181,7 +191,7 @@ fieldset {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap: min(1.0em, 1.0vw);
+    gap: min(1.0rem, 1.0vw);
 }
 
 .brightmode-toggle {
@@ -238,15 +248,15 @@ textarea:disabled {
 }
 
 input {
-    padding: 0.25em 0.5em;
+    padding: 0.25rem 0.5rem;
 }
 
 button {
-    padding: 0.5em 0.25em;
+    padding: 0.5rem 0.25rem;
 }
 
 select {
-    padding: 0.75em 1em;
+    padding: 0.75rem 1rem;
 }
 
 input:invalid.touched {
@@ -273,8 +283,8 @@ textarea:focus:not([disabled]) {
 
 input[type="checkbox"] {
     accent-color: var(--color-bg-accent-secondary);
-    height: 1.25em;
-    width: 1.25em;
+    height: 1.25rem;
+    width: 1.25rem;
 }
 
 /* Use the standard box shadow on checkboxes because the hover effect looks bad on this element. */
@@ -287,8 +297,8 @@ input[type="checkbox"]:focus {
 }
 
 .footer {
-    height: 1.5em;
-    padding: 0.5em 1em 0.5em 1em;
+    height: 1.5rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 
     display: flex;
     flex-direction: row;
@@ -306,7 +316,7 @@ input[type="checkbox"]:focus {
 }
 
 .footer div.right {
-    gap: 1em;
+    gap: 1rem;
     justify-content: flex-end;
 }
 
@@ -417,29 +427,20 @@ input[type="checkbox"]:focus {
 .page-body {
     flex-grow: 1;
 
-    padding: 0.5em;
+    padding: 0.5rem;
 }
 
 .content-area {
     display: flex;
     flex-direction: column;
-    gap: 0.5em;
+    gap: 0.5rem;
 
     flex-grow: 1000;
 }
 
 .content {
-    padding: 1.0em;
+    padding: 1.0rem;
     border-radius: var(--curve-radius-large);
-}
-
-.content h2 {
-    margin-bottom: 1em;
-    text-align: center;
-}
-
-.content h3 {
-    margin-bottom: 0.75em;
 }
 
 .card-header,
@@ -448,17 +449,17 @@ input[type="checkbox"]:focus {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding: min(1.75em, 4.5vw);
-    gap: 1.0em;
+    padding: min(1.75rem, 4.5vw);
+    gap: 1.0rem;
     border-radius: var(--curve-radius-large);
 }
 
 .card-header {
-    margin-bottom: 1.0em;
+    margin-bottom: 1.0rem;
 }
 
 .card-header h2 {
-    margin-bottom: 0em;
+    margin-bottom: 0rem;
 }
 
 .card-header .card-title {
@@ -474,16 +475,16 @@ input[type="checkbox"]:focus {
 
 .card-sections > div {
     display: block;
-    padding: 1.0em;
+    padding: 1.0rem;
     border-radius: var(--curve-radius-large);
 }
 
 .card-section {
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
 .card-section:last-of-type {
-    margin-bottom: 0em;
+    margin-bottom: 0rem;
 }
 
 .card-section h2 {
@@ -496,7 +497,7 @@ input[type="checkbox"]:focus {
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
-    gap: 2em;
+    gap: 2rem;
     align-items: stretch;
 }
 
@@ -525,7 +526,7 @@ input[type="checkbox"]:focus {
 }
 
 .card a {
-    padding: 1.5em;
+    padding: 1.5rem;
     text-decoration: none;
     word-break: keep-all;
 }
@@ -551,12 +552,12 @@ input[type="checkbox"]:focus {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 0.75em;
+    gap: 0.75rem;
     font-size: var(--font-size-larger);
 }
 
 .home-title .icon {
-    padding: 0.75em;
+    padding: 0.75rem;
 }
 
 .home-title svg {
@@ -567,12 +568,12 @@ input[type="checkbox"]:focus {
 .home-content > div {
     /* Do not use relative margins as the title cards will be spaced differently. */
     margin: min(18px, 1vw);
-    padding: 1.5em;
+    padding: 1.5rem;
     border-radius: var(--curve-radius-large);
 }
 
 .home-content > div p {
-    margin-bottom: 0em;
+    margin-bottom: 0rem;
 }
 
 .page-controls {
@@ -582,11 +583,11 @@ input[type="checkbox"]:focus {
     align-content: flex-start;
     justify-content: center;
     align-items: center;
-    gap: 2em;
+    gap: 2rem;
 
     font-size: var(--font-size-large);
 
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
 .page-controls select {
@@ -599,13 +600,13 @@ input[type="checkbox"]:focus {
     justify-content: flex-start;
     align-items: center;
     align-content: center;
-    padding: min(1.75em, 4.5vw);
+    padding: min(1.75rem, 4.5vw);
     border-radius: var(--curve-radius-small);
 }
 
 .template-content .page-image {
     flex-shrink: 1;
-    padding: 1.0em;
+    padding: 1.0rem;
     border-radius: var(--curve-radius-small);
 }
 
@@ -616,7 +617,7 @@ input[type="checkbox"]:focus {
     align-items: flex-start;
     text-align: center;
     flex: 0 1 auto;
-    gap: 0.5em;
+    gap: 0.5rem;
 }
 
 .template-content .page-text > div {
@@ -632,8 +633,8 @@ input[type="checkbox"]:focus {
     flex-direction: column;
     align-self: stretch;
 
-    gap: 1em;
-    padding: 1.5em;
+    gap: 1rem;
+    padding: 1.5rem;
 
     border-radius: var(--curve-radius-small);
 }
@@ -649,7 +650,7 @@ input[type="checkbox"]:focus {
 .template-content .template-control-area fieldset > div {
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
 }
 
 .user-input-fields fieldset > div.checkbox-field,
@@ -660,13 +661,13 @@ input[type="checkbox"]:focus {
 
 .user-input-fields .input-field label,
 .template-content .template-control-area .input-field label {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
 }
 
 .user-input-fields .checkbox-field label,
 .template-content .template-control-area .checkbox-field label {
-    margin-bottom: 0em;
-    margin-left: 0.5em;
+    margin-bottom: 0rem;
+    margin-left: 0.5rem;
 }
 
 .user-input-fields .input-field .error-message,
@@ -678,12 +679,12 @@ input[type="checkbox"]:focus {
 
     /* Add a small margin to account for the input field's drop shadow. */
     margin-top: 2px;
-    margin-bottom: 0.25em;
+    margin-bottom: 0.25rem;
 
-    padding-left: 0.75em;
-    padding-right: 0.75em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .user-input-fields .input-field .error-message.show,
@@ -693,7 +694,7 @@ input[type="checkbox"]:focus {
 
 .user-input-fields .input-field .error-message p,
 .template-content .template-control-area .input-field .error-message p {
-    margin: 0em;
+    margin: 0rem;
 }
 
 .template-content > div {
@@ -705,36 +706,36 @@ input[type="checkbox"]:focus {
     max-width: 95vw;
     box-sizing: border-box;
 
-    gap: 1em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-right: 0.5em;
-    margin-left: 0.5em;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
 }
 
 .template-content button {
     max-width: fit-content;
     align-self: center;
-    padding: 0.5em 0.75em;
+    padding: 0.5rem 0.75rem;
 }
 
 .template-content .template-header h2 {
-    margin-bottom: 0em;
+    margin-bottom: 0rem;
 }
 
 .template-content .template-description p {
-    margin-bottom: 0em;
+    margin-bottom: 0rem;
 }
 
 .results-area .result {
     display: flex;
     flex-direction: column;
     align-self: stretch;
-    gap: 1em;
+    gap: 1rem;
 
     overflow-x: auto;
-    padding: 1.5em;
-    margin-bottom: 1em;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
 
     border-radius: var(--curve-radius-small);
 }
@@ -753,13 +754,13 @@ input[type="checkbox"]:focus {
 }
 
 .template-control-area {
-    padding: 1.5em;
+    padding: 1.5rem;
     border-radius: var(--curve-radius-small);
 }
 
 .submission table,
 .submission-history table {
-    margin-left: 2em;
+    margin-left: 2rem;
 }
 
 .submission table th,
@@ -767,19 +768,19 @@ input[type="checkbox"]:focus {
 .submission-history table th,
 .submission-history table tr {
     text-align: left;
-    padding-right: 2em;
+    padding-right: 2rem;
 }
 
 .submission-questions-area {
-    margin-top: 2em;
+    margin-top: 2rem;
 }
 
 .submission-questions {
-    margin-left: 2em;
+    margin-left: 2rem;
 
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 1rem;
 }
 
 .api-docs {
@@ -796,7 +797,7 @@ input[type="checkbox"]:focus {
     max-width: 47%;
     min-width: 350px;
     height: 100%;
-    padding: 1em;
+    padding: 1rem;
 }
 
 .api-docs .scrollable {
@@ -804,7 +805,7 @@ input[type="checkbox"]:focus {
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 3em;
+    gap: 3rem;
 }
 
 .api-docs .endpoint-details,
@@ -813,7 +814,7 @@ input[type="checkbox"]:focus {
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: 1rem;
 }
 
 .api-docs .endpoint-details > div,
@@ -831,7 +832,7 @@ input[type="checkbox"]:focus {
 .api-docs .api-types {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 1rem;
 }
 
 .output-switcher .controls {

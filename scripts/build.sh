@@ -29,6 +29,7 @@ readonly CSS_PATHS=(
     "${SOURCE_DIR}/css/vendor/normalize.css"
     "${SOURCE_DIR}/css/brightness.css"
     "${SOURCE_DIR}/css/icons.css"
+    "${SOURCE_DIR}/css/util.css"
     "${SOURCE_DIR}/css/style.css"
 )
 

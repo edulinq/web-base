@@ -1,0 +1,9 @@
+/* Utility CSS Rules */
+
+.hidden {
+    display: none;
+}
+
+.center {
+    text-align: center;
+}
