@@ -48,42 +48,53 @@
                         <h3>Light Mode</h3>
 
                         <div class='subsubsection darkmode primary-color' style='width: fit-content;'>
-                            <table class='standard-table lightmode'>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Primary</th>
-                                        <th>Secondary</th>
-                                        <th>Tertiary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Background</td>
-                                        <td class='primary-color'></td>
-                                        <td class='secondary-color'></td>
-                                        <td class='tertiary-color'></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Text</td>
-                                        <td class='primary-color'><span>Primary</span></td>
-                                        <td class='secondary-color'><span>Secondary</span></td>
-                                        <td class='tertiary-color'><span>Tertiary</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Accent</td>
-                                        <td class='primary-color'><span class='primary-accent-color'>Primary</span></td>
-                                        <td class='secondary-color'><span class='secondary-accent-color'>Secondary</span></td>
-                                        <td class='tertiary-color'><span class='tertiary-accent-color'>Tertiary</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Link</td>
-                                        <td class='primary-color'><a href='#'>Primary</a></td>
-                                        <td class='secondary-color'><a href='#'>Secondary</a></td>
-                                        <td class='tertiary-color'><a href='#'>Tertiary</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <!-- Use an iframe to prevent interference from page style with the specific table cells. -->
+                            <iframe height='250px' width='500px' sandbox srcdoc="
+                                <link rel=&apos;stylesheet&apos; type=&apos;text/css&apos; href=&apos;edq/css/edq.css&apos;>
+                                <table class=&apos;standard-table lightmode&apos;>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Primary</th>
+                                            <th>Secondary</th>
+                                            <th>Tertiary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Background</td>
+                                            <td class=&apos;primary-color&apos;></td>
+                                            <td class=&apos;secondary-color&apos;></td>
+                                            <td class=&apos;tertiary-color&apos;></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Text</td>
+                                            <td class=&apos;primary-color&apos;><span>Primary</span></td>
+                                            <td class=&apos;secondary-color&apos;><span>Secondary</span></td>
+                                            <td class=&apos;tertiary-color&apos;><span>Tertiary</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Accent</td>
+                                            <td class=&apos;primary-color&apos;><span class=&apos;primary-accent-color&apos;>Primary</span></td>
+                                            <td class=&apos;secondary-color&apos;><span class=&apos;secondary-accent-color&apos;>Secondary</span></td>
+                                            <td class=&apos;tertiary-color&apos;><span class=&apos;tertiary-accent-color&apos;>Tertiary</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Link</td>
+                                            <td class=&apos;primary-color&apos;><a href=&apos;#&apos;>Primary</a></td>
+                                            <td class=&apos;secondary-color&apos;><a href=&apos;#&apos;>Secondary</a></td>
+                                            <td class=&apos;tertiary-color&apos;><a href=&apos;#&apos;>Tertiary</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Code</td>
+                                            <td class=&apos;primary-color&apos;><code>Primary</code></td>
+                                            <td class=&apos;secondary-color&apos;><code>Secondary</code></td>
+                                            <td class=&apos;tertiary-color&apos;><code>Tertiary</code></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            ">
+                            </iframe>
                         </div>
                     </div>
 
@@ -91,42 +102,53 @@
                         <h3>Dark Mode</h3>
 
                         <div class='subsubsection lightmode primary-color' style='width: fit-content;'>
-                            <table class='standard-table darkmode'>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Primary</th>
-                                        <th>Secondary</th>
-                                        <th>Tertiary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Background</td>
-                                        <td class='primary-color'></td>
-                                        <td class='secondary-color'></td>
-                                        <td class='tertiary-color'></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Text</td>
-                                        <td class='primary-color'><span>Primary</span></td>
-                                        <td class='secondary-color'><span>Secondary</span></td>
-                                        <td class='tertiary-color'><span>Tertiary</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Accent</td>
-                                        <td class='primary-color'><span class='primary-accent-color'>Primary</span></td>
-                                        <td class='secondary-color'><span class='secondary-accent-color'>Secondary</span></td>
-                                        <td class='tertiary-color'><span class='tertiary-accent-color'>Tertiary</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Link</td>
-                                        <td class='primary-color'><a href='#'>Primary</a></td>
-                                        <td class='secondary-color'><a href='#'>Secondary</a></td>
-                                        <td class='tertiary-color'><a href='#'>Tertiary</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <!-- Use an iframe to prevent interference from page style with the specific table cells. -->
+                            <iframe height='250px' width='500px' sandbox srcdoc="
+                                <link rel=&apos;stylesheet&apos; type=&apos;text/css&apos; href=&apos;edq/css/edq.css&apos;>
+                                <table class=&apos;standard-table darkmode&apos;>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Primary</th>
+                                            <th>Secondary</th>
+                                            <th>Tertiary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Background</td>
+                                            <td class=&apos;primary-color&apos;></td>
+                                            <td class=&apos;secondary-color&apos;></td>
+                                            <td class=&apos;tertiary-color&apos;></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Text</td>
+                                            <td class=&apos;primary-color&apos;><span>Primary</span></td>
+                                            <td class=&apos;secondary-color&apos;><span>Secondary</span></td>
+                                            <td class=&apos;tertiary-color&apos;><span>Tertiary</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Accent</td>
+                                            <td class=&apos;primary-color&apos;><span class=&apos;primary-accent-color&apos;>Primary</span></td>
+                                            <td class=&apos;secondary-color&apos;><span class=&apos;secondary-accent-color&apos;>Secondary</span></td>
+                                            <td class=&apos;tertiary-color&apos;><span class=&apos;tertiary-accent-color&apos;>Tertiary</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Link</td>
+                                            <td class=&apos;primary-color&apos;><a href=&apos;#&apos;>Primary</a></td>
+                                            <td class=&apos;secondary-color&apos;><a href=&apos;#&apos;>Secondary</a></td>
+                                            <td class=&apos;tertiary-color&apos;><a href=&apos;#&apos;>Tertiary</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Code</td>
+                                            <td class=&apos;primary-color&apos;><code>Primary</code></td>
+                                            <td class=&apos;secondary-color&apos;><code>Secondary</code></td>
+                                            <td class=&apos;tertiary-color&apos;><code>Tertiary</code></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            ">
+                            </iframe>
                         </div>
                     </div>
                 </div>
@@ -231,7 +253,13 @@
                     <div class='subsection tertiary-color'>
                         <h3>Inline Text Decoration</h3>
 
-                        TEST
+                        <p>Some <strong>bold</strong> text.</p>
+
+                        <p>Some <em>italics</em> text.</p>
+
+                        <p>Some <u>underline</u> text.</p>
+
+                        <p>Some <code>code</code> text.</p>
                     </div>
 
                     <div class='subsection tertiary-color'>

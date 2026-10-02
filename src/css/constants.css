@@ -101,16 +101,26 @@
     color: var(--color-text-primary);
 }
 
+.primary-color code {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary-low);
+}
+
+.primary-color hr {
+    border-color: var(--color-text-primary);
+}
+
 .primary-color-low {
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary-low);
 }
 
-.primry-color hr {
-    border-color: var(--color-text-primary);
+.primary-color-low code {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
 }
 
-.primry-color-low hr {
+.primary-color-low hr {
     border-color: var(--color-text-primary-low);
 }
 
@@ -121,6 +131,11 @@
 
 .secondary-color a {
     color: var(--color-text-secondary);
+}
+
+.secondary-color code {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary-low);
 }
 
 .secondary-color hr {
@@ -136,6 +151,11 @@
     color: var(--color-text-secondary-low);
 }
 
+.secondary-color-low code {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+}
+
 .secondary-color-low hr {
     border-color: var(--color-text-secondary-low);
 }
@@ -147,6 +167,11 @@
 
 .tertiary-color a {
     color: var(--color-text-tertiary);
+}
+
+.tertiary-color code {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-tertiary-low);
 }
 
 .tertiary-color hr {
@@ -162,9 +187,15 @@
     color: var(--color-text-tertiary-low);
 }
 
+.tertiary-color-low code {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-tertiary);
+}
+
 .tertiary-color-low hr {
     border-color: var(--color-text-tertiary-low);
 }
+
 .primary-accent-color {
     background-color: var(--color-bg-accent-primary);
     color: var(--color-text-accent);
@@ -174,6 +205,11 @@
     color: var(--color-text-accent);
 }
 
+.primary-accent-color code {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-accent-low);
+}
+
 .primary-accent-color-text-low {
     background-color: var(--color-bg-accent-primary);
     color: var(--color-text-accent-low);
@@ -181,6 +217,11 @@
 
 .primary-accent-color-text-low a {
     color: var(--color-text-accent-low);
+}
+
+.primary-accent-color-text-low code {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-accent);
 }
 
 .primary-accent-color-bg-low {
@@ -196,6 +237,11 @@
     color: var(--color-text-accent);
 }
 
+.secondary-accent-color code {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-accent-low);
+}
+
 .secondary-accent-color-text-low {
     background-color: var(--color-bg-accent-secondary);
     color: var(--color-text-accent-low);
@@ -203,6 +249,11 @@
 
 .secondary-accent-color-text-low a {
     color: var(--color-text-accent-low);
+}
+
+.secondary-accent-color-text-low code {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-accent);
 }
 
 .secondary-accent-color-bg-low {
@@ -219,6 +270,11 @@
     color: var(--color-text-accent);
 }
 
+.tertiary-accent-color code {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-accent-low);
+}
+
 .tertiary-accent-color-text-low {
     background-color: var(--color-bg-accent-tertiary);
     color: var(--color-text-accent-low);
@@ -226,6 +282,11 @@
 
 .tertiary-accent-color-text-low a {
     color: var(--color-text-accent-low);
+}
+
+.tertiary-accent-color-text-low code {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-accent);
 }
 
 .tertiary-accent-color-bg-low {

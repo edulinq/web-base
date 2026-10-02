@@ -87,6 +87,11 @@ h6 {
     margin-bottom: 0.375rem;
 }
 
+code {
+    border-radius: var(--curve-radius-small);
+    padding: 0 0.25rem 0 0.25rem;
+}
+
 .page {
     display: flex;
     flex-direction: column;
