@@ -64,11 +64,41 @@ function loadIcons() {
     document.querySelector('body').appendChild(frame);
 }
 
+function loadCodeBlocks() {
+    let blocks = [];
+    for (const [language, [extension, text]] of Object.entries(codeBlocks)) {
+        let container = document.createElement('div');
+        container.classList.add('code-container');
+        edq.render.code.block(container, text, language, `code${extension}`);
+
+        let label = document.createElement('p');
+        label.innerText = language;
+
+        blocks.push(label);
+        blocks.push(container);
+    }
+
+    document.querySelector('div.code-blocks').replaceChildren(...blocks);
+}
+
 function main() {
     edq.util.brightness.initBrightmode();
     edq.util.table.enableSortingAll();
 
     loadIcons();
+    loadCodeBlocks();
 }
+
+const codeBlocks = {
+    'plaintext': ['.txt', 'This is just some text.'],
+    'json': ['.json', JSON.stringify({foo: 1, bar: [2.0, 3]}, null, 4)],
+    'html': ['.html', `
+<html>
+    <body>
+        <h1>Sample HTML!</h1>
+    </body>
+</html>
+    `.trim()],
+};
 
 document.addEventListener("DOMContentLoaded", main);
