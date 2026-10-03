@@ -3,10 +3,10 @@ let _isLightmode: undefined | boolean = undefined;
 function initBrightmode() {
     setBrightmode(isSystemLightmode());
 
-    let toggle = document.querySelector('.brightmode-toggle');
+    let toggle = document.querySelector<HTMLElement>('.brightmode-toggle');
     if (toggle) {
         toggle.addEventListener('click', function(event) {
-            let lightSelection = document.querySelector('.brightmode-toggle .lightmode');
+            let lightSelection = document.querySelector<HTMLElement>('.brightmode-toggle .lightmode');
             if (lightSelection == null) {
                 throw new Error('Brightmode toggle has no light element.');
             }
@@ -27,7 +27,7 @@ function setBrightmode(isLight: boolean) {
     _isLightmode = isLight;
 
     // Set UI bright mode selector.
-    document.querySelectorAll('.brightmode-toggle .selector').forEach(function(element) {
+    document.querySelectorAll<HTMLElement>('.brightmode-toggle .selector').forEach(function(element) {
         if ((isLight && element.classList.contains('lightmode')) || (!isLight && element.classList.contains('darkmode'))) {
             element.classList.add('active');
         } else {
@@ -36,7 +36,7 @@ function setBrightmode(isLight: boolean) {
     });
 
     // Set the page's mode.
-    let html = (document.querySelector('html') as HTMLElement);
+    let html = (document.querySelector<HTMLElement>('html') as HTMLElement);
     if (isLight) {
         html.classList.remove('darkmode');
         html.classList.add('lightmode');

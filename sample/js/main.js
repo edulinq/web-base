@@ -66,6 +66,7 @@ function loadIcons() {
 
 function main() {
     edq.util.brightness.initBrightmode();
+    edq.util.table.enableSortingAll();
 
     loadIcons();
 }
