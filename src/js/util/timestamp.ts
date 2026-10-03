@@ -5,14 +5,61 @@ const MSECS_PER_MINS: number = MSECS_PER_SECS * 60
 const MSECS_PER_HOURS: number = MSECS_PER_MINS * 60
 const MSECS_PER_DAYS: number = MSECS_PER_HOURS * 24
 
-const TESTING_LOCALE: string = 'en-US';
+// Use Sweden's local because it looks nice.
+const DEFAUT_LOCALE: string = 'sv';
 const TESTING_TIME_ZONE: string = 'UTC';
 
 // Timestamps are milliseconds since UNIX epoch.
 type Timestamp = number;
 
+// Convert the timestamp to a string for display.
+// Pretty output is not guaranteed to be parseable back to a timestamp.
+function timestampToString(
+        timestamp: Timestamp | string,
+        pretty: boolean = false,
+        locale: string = DEFAUT_LOCALE,
+        ): string {
+    const datetime = new Date(parseInt(timestamp.toString()));
+
+    let timezone = undefined;
+    if (testing.runtime.isTestingMode()) {
+        timezone = TESTING_TIME_ZONE;
+    }
+
+    if (pretty) {
+        return datetime.toLocaleString(locale, {timeZone: timezone});
+    }
+
+    return datetime.toISOString();
+}
+
+// Like timestampToString(), but only display date (not time) information.
+function datestampToString(
+        timestamp: Timestamp | string,
+        pretty: boolean = false,
+        locale: string = DEFAUT_LOCALE,
+        ): string {
+    const datetime = new Date(parseInt(timestamp.toString()));
+
+    let timezone = undefined;
+    if (testing.runtime.isTestingMode()) {
+        timezone = TESTING_TIME_ZONE;
+    }
+
+    if (pretty) {
+        return datetime.toLocaleDateString(locale, {timeZone: timezone});
+    }
+
+    return datetime.toLocaleDateString(DEFAUT_LOCALE, {timeZone: timezone});
+}
+
 // Find timestamps within some text and replace them with the pretty version.
-function embededTimestampsToPretty(text: any): string {
+// Timestamps must be embedded as: '<timestamp:123>' where '123' is the timestamp.
+function embededTimestampsToString(
+        text: any,
+        pretty: boolean = false,
+        locale: string = DEFAUT_LOCALE,
+        ): string {
     if (text == null) {
         return '';
     }
@@ -20,21 +67,8 @@ function embededTimestampsToPretty(text: any): string {
     text = text.toString();
 
     return text.replace(/<timestamp:\s*(-?\d+)\s*>/g, function(match: any, timestamp: any) {
-        return timestampToPretty(parseInt(timestamp));
+        return timestampToString(parseInt(timestamp), pretty, locale);
     });
-}
-
-function timestampToPretty(timestamp: Timestamp): string {
-    const date = new Date(timestamp);
-
-    // Return a timestamp in a standard locale and time zone for testing consistency.
-    if (testing.runtime.isTestingMode()) {
-        return date.toLocaleString(TESTING_LOCALE, {
-            timeZone: TESTING_TIME_ZONE,
-        });
-    }
-
-    return date.toLocaleString();
 }
 
 export {
@@ -43,6 +77,9 @@ export {
     MSECS_PER_HOURS,
     MSECS_PER_DAYS,
 
-    embededTimestampsToPretty,
-    timestampToPretty,
+    DEFAUT_LOCALE,
+
+    embededTimestampsToString,
+    timestampToString,
+    datestampToString,
 }
