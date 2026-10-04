@@ -81,12 +81,22 @@ function loadCodeBlocks() {
     document.querySelector('div.code-blocks').replaceChildren(...blocks);
 }
 
+function loadInputFields() {
+    let fields = [];
+    for (const field of inputFields) {
+        fields.push(field.getInstance().element);
+    }
+
+    document.querySelector('div.input-fields').replaceChildren(...fields);
+}
+
 function main() {
     edq.util.brightness.initBrightmode();
     edq.util.table.enableSortingAll();
 
     loadIcons();
     loadCodeBlocks();
+    loadInputFields();
 }
 
 const codeBlocks = {
@@ -100,5 +110,9 @@ const codeBlocks = {
 </html>
     `.trim()],
 };
+
+const inputFields = [
+    new edq.model.field.TextField({label: 'Normal Text', placeholder: 'Placeholder Text'}),
+];
 
 document.addEventListener("DOMContentLoaded", main);

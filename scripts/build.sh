@@ -75,9 +75,9 @@ function main() {
 
     # Bundle JS.
     mkdir -p $(dirname "${outJSPath}")
-    "${ESBUILD_BIN}" "${JS_INDEX_PATH}" --bundle --outfile="${JS_TEMP_OUT_PATH}" --sourcemap --platform=neutral --target=chrome58,firefox57,safari11,edge16 ${prodArgs}
-    echo -e "/* ${versionMessage} */\n" | cat - "${JS_TEMP_OUT_PATH}" > "${outJSPath}"
-    rm "${JS_TEMP_OUT_PATH}"
+    "${ESBUILD_BIN}" "${JS_INDEX_PATH}" --bundle --outfile="${outJSPath}" --sourcemap --platform=neutral --target=chrome60,edge79,firefox55,safari15 ${prodArgs}
+    echo -e "/* ${versionMessage} */\n" | cat - "${outJSPath}" > "${JS_TEMP_OUT_PATH}"
+    mv "${JS_TEMP_OUT_PATH}" "${outJSPath}"
 
     # Concat CSS into a single file.
     mkdir -p $(dirname "${CSS_OUT_PATH}")

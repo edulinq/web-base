@@ -1,3 +1,4 @@
+export * as model from './model/index';
 export * as render from './render/index';
 export * as util from './util/index';
 
