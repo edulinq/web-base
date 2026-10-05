@@ -30,7 +30,3 @@
 .section-inputs .input-fields > div {
     flex-basis: 45%;
 }
-
-.section-inputs .input-fields > fieldset {
-    margin-top: 0.5em;
-}

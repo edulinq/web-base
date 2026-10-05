@@ -243,7 +243,7 @@ class FieldSet {
         this.fields = fields;
 
         this.element = document.createElement('fieldset');
-        this.element.classList.add('.edq-fieldset');
+        this.element.classList.add('edq-fieldset');
         this.element.replaceChildren(...children);
 
         // TEST - Register on change?
@@ -271,7 +271,6 @@ class FieldSet {
     }
 }
 
-// TEST - Default text.
 class TextField extends Field {
     protected createInnerElements(): Array<HTMLElement> {
         let element = document.createElement('input');

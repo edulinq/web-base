@@ -119,6 +119,7 @@ const codeBlocks = {
 const inputFields = new edq.model.field.FieldSet([
     new edq.model.field.TextField({'name': 'normal-text', label: 'Normal Text', placeholder: 'Placeholder Text'}),
     new edq.model.field.TextField({'name': 'required-text', label: 'Required Text', required: true, placeholder: 'Required Text'}),
+    new edq.model.field.TextField({'name': 'default-text', label: 'Default Text', defaultValue: 'Some Default Value', placeholder: 'Default Text'}),
 ]);
 
 document.addEventListener("DOMContentLoaded", main);
