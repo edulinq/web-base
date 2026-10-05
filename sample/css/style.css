@@ -12,3 +12,16 @@
     align-items: center;
     gap: 0.25rem;
 }
+
+.section-inputs .input-fields {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.section-inputs .input-fields button {
+    flex-basis: 100%;
+}

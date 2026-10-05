@@ -1,20 +1,25 @@
 // A custom function for validating input values.
-type InputValidationFunction = (fieldInstance: FieldInstance) => boolean;
+type InputValidationFunction = (field: Field) => boolean;
 
 // A custom function for extracting a value from a field.
-type InputExtractionFunc = (fieldInstance: FieldInstance) => any;
+type InputExtractionFunc = (field: Field) => any;
 
 // A custom function for cleaning a value extracted from a field.
 type InputCleaningFunc = (value: any) => any;
 
-// A general representation of a user input field, but not the content within the field (see FieldInstance for that).
-// The FieldType is responsible for generating and validating the HTML of a field.
-abstract class FieldType {
-    // The total number of FieldInstances created.
+// A general representation of a user input field.
+// Once constructed, an object will already be associated with an HTML element (accessible via element),
+// and will therefore have a value available.
+// It is up to the caller to place the element in their target parent element.
+abstract class Field {
+    // The total number of Fields created.
     // Used to create unique IDs for each field instance.
     private static counter: number = 0;
 
-    // An optional name that will be attatched to the field instance container and input (if it exists).
+    // A unique (within this system) ID for this instance.
+    id: string;
+
+    // An optional name that will be attached to the field instance container and input (if it exists).
     // This is traditionally the name/key that is sent on form submit.
     name: string | undefined;
 
@@ -42,6 +47,9 @@ abstract class FieldType {
     // An optional function to clean a value extracted from a field.
     inputCleaningFunc: InputCleaningFunc | undefined;
 
+    // The element reference for the container that houses any input elements and labels.
+    element: HTMLElement;
+
     constructor({
             name = undefined,
             label = undefined,
@@ -63,120 +71,149 @@ abstract class FieldType {
                 inputExtractionFunc: InputExtractionFunc | undefined,
                 inputCleaningFunc: InputCleaningFunc | undefined,
             }) {
-        // An optional name that will be attatched to the field instance container and input (if it exists).
-        // This is traditionally the name/key that is sent on form submit.
+        // A unique (within this system) ID for this instance.
+        this.id = `edq-field-${Field.counter++}`;
+
         this.name = name;
 
-        // An optional label for the input.
         this.label = label;
 
-        // Put the label before the inner input elements.
         this.labelBefore = labelBefore;
 
-        // An optional default value for the field.
         this.defaultValue = defaultValue;
 
-        // If this field must be non-empty during validation.
         this.required = required;
 
-        // Placeholder text to display (if possible).
         this.placeholder = placeholder;
 
-        // An optional function to call instead of standard validation on a field's value.
         this.inputValidationFunc = inputValidationFunc;
 
-        // An optional function to call instead of standard value extraction (getting a value from HTML elements).
         this.inputExtractionFunc = inputExtractionFunc;
 
-        // An optional function to clean a value extracted from a field.
         this.inputCleaningFunc = inputCleaningFunc;
+
+        this.element = this.createContainerElement();
     }
 
-    nextID(): string {
-        return `edq-field-${FieldType.counter++}`;
-    }
-
-    // Get an instance of this archetype.
-    abstract getInstance(): FieldInstance
-}
-
-// An instance of a FieldType in a document.
-abstract class FieldInstance {
-    // A unique (within this system) ID for this instance.
-    id: string;
-
-    // The field type that generated this instance.
-    fieldType: FieldType;
-
-    // The element reference for the container that houses any input elements and labels.
-    element: HTMLElement;
-
-    constructor(
-            id: string,
-            fieldType: FieldType,
-            innerElements: Array<HTMLElement>,
-            ) {
-        // A unique (within this system) ID for this instance.
-        this.id = id;
-
-        // The field type that generated this instance.
-        this.fieldType = fieldType
-
-        let children = [...innerElements];
-        if (this.fieldType.label != null) {
+    // Create the HTML element for the container of this field.
+    protected createContainerElement(): HTMLElement {
+        let children = this.createInnerElements();
+        if (this.label != null) {
             let labelElement = document.createElement('label');
             labelElement.htmlFor = this.id;
-            labelElement.innerText = this.fieldType.label;
+            labelElement.innerText = this.label;
 
-            if (this.fieldType.labelBefore) {
+            if (this.labelBefore) {
                 children.unshift(labelElement);
             } else {
                 children.push(labelElement);
             }
         }
 
-        // The element reference for the container that houses any input elements and labels.
-        this.element = document.createElement('div');
-        this.element.classList.add('edq-field');
+        let element = document.createElement('div');
+        element.classList.add('edq-field');
 
-        if (this.fieldType.name != null) {
-            this.element.setAttribute('name', this.fieldType.name);
+        if (this.name != null) {
+            element.setAttribute('name', this.name);
         }
 
-        this.element.replaceChildren(...children);
+        element.replaceChildren(...children);
+
+        return element;
     }
 
     // Validate the current input for this field and fill in any error fields.
     validateInput(): boolean {
-        // TEST - Check FieldType validation.
+        // TEST - Check Field validation.
         return true;
     }
 
     getValue(): any {
         let value: any = undefined;
-        if (this.fieldType.inputExtractionFunc != null) {
-            value = this.fieldType.inputExtractionFunc(this);
+        if (this.inputExtractionFunc != null) {
+            value = this.inputExtractionFunc(this);
         } else {
-            value = this._getValue();
+            value = this.getInnerValue();
         }
 
-        if (this.fieldType.inputCleaningFunc != null) {
-            value = this.fieldType.inputCleaningFunc(value);
+        if (this.inputCleaningFunc != null) {
+            value = this.inputCleaningFunc(value);
         }
 
         return value;
     }
 
-    protected abstract _getValue(): any
+    // Create inner HTML elements (not the container or label).
+    protected abstract createInnerElements(): Array<HTMLElement>;
+
+    // Fetch the value from the inner HTML elements.
+    protected abstract getInnerValue(): any
 }
 
-class TextField extends FieldType {
-    getInstance(): FieldInstance {
-        const id = this.nextID();
+// A collection of fields.
+// Each field MUST have a unique `name` member,
+// which will be used as the key for the field when fetching values.
+// The fields will be presented in the order they are received.
+class FieldSet {
+    // The field instances contained in this object.
+    fields: Array<Field>;
 
+    // The HTML element for this collection.
+    element: HTMLElement;
+
+    constructor(fields: Array<Field>) {
+        let seenNames = new Set();
+        let children = [];
+
+        for (const field of fields) {
+            if (field.name == null) {
+                console.error(field);
+                throw new Error("Fields being passed to a FieldSet must have a name.");
+            }
+
+            if (seenNames.has(field.name)) {
+                console.error(field);
+                throw new Error(`Fields being passed to a FieldSet must have a unique name, name '${field.name}' already seen.`);
+            }
+
+            seenNames.add(field.name);
+            children.push(field.element);
+        }
+
+        this.fields = fields;
+
+        this.element = document.createElement('fieldset');
+        this.element.classList.add('.edq-fieldset');
+        this.element.replaceChildren(...children);
+    }
+
+    // Validate all inputs.
+    validateInputs(): boolean {
+        let success = true;
+        for (const field of this.fields) {
+            success &&= field.validateInput();
+        }
+
+        return success;
+    }
+
+    // Get a mapping of the values for each field.
+    getValues(): Record<string, any> {
+        let result: Record<string, any> = {};
+        for (const field of this.fields) {
+            // Note that names have already been validated.
+            result[(field.name as string)] = field.getValue();
+        }
+
+        return result;
+    }
+}
+
+class TextField extends Field {
+    protected createInnerElements(): Array<HTMLElement> {
         let element = document.createElement('input');
         element.type = 'text';
-        element.id = id;
+        element.id = this.id;
 
         if (this.name != null) {
             element.setAttribute('name', this.name);
@@ -190,16 +227,16 @@ class TextField extends FieldType {
             element.value = this.defaultValue;
         }
 
-        return new TextFieldInstance(id, this, [element]);
+        return [element];
     }
-}
 
-class TextFieldInstance extends FieldInstance {
-    _getValue(): any {
+    protected getInnerValue(): any {
         return (this.element.querySelector<HTMLInputElement>('input') as HTMLInputElement).value;
     }
 }
 
 export {
+    FieldSet,
+
     TextField,
 }

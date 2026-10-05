@@ -82,12 +82,17 @@ function loadCodeBlocks() {
 }
 
 function loadInputFields() {
-    let fields = [];
-    for (const field of inputFields) {
-        fields.push(field.getInstance().element);
-    }
+    let resultsArea = document.createElement('div');
+    resultsArea.classList.add('results');
 
-    document.querySelector('div.input-fields').replaceChildren(...fields);
+    let button = document.createElement('button');
+    button.innerText = 'Submit (Parse Fields)';
+    button.addEventListener('click', function(event) {
+        edq.render.code.block(resultsArea, edq.util.json.pretty(inputFields.getValues()), 'json');
+    });
+    button.click();
+
+    document.querySelector('div.input-fields').replaceChildren(button, inputFields.element, resultsArea);
 }
 
 function main() {
@@ -101,7 +106,7 @@ function main() {
 
 const codeBlocks = {
     'plaintext': ['.txt', 'This is just some text.'],
-    'json': ['.json', JSON.stringify({foo: 1, bar: [2.0, 3]}, null, 4)],
+    'json': ['.json', edq.util.json.pretty({foo: 1, bar: [2.0, 3]})],
     'html': ['.html', `
 <html>
     <body>
@@ -111,8 +116,8 @@ const codeBlocks = {
     `.trim()],
 };
 
-const inputFields = [
-    new edq.model.field.TextField({label: 'Normal Text', placeholder: 'Placeholder Text'}),
-];
+const inputFields = new edq.model.field.FieldSet([
+    new edq.model.field.TextField({'name': 'normal-text', label: 'Normal Text', placeholder: 'Placeholder Text'}),
+]);
 
 document.addEventListener("DOMContentLoaded", main);
