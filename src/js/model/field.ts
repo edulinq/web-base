@@ -1,5 +1,6 @@
 // A custom function for validating input values.
-type InputValidationFunction = (field: Field) => boolean;
+// Return the error message, or undefined if there is no error.
+type InputValidationFunction = (field: Field) => string | undefined;
 
 // A custom function for extracting a value from a field.
 type InputExtractionFunc = (field: Field) => any;
@@ -29,6 +30,12 @@ abstract class Field {
     // Put the label before the inner input elements.
     labelBefore: boolean;
 
+    // Put the error before the inner input elements.
+    errorBefore: boolean;
+
+    // Validate this field when it loses focus.
+    validateOnFocusOut: boolean;
+
     // An optional default value for the field.
     defaultValue: any | undefined;
 
@@ -54,6 +61,8 @@ abstract class Field {
             name = undefined,
             label = undefined,
             labelBefore = true,
+            errorBefore = false,
+            validateOnFocusOut = true,
             defaultValue = undefined,
             required = false,
             placeholder = '',
@@ -64,6 +73,8 @@ abstract class Field {
                 name: string | undefined,
                 label: string | undefined,
                 labelBefore: boolean,
+                errorBefore: boolean,
+                validateOnFocusOut: boolean,
                 defaultValue: any | undefined,
                 required: boolean,
                 placeholder: string,
@@ -79,6 +90,10 @@ abstract class Field {
         this.label = label;
 
         this.labelBefore = labelBefore;
+
+        this.errorBefore = errorBefore;
+
+        this.validateOnFocusOut = validateOnFocusOut;
 
         this.defaultValue = defaultValue;
 
@@ -98,16 +113,31 @@ abstract class Field {
     // Create the HTML element for the container of this field.
     protected createContainerElement(): HTMLElement {
         let children = this.createInnerElements();
+
         if (this.label != null) {
             let labelElement = document.createElement('label');
             labelElement.htmlFor = this.id;
             labelElement.innerText = this.label;
+
+            if (this.required) {
+                labelElement.innerHTML += ' <span class="required-color">*</span>'
+            }
 
             if (this.labelBefore) {
                 children.unshift(labelElement);
             } else {
                 children.push(labelElement);
             }
+        }
+
+        let errorElement = document.createElement('div');
+        errorElement.classList.add('error-message');
+        errorElement.classList.add('hidden');
+
+        if (this.errorBefore) {
+            children.unshift(errorElement);
+        } else {
+            children.push(errorElement);
         }
 
         let element = document.createElement('div');
@@ -117,15 +147,16 @@ abstract class Field {
             element.setAttribute('name', this.name);
         }
 
+        if (this.validateOnFocusOut) {
+            let field = this;
+            element.addEventListener('focusout', function(event) {
+                field.validateInput();
+            });
+        }
+
         element.replaceChildren(...children);
 
         return element;
-    }
-
-    // Validate the current input for this field and fill in any error fields.
-    validateInput(): boolean {
-        // TEST - Check Field validation.
-        return true;
     }
 
     getValue(): any {
@@ -143,13 +174,42 @@ abstract class Field {
         return value;
     }
 
+    // Validate the current input for this field and return any validation error message.
+    validateInput(ignoreExternalFunc: boolean = false): string | undefined {
+        let message: string | undefined = undefined;
+        if (!ignoreExternalFunc && (this.inputValidationFunc != null)) {
+            message = this.inputValidationFunc(this);
+        } else {
+            message = this.validateInnerInput();
+        }
+
+        let errorElement = this.element.querySelector<HTMLElement>('.error-message') as HTMLElement;
+
+        // If there is no validation error (message), clear any existing errors.
+        // Otherwise, replace any existing errors and ensure the error area is shown.
+        if (message == null) {
+            errorElement.innerText = '';
+            errorElement.classList.add('hidden');
+        } else {
+            errorElement.innerText = message
+            errorElement.classList.remove('hidden');
+        }
+
+        return message;
+    }
+
     // Create inner HTML elements (not the container or label).
     protected abstract createInnerElements(): Array<HTMLElement>;
 
     // Fetch the value from the inner HTML elements.
-    protected abstract getInnerValue(): any
+    protected abstract getInnerValue(): any;
+
+    // Validate that the current value for this input is valid.
+    // Return the error message, or undefined if there is no error.
+    protected abstract validateInnerInput(): string | undefined;
 }
 
+// TEST - Submit button.
 // A collection of fields.
 // Each field MUST have a unique `name` member,
 // which will be used as the key for the field when fetching values.
@@ -185,19 +245,21 @@ class FieldSet {
         this.element = document.createElement('fieldset');
         this.element.classList.add('.edq-fieldset');
         this.element.replaceChildren(...children);
+
+        // TEST - Register on change?
     }
 
     // Validate all inputs.
     validateInputs(): boolean {
         let success = true;
         for (const field of this.fields) {
-            success &&= field.validateInput();
+            success &&= (field.validateInput() == null);
         }
 
         return success;
     }
 
-    // Get a mapping of the values for each field.
+    // Get a mapping of each field's name to their value.
     getValues(): Record<string, any> {
         let result: Record<string, any> = {};
         for (const field of this.fields) {
@@ -209,6 +271,7 @@ class FieldSet {
     }
 }
 
+// TEST - Default text.
 class TextField extends Field {
     protected createInnerElements(): Array<HTMLElement> {
         let element = document.createElement('input');
@@ -217,6 +280,10 @@ class TextField extends Field {
 
         if (this.name != null) {
             element.setAttribute('name', this.name);
+        }
+
+        if (this.required) {
+            element.required = true;
         }
 
         if (this.placeholder != null) {
@@ -230,8 +297,27 @@ class TextField extends Field {
         return [element];
     }
 
+    private getElement(): HTMLInputElement {
+        return (this.element.querySelector<HTMLInputElement>('input') as HTMLInputElement);
+    }
+
     protected getInnerValue(): any {
-        return (this.element.querySelector<HTMLInputElement>('input') as HTMLInputElement).value;
+        return this.getElement().value;
+    }
+
+    protected validateInnerInput(): string | undefined {
+        let inputElement = this.getElement();
+        inputElement.classList.add('touched');
+
+        if (!inputElement.validity.valid) {
+            return inputElement.validationMessage;
+        }
+
+        if (!inputElement.checkValidity()) {
+            return inputElement.validationMessage;
+        }
+
+        return undefined;
     }
 }
 
