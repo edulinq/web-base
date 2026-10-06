@@ -87,6 +87,7 @@ function loadInputFields() {
 
     let fieldSet = new edq.model.field.FieldSet(inputFields, {
         submitButtonText: 'Submit (Parse Fields)',
+        submitButtonDisableWhenInvalid: false,
         submitCallback: function(values, _) {
             edq.render.code.block(resultsArea, edq.util.json.pretty(values), 'json');
         },

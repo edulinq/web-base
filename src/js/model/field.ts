@@ -1,6 +1,7 @@
 // A custom function for validating input values.
 // Return the error message, or undefined if there is no error.
-type InputValidationFunction = (field: Field) => string | undefined;
+// When `onlyMessage` is true, do not set error messages in the DOM, only return them.
+type InputValidationFunction = (field: Field, onlyMessage: boolean) => string | undefined;
 
 // A custom function for extracting a value from a field.
 type InputExtractionFunc = (field: Field) => any;
@@ -178,12 +179,16 @@ abstract class Field {
     }
 
     // Validate the current input for this field and return any validation error message.
-    validateInput(ignoreExternalFunc: boolean = false): string | undefined {
+    validateInput(ignoreExternalFunc: boolean = false, onlyMessage: boolean = false): string | undefined {
         let message: string | undefined = undefined;
         if (!ignoreExternalFunc && (this.inputValidationFunc != null)) {
-            message = this.inputValidationFunc(this);
+            message = this.inputValidationFunc(this, onlyMessage);
         } else {
-            message = this.validateInnerInput();
+            message = this.validateInnerInput(onlyMessage);
+        }
+
+        if (onlyMessage) {
+            return message;
         }
 
         let errorElement = this.element.querySelector<HTMLElement>('.error-message') as HTMLElement;
@@ -209,10 +214,10 @@ abstract class Field {
 
     // Validate that the current value for this input is valid.
     // Return the error message, or undefined if there is no error.
-    protected abstract validateInnerInput(): string | undefined;
+    // When `onlyMessage` is true, do not set error messages in the DOM, only return them.
+    protected abstract validateInnerInput(onlyMessage: boolean): string | undefined;
 }
 
-// TEST - Submit button.
 // A collection of fields.
 // Each field MUST have a unique `name` member,
 // which will be used as the key for the field when fetching values.
@@ -228,26 +233,48 @@ class FieldSet {
             fields: Array<Field>, {
             includeSubmitButton = true,
             submitButtonText = 'Submit',
+            submitButtonDisableWhenInvalid = true,
             submitCallback = undefined,
             }: {
                 includeSubmitButton: boolean,
                 submitButtonText: string,
+                submitButtonDisableWhenInvalid: boolean,
                 submitCallback: FieldSetSubmitCallback | undefined,
             }) {
+        this.fields = fields;
+
+        this.element = document.createElement('fieldset');
+        this.element.classList.add('edq-fieldset');
+
         let seenNames = new Set();
         let children = [];
 
         if (includeSubmitButton) {
-            // TEST - Disable button when not valid (include option for this).
             let button = document.createElement('button');
             button.classList.add('submit');
             button.innerText = submitButtonText;
 
+            // Register the submission button callback.
             if (submitCallback != null) {
                 let self = this;
                 button.addEventListener('click', function(event) {
                     let values = self.getValues();
                     submitCallback(values, self);
+                });
+            }
+
+            // Handle disabling/enabling the button based on if the fields are valid.
+            if (submitButtonDisableWhenInvalid) {
+                button.disabled = (this.validateInputs(true).length != 0);
+
+                let self = this;
+                this.element.addEventListener('change', function(event) {
+                    let messages = self.validateInputs(true);
+                    if (messages.length == 0) {
+                        button.disabled = false;
+                    } else {
+                        button.disabled = true;
+                    }
                 });
             }
 
@@ -269,24 +296,15 @@ class FieldSet {
             children.push(field.element);
         }
 
-        this.fields = fields;
-
-        this.element = document.createElement('fieldset');
-        this.element.classList.add('edq-fieldset');
         this.element.replaceChildren(...children);
-
-        // TEST - Register on change?
-
-        // TEST - Do an initial check for validity (so the button can be enabled).
-        //        But, make sure not to show messages yet.
     }
 
     // Validate all inputs and get a list of any errors.
     // If the list is empty, then there are no errors.
-    validateInputs(): Array<string> {
+    validateInputs(onlyMessage: boolean = false): Array<string> {
         let messages = [];
         for (const field of this.fields) {
-            let message = field.validateInput();
+            let message = field.validateInput(false, onlyMessage);
             if (message != null) {
                 messages.push(message);
             }
@@ -329,6 +347,8 @@ class TextField extends Field {
             element.value = this.defaultValue;
         }
 
+        // TEST - Put on blur for touched here?
+
         return [element];
     }
 
@@ -340,9 +360,11 @@ class TextField extends Field {
         return this.getElement().value;
     }
 
-    protected validateInnerInput(): string | undefined {
+    protected validateInnerInput(onlyMessage: boolean): string | undefined {
         let inputElement = this.getElement();
-        inputElement.classList.add('touched');
+
+        // TEST - Remove
+        // inputElement.classList.add('touched');
 
         if (!inputElement.validity.valid) {
             return inputElement.validationMessage;
