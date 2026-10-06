@@ -347,7 +347,10 @@ class TextField extends Field {
             element.value = this.defaultValue;
         }
 
-        // TEST - Put on blur for touched here?
+        // Mark the element as touched if it loses focus.
+        element.addEventListener('blur', function(event) {
+            element.classList.add('touched');
+        });
 
         return [element];
     }
@@ -362,9 +365,6 @@ class TextField extends Field {
 
     protected validateInnerInput(onlyMessage: boolean): string | undefined {
         let inputElement = this.getElement();
-
-        // TEST - Remove
-        // inputElement.classList.add('touched');
 
         if (!inputElement.validity.valid) {
             return inputElement.validationMessage;
