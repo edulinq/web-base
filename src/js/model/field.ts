@@ -8,6 +8,9 @@ type InputExtractionFunc = (field: Field) => any;
 // A custom function for cleaning a value extracted from a field.
 type InputCleaningFunc = (value: any) => any;
 
+// A callback for when a field set submit button is clicked.
+type FieldSetSubmitCallback = (values: Record<string, any>, fieldSet: FieldSet) => void;
+
 // A general representation of a user input field.
 // Once constructed, an object will already be associated with an HTML element (accessible via element),
 // and will therefore have a value available.
@@ -221,9 +224,35 @@ class FieldSet {
     // The HTML element for this collection.
     element: HTMLElement;
 
-    constructor(fields: Array<Field>) {
+    constructor(
+            fields: Array<Field>, {
+            includeSubmitButton = true,
+            submitButtonText = 'Submit',
+            submitCallback = undefined,
+            }: {
+                includeSubmitButton: boolean,
+                submitButtonText: string,
+                submitCallback: FieldSetSubmitCallback | undefined,
+            }) {
         let seenNames = new Set();
         let children = [];
+
+        if (includeSubmitButton) {
+            // TEST - Disable button when not valid (include option for this).
+            let button = document.createElement('button');
+            button.classList.add('submit');
+            button.innerText = submitButtonText;
+
+            if (submitCallback != null) {
+                let self = this;
+                button.addEventListener('click', function(event) {
+                    let values = self.getValues();
+                    submitCallback(values, self);
+                });
+            }
+
+            children.push(button);
+        }
 
         for (const field of fields) {
             if (field.name == null) {
@@ -247,16 +276,23 @@ class FieldSet {
         this.element.replaceChildren(...children);
 
         // TEST - Register on change?
+
+        // TEST - Do an initial check for validity (so the button can be enabled).
+        //        But, make sure not to show messages yet.
     }
 
-    // Validate all inputs.
-    validateInputs(): boolean {
-        let success = true;
+    // Validate all inputs and get a list of any errors.
+    // If the list is empty, then there are no errors.
+    validateInputs(): Array<string> {
+        let messages = [];
         for (const field of this.fields) {
-            success &&= (field.validateInput() == null);
+            let message = field.validateInput();
+            if (message != null) {
+                messages.push(message);
+            }
         }
 
-        return success;
+        return messages;
     }
 
     // Get a mapping of each field's name to their value.

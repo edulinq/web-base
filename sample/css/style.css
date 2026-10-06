@@ -22,10 +22,6 @@
     justify-content: space-around;
 }
 
-.section-inputs .input-fields > button {
-    flex-basis: 95%;
-}
-
 .section-inputs .input-fields > fieldset,
 .section-inputs .input-fields > div {
     flex-basis: 45%;

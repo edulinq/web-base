@@ -85,14 +85,17 @@ function loadInputFields() {
     let resultsArea = document.createElement('div');
     resultsArea.classList.add('results');
 
-    let button = document.createElement('button');
-    button.innerText = 'Submit (Parse Fields)';
-    button.addEventListener('click', function(event) {
-        edq.render.code.block(resultsArea, edq.util.json.pretty(inputFields.getValues()), 'json');
+    let fieldSet = new edq.model.field.FieldSet(inputFields, {
+        submitButtonText: 'Submit (Parse Fields)',
+        submitCallback: function(values, _) {
+            edq.render.code.block(resultsArea, edq.util.json.pretty(values), 'json');
+        },
     });
-    button.click();
 
-    document.querySelector('div.input-fields').replaceChildren(button, inputFields.element, resultsArea);
+    // Click the button right away to show the JSON.
+    fieldSet.element.querySelector('button.submit').click();
+
+    document.querySelector('div.input-fields').replaceChildren(fieldSet.element, resultsArea);
 }
 
 function main() {
@@ -116,10 +119,10 @@ const codeBlocks = {
     `.trim()],
 };
 
-const inputFields = new edq.model.field.FieldSet([
+const inputFields = [
     new edq.model.field.TextField({'name': 'normal-text', label: 'Normal Text', placeholder: 'Placeholder Text'}),
     new edq.model.field.TextField({'name': 'required-text', label: 'Required Text', required: true, placeholder: 'Required Text'}),
     new edq.model.field.TextField({'name': 'default-text', label: 'Default Text', defaultValue: 'Some Default Value', placeholder: 'Default Text'}),
-]);
+];
 
 document.addEventListener("DOMContentLoaded", main);
