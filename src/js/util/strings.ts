@@ -1,5 +1,4 @@
 const WORD_BREAK_RE = /[\-_]+/
-const JSON_INDENT = 4;
 
 function stringCompare(a: string, b: string): number {
     return a.localeCompare(b);
@@ -30,11 +29,6 @@ function cleanText(text: any): string {
     return text;
 }
 
-// Generate a "pretty" JSON string representation meant for user display.
-function displayJSON(value: any): string {
-    return JSON.stringify(value, null, JSON_INDENT);
-}
-
 // Title case a string (with optional cleaning).
 // Words are tokenized based on whitespace (not regex word boundaries),
 // and rejoined with a single space.
@@ -55,7 +49,6 @@ function titleCase(text: string, clean: boolean = true): string {
 export {
     caseInsensitiveStringCompare,
     cleanText,
-    displayJSON,
     stringCompare,
     titleCase,
 }
