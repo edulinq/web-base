@@ -5,24 +5,40 @@ It provides common tooling, style, and suggestions for our projects.
 
 ## Installation
 
-TEST
+TODO
 
 ## Development
 
-TEST
-
-TEST - setup
+This project uses Node.
+Install development dependencies with:
 ```
 npm install .
 ```
 
-./node_modules/.bin/serve build
-
+To create a development build, use:
+```
 ./scrupts/build.sh
+```
 
+Use `--prod` to make it a production build:
+```
 ./scrupts/build.sh --prod
+```
 
+The build process places output into the `dist` directory.
+
+The build process also creates a sample website from the `sample` directory.
+Only a simple webserver is required for the sample website,
+so there are many ways to view it.
+For example:
+```
+./node_modules/.bin/serve dist/sample/dev
+```
+
+To runs tests, use the `scripts/run_tests.sh` script:
+```
 ./scripts/run_tests.sh
+```
 
 ## Design Goals
 
