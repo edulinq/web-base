@@ -1,2 +1,2 @@
 export * as field from './field';
-export * as timestamp from './time';
+export * as timestamp from './timestamp';

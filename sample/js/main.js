@@ -126,6 +126,11 @@ const inputFields = [
     new edq.model.field.TextField({'name': 'default-text', label: 'Default Text', defaultValue: 'Some Default Value', placeholder: 'Default Text'}),
     new edq.model.field.NumericField({'name': 'positive-int', label: 'Positive Integer', min: 1, step: 1}),
     new edq.model.field.NumericField({'name': 'quarter-float', label: 'Float (quarters)', step: 0.25}),
+    new edq.model.field.DateField({'name': 'normal-date', label: 'Normal Date'}),
+    new edq.model.field.DateField({'name': 'constrained-date', label: 'Constrained Date',
+        min: edq.model.timestamp.parse('2000-01-01'),
+        max: edq.model.timestamp.parse('2000-01-10'),
+    }),
 ];
 
 document.addEventListener("DOMContentLoaded", main);

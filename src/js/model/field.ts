@@ -1,3 +1,5 @@
+import * as timestamp from './timestamp'
+
 // A custom function for validating input values.
 // Return the error message, or undefined if there is no error.
 // When `onlyMessage` is true, do not set error messages in the DOM, only return them.
@@ -396,6 +398,36 @@ class NumericField extends SimpleInputField {
     }
 }
 
+class DateFieldOptions extends FieldOptions {
+    min: timestamp.Timestamp | undefined = undefined;
+    max: timestamp.Timestamp | undefined = undefined;
+}
+
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date
+class DateField extends SimpleInputField {
+    constructor(options: DateFieldOptions = new DateFieldOptions()) {
+        super(options);
+    }
+
+    protected finalizeInput(element: HTMLInputElement) {
+        let options = (this.options as DateFieldOptions);
+
+        element.type = 'date';
+
+        if (options.min != null) {
+            element.min = timestamp.datestampToString(options.min);
+        }
+
+        if (options.max != null) {
+            element.max = timestamp.datestampToString(options.max);
+        }
+    }
+
+    protected getInnerValue(): any {
+        return timestamp.parse(super.getInnerValue());
+    }
+}
+
 export {
     InputValidationFunction,
     InputExtractionFunc,
@@ -412,4 +444,7 @@ export {
 
     NumericFieldOptions,
     NumericField,
+
+    DateFieldOptions,
+    DateField,
 }

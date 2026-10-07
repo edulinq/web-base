@@ -12,17 +12,44 @@ const TESTING_TIME_ZONE: string = 'UTC';
 // Timestamps are milliseconds since UNIX epoch.
 type Timestamp = number;
 
+function now(): Timestamp {
+    return fromJSDate(new Date());
+}
+
+function fromJSDate(date: Date): Timestamp {
+    return date.valueOf();
+}
+
+// Parse a timestamp using the same code as Date.parse() (and the constructor).
+function parse(text: string, allowEmpty: boolean = true, raiseOnError: boolean = true): Timestamp | undefined {
+    text = text.trim();
+    if (allowEmpty && (text.length == 0)) {
+        return undefined;
+    }
+
+    let value = new Date(text);
+    if (Number.isNaN(value.valueOf())) {
+        if (raiseOnError) {
+            throw new Error(`Cannot parse timestamp: '${text}'.`);
+        }
+
+        return undefined;
+    }
+
+    return fromJSDate(value);
+}
+
 // Convert the timestamp to a string for display.
 // Pretty output is not guaranteed to be parseable back to a timestamp.
 function timestampToString(
         timestamp: Timestamp | string,
         pretty: boolean = false,
         locale: string = DEFAUT_LOCALE,
+        timezone: string | undefined = undefined,
         ): string {
     const datetime = new Date(parseInt(timestamp.toString()));
 
-    let timezone = undefined;
-    if (testing.runtime.isTestingMode()) {
+    if ((timezone == null) && (testing.runtime.isTestingMode())) {
         timezone = TESTING_TIME_ZONE;
     }
 
@@ -34,15 +61,16 @@ function timestampToString(
 }
 
 // Like timestampToString(), but only display date (not time) information.
+// By default (non-pretty with no locale), the output will be of the format: `YYYY-MM-DD`.
 function datestampToString(
         timestamp: Timestamp | string,
         pretty: boolean = false,
         locale: string = DEFAUT_LOCALE,
+        timezone: string | undefined = undefined,
         ): string {
     const datetime = new Date(parseInt(timestamp.toString()));
 
-    let timezone = undefined;
-    if (testing.runtime.isTestingMode()) {
+    if ((timezone == null) && (testing.runtime.isTestingMode())) {
         timezone = TESTING_TIME_ZONE;
     }
 
@@ -59,6 +87,7 @@ function embededTimestampsToString(
         text: any,
         pretty: boolean = false,
         locale: string = DEFAUT_LOCALE,
+        timezone: string | undefined = undefined,
         ): string {
     if (text == null) {
         return '';
@@ -67,7 +96,7 @@ function embededTimestampsToString(
     text = text.toString();
 
     return text.replace(/<timestamp:\s*(-?\d+)\s*>/g, function(match: any, timestamp: any) {
-        return timestampToString(parseInt(timestamp), pretty, locale);
+        return timestampToString(parseInt(timestamp), pretty, locale, timezone);
     });
 }
 
@@ -79,6 +108,11 @@ export {
 
     DEFAUT_LOCALE,
 
+    Timestamp,
+
+    now,
+    fromJSDate,
+    parse,
     embededTimestampsToString,
     timestampToString,
     datestampToString,
