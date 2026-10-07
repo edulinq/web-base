@@ -401,11 +401,15 @@ class NumericField extends SimpleInputField {
 class DateFieldOptions extends FieldOptions {
     min: timestamp.Timestamp | undefined = undefined;
     max: timestamp.Timestamp | undefined = undefined;
+
+    // Offset the timezone of the given value (which is always UTC in these specific cases) to the user's local timezone.
+    localTimezone: boolean = true;
 }
 
 // See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/date
 class DateField extends SimpleInputField {
     constructor(options: DateFieldOptions = new DateFieldOptions()) {
+        options = Object.assign(new DateFieldOptions(), options);
         super(options);
     }
 
@@ -413,6 +417,34 @@ class DateField extends SimpleInputField {
         let options = (this.options as DateFieldOptions);
 
         element.type = 'date';
+
+        if (options.min != null) {
+            element.min = timestamp.datestampToString(options.min);
+        }
+
+        if (options.max != null) {
+            element.max = timestamp.datestampToString(options.max);
+        }
+    }
+
+    protected getInnerValue(): any {
+        let options = (this.options as DateFieldOptions);
+        return timestamp.parse(super.getInnerValue(), options.localTimezone);
+    }
+}
+
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/datetime-local
+// Note that validation on min/max does not have good browser support.
+class LocalDatetimeField extends SimpleInputField {
+    constructor(options: DateFieldOptions = new DateFieldOptions()) {
+        options = Object.assign(new DateFieldOptions(), options);
+        super(options);
+    }
+
+    protected finalizeInput(element: HTMLInputElement) {
+        let options = (this.options as DateFieldOptions);
+
+        element.type = 'datetime-local';
 
         if (options.min != null) {
             element.min = timestamp.datestampToString(options.min);
@@ -447,4 +479,5 @@ export {
 
     DateFieldOptions,
     DateField,
+    LocalDatetimeField,
 }

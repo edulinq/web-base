@@ -5,9 +5,12 @@ const MSECS_PER_MINS: number = MSECS_PER_SECS * 60
 const MSECS_PER_HOURS: number = MSECS_PER_MINS * 60
 const MSECS_PER_DAYS: number = MSECS_PER_HOURS * 24
 
-// Use Sweden's local because it looks nice.
+// Use Sweden's locale because it looks nice.
 const DEFAUT_LOCALE: string = 'sv';
-const TESTING_TIME_ZONE: string = 'UTC';
+
+// Use a rare timezone for testing so that it will generally not align with either UTC or the developer's local.
+const TESTING_TIME_ZONE: string = 'Atlantic/South_Georgia';
+const TESTING_TIME_ZONE_OFFSET_MINS: number = 120;
 
 // Timestamps are milliseconds since UNIX epoch.
 type Timestamp = number;
@@ -21,7 +24,10 @@ function fromJSDate(date: Date): Timestamp {
 }
 
 // Parse a timestamp using the same code as Date.parse() (and the constructor).
-function parse(text: string, allowEmpty: boolean = true, raiseOnError: boolean = true): Timestamp | undefined {
+// Note that because of how JS parses some date/time values,
+// some values may be parsed as UTC when you expect local (dates are especially vunerable to this).
+// It is up to the caller to know when a format will be parsed as UTC, and set `forceLocalTZ` if UTC is not desired.
+function parse(text: string, forceLocalTZ: boolean = false, allowEmpty: boolean = true, raiseOnError: boolean = true): Timestamp | undefined {
     text = text.trim();
     if (allowEmpty && (text.length == 0)) {
         return undefined;
@@ -34,6 +40,16 @@ function parse(text: string, allowEmpty: boolean = true, raiseOnError: boolean =
         }
 
         return undefined;
+    }
+
+    if (forceLocalTZ) {
+        let offsetMins = value.getTimezoneOffset();
+        if (testing.runtime.isTestingMode()) {
+            offsetMins = TESTING_TIME_ZONE_OFFSET_MINS;
+        }
+
+        let newMS = value.valueOf() + (offsetMins * 60 * 1000);
+        value = new Date(newMS);
     }
 
     return fromJSDate(value);
