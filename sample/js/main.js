@@ -127,6 +127,8 @@ const inputFields = [
 
     new edq.model.field.EmailField({'name': 'basic-email', label: 'Basic Email', placeholder: 'test@edulinq.org'}),
 
+    new edq.model.field.SecretField({'name': 'basic-secret', minLength: 8, label: 'Basic Secret'}),
+
     new edq.model.field.NumericField({'name': 'positive-int', label: 'Positive Integer', min: 1, step: 1}),
     new edq.model.field.NumericField({'name': 'quarter-float', label: 'Float (quarters)', step: 0.25}),
 

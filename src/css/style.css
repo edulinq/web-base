@@ -249,7 +249,8 @@ fieldset {
     border-color: var(--color-text-error);
 }
 
-.edq-field-slider > div {
+.edq-field-slider > div,
+.edq-field-secret > div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -259,6 +260,15 @@ fieldset {
 
 .edq-field-slider input {
     width: 85%;
+}
+
+.edq-field-secret input {
+    flex-grow: 1;
+}
+
+.edq-field-secret input[type="checkbox"] {
+    flex-grow: 0.1;
+    width: 0;
 }
 
 

@@ -347,12 +347,34 @@ abstract class SimpleInputField extends Field {
     protected abstract finalizeInput(element: HTMLInputElement): void;
 }
 
+class TextFieldOptions extends FieldOptions {
+    minLength: number | undefined = undefined;
+    maxLength: number | undefined = undefined;
+}
+
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/text
 class TextField extends SimpleInputField {
+    constructor(options: TextFieldOptions = new TextFieldOptions()) {
+        options = Object.assign(new TextFieldOptions(), options);
+        super(options);
+    }
+
     protected finalizeInput(element: HTMLInputElement) {
         element.type = 'text';
+
+        let options = (this.options as TextFieldOptions);
+
+        if (options.minLength != null) {
+            element.minLength = options.minLength;
+        }
+
+        if (options.maxLength != null) {
+            element.maxLength = options.maxLength;
+        }
     }
 }
 
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/email
 class EmailField extends TextField {
     protected finalizeInput(element: HTMLInputElement) {
         super.finalizeInput(element);
@@ -372,6 +394,54 @@ class EmailField extends TextField {
         }
 
         return value;
+    }
+}
+
+class SecretFieldOptions extends TextFieldOptions {
+    // See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/password#allowing_autocomplete
+    autocomplete: 'on' | 'off' | 'current-password' | 'new-password' | undefined = 'off';
+}
+
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/password
+class SecretField extends TextField {
+    constructor(options: SecretFieldOptions = new SecretFieldOptions()) {
+        options = Object.assign(new SecretFieldOptions(), options);
+        super(options);
+    }
+
+    protected finalizeInput(element: HTMLInputElement) {
+        super.finalizeInput(element);
+        element.type = 'password';
+
+        let options = (this.options as SecretFieldOptions);
+
+        if (options.autocomplete != null) {
+            element.autocomplete = options.autocomplete;
+        }
+    }
+
+    protected createInnerElements(): Array<HTMLElement> {
+        let element = super.createInnerElements()[0] as HTMLInputElement;
+
+        // Wrap the elements to put a show checkbox.
+
+        let checkbox = document.createElement('input') as HTMLInputElement;
+        checkbox.type = 'checkbox';
+        checkbox.addEventListener('input', function(event) {
+            if (checkbox.checked) {
+                element.type = 'text';
+            } else {
+                element.type = 'password';
+            }
+        });
+
+        let label = document.createElement('label');
+        label.innerText = 'Show';
+
+        let container = document.createElement('div');
+        container.replaceChildren(element, label, checkbox);
+
+        return [container];
     }
 }
 
@@ -571,6 +641,7 @@ export {
 
     TextField,
     EmailField,
+    SecretField,
 
     NumericFieldOptions,
     NumericField,
