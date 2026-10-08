@@ -135,6 +135,9 @@ const inputFields = [
     }),
 
     new edq.model.field.LocalDatetimeField({'name': 'normal-datetime', label: 'Normal Date/Time'}),
+
+    new edq.model.field.TimeField({'name': 'normal-time', label: 'Time of Day'}),
+    new edq.model.field.TimeField({'name': 'business-time', label: 'Business Hours', min: '09:00', max: '17:00'}),
 ];
 
 document.addEventListener("DOMContentLoaded", main);

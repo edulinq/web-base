@@ -460,6 +460,54 @@ class LocalDatetimeField extends SimpleInputField {
     }
 }
 
+class TimeFieldOptions extends FieldOptions {
+    min: string | undefined = undefined;
+    max: string | undefined = undefined;
+}
+
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/time
+// A time of day.
+// The browser controls the input type, but 24-hour ('hh:mm:ss') is always returned.
+class TimeField extends SimpleInputField {
+    constructor(options: TimeFieldOptions = new TimeFieldOptions()) {
+        options = Object.assign(new TimeFieldOptions(), options);
+        super(options);
+    }
+
+    protected finalizeInput(element: HTMLInputElement) {
+        let options = (this.options as TimeFieldOptions);
+
+        element.type = 'time';
+
+        if (options.min != null) {
+            element.min = options.min;
+        }
+
+        if (options.max != null) {
+            element.max = options.max;
+        }
+    }
+
+    protected getInnerValue(): any {
+        let value = super.getInnerValue();
+
+        if (value == null) {
+            return undefined;
+        }
+
+        if (value.length == 0) {
+            return undefined;
+        }
+
+        // Add in seconds if it is not there.
+        if (value.length == 5) {
+            value += ':00';
+        }
+
+        return value;
+    }
+}
+
 export {
     InputValidationFunction,
     InputExtractionFunc,
@@ -480,4 +528,7 @@ export {
     DateFieldOptions,
     DateField,
     LocalDatetimeField,
+
+    TimeFieldOptions,
+    TimeField,
 }
