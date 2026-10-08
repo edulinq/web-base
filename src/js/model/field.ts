@@ -397,6 +397,30 @@ class EmailField extends TextField {
     }
 }
 
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/tel
+// Browser validation and input are limited on non-mobile browsers, but this is important for accessibility.
+class PhoneNumberField extends TextField {
+    protected finalizeInput(element: HTMLInputElement) {
+        super.finalizeInput(element);
+        element.type = 'tel';
+    }
+
+    // Phone numbers cannot be empty strings.
+    protected getInnerValue(): any {
+        let value = super.getInnerValue();
+
+        if (value == null) {
+            return undefined;
+        }
+
+        if (value.length == 0) {
+            return undefined;
+        }
+
+        return value;
+    }
+}
+
 class SecretFieldOptions extends TextFieldOptions {
     // See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/password#allowing_autocomplete
     autocomplete: 'on' | 'off' | 'current-password' | 'new-password' | undefined = 'off';
@@ -641,6 +665,7 @@ export {
 
     TextField,
     EmailField,
+    PhoneNumberField,
     SecretField,
 
     NumericFieldOptions,

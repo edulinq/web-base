@@ -127,6 +127,8 @@ const inputFields = [
 
     new edq.model.field.EmailField({'name': 'basic-email', label: 'Basic Email', placeholder: 'test@edulinq.org'}),
 
+    new edq.model.field.PhoneNumberField({'name': 'basic-phone', label: 'Basic Phone'}),
+
     new edq.model.field.SecretField({'name': 'basic-secret', minLength: 8, label: 'Basic Secret'}),
 
     new edq.model.field.NumericField({'name': 'positive-int', label: 'Positive Integer', min: 1, step: 1}),
