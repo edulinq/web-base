@@ -271,6 +271,18 @@ fieldset {
     width: 0;
 }
 
+.edq-field-radio > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.edq-field-radio > div > div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+}
+
 
 /* TEST - Review below. */
 

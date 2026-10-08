@@ -651,6 +651,106 @@ class TimeField extends SimpleInputField {
     }
 }
 
+class RadioFieldOptions extends FieldOptions {
+    // Mapping of label to value.
+    choices: Record<string, any> = {};
+
+    choiceLabelBefore: boolean = false;
+}
+
+// A set of radio buttons.
+// Note that this class is more strict than normal radio buttons, because each choice has to have a unique label.
+class RadioField extends Field {
+    constructor(options: RadioFieldOptions = new RadioFieldOptions()) {
+        options = Object.assign(new RadioFieldOptions(), options);
+        super(options);
+
+        let foundDefault = false;
+        for (const [labelText, value] of Object.entries(options.choices)) {
+            if ((this.options.defaultValue != null) && (this.options.defaultValue === value)) {
+                foundDefault = true;
+            }
+        }
+
+        if ((this.options.defaultValue != null) && !foundDefault) {
+            console.error(this);
+            throw new Error(`Radio field has a default value that was not seen in the choices: '${this.options.defaultValue}'.`);
+        }
+    }
+
+    protected createInnerElements(): Array<HTMLElement> {
+        let options = (this.options as RadioFieldOptions);
+
+        let element = document.createElement('div');
+        element.id = this.id;
+
+        for (const [labelText, value] of Object.entries(options.choices)) {
+            let label = document.createElement('label');
+            label.innerText = labelText;
+
+            let radio = document.createElement('input') as HTMLInputElement;
+            radio.type = 'radio';
+            radio.value = value;
+            radio.dataset.label = labelText;
+
+            if (this.options.name != null) {
+                radio.setAttribute('name', this.options.name);
+            }
+
+            if ((this.options.defaultValue != null) && (this.options.defaultValue === value)) {
+                radio.checked = true;
+            }
+
+            let pair = document.createElement('div');
+
+            if (options.choiceLabelBefore) {
+                pair.appendChild(label);
+                pair.appendChild(radio);
+            } else {
+                pair.appendChild(radio);
+                pair.appendChild(label);
+            }
+
+            element.appendChild(pair);
+        }
+
+        // Mark the element as touched if it loses focus.
+        element.addEventListener('focusout', function(event) {
+            element.classList.add('touched');
+        });
+
+        return [element];
+    }
+
+    protected getInnerValue(): any {
+        let options = (this.options as RadioFieldOptions);
+
+        for (const radio of this.element.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
+            if (radio.checked) {
+                // Fetch the value from the passed in options to keep types.
+                return options.choices[radio.dataset.label as string];
+            }
+        }
+
+        return undefined;
+    }
+
+    protected validateInnerInput(onlyMessage: boolean): string | undefined {
+        let hasSelection = false;
+        for (const radio of this.element.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
+            if (radio.checked) {
+                hasSelection = true;
+            }
+        }
+
+        if (this.options.required && !hasSelection) {
+            return 'Please make a selection.';
+        }
+
+        return undefined;
+    }
+}
+
 export {
     InputValidationFunction,
     InputExtractionFunc,
@@ -678,4 +778,7 @@ export {
 
     TimeFieldOptions,
     TimeField,
+
+    RadioFieldOptions,
+    RadioField,
 }

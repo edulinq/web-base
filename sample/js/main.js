@@ -86,7 +86,7 @@ function loadInputFields() {
     resultsArea.classList.add('results');
 
     let fieldSet = new edq.model.field.FieldSet(inputFields, {
-        submitButtonText: 'Submit (Parse Fields)',
+        submitButtonText: 'Submit (No Validation)',
         submitButtonDisableWhenInvalid: false,
         submitCallback: function(values, _) {
             edq.render.code.block(resultsArea, edq.util.json.pretty(values), 'json');
@@ -95,6 +95,14 @@ function loadInputFields() {
 
     // Click the button right away to show the JSON.
     fieldSet.element.querySelector('button.submit').click();
+
+    // Add in an extra button for validation.
+    let validateButton = document.createElement('button');
+    validateButton.innerText = 'Validate (No Submit)';
+    validateButton.addEventListener('click', function(event) {
+        fieldSet.validateInputs();
+    });
+    fieldSet.element.prepend(validateButton);
 
     document.querySelector('div.input-fields').replaceChildren(fieldSet.element, resultsArea);
 }
@@ -147,6 +155,17 @@ const inputFields = [
 
     new edq.model.field.TimeField({'name': 'basic-time', label: 'Time of Day'}),
     new edq.model.field.TimeField({'name': 'business-time', label: 'Business Hours', min: '09:00', max: '17:00'}),
+
+    new edq.model.field.RadioField({'name': 'basic-radio', label: 'Basic Radio', choices: {
+        'string': 'abc',
+        'int': 123,
+        'float': 3.14,
+        'null': null,
+    }}),
+    new edq.model.field.RadioField({'name': 'required-radio', label: 'Required Radio', choiceLabelBefore: true, required: true, choices: {
+        'Yes': true,
+        'No': false,
+    }}),
 ];
 
 document.addEventListener("DOMContentLoaded", main);
