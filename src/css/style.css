@@ -249,6 +249,17 @@ fieldset {
     border-color: var(--color-text-error);
 }
 
+.edq-field-slider > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}
+
+.edq-field-slider input {
+    width: 85%;
+}
 
 
 /* TEST - Review below. */

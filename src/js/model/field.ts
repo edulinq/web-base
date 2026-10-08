@@ -108,6 +108,7 @@ abstract class Field {
 
         let element = document.createElement('div');
         element.classList.add('edq-field');
+        element.classList.add(`edq-field-${this.constructor.name.toLowerCase().replace(/field$/, '')}`);
 
         if (this.options.name != null) {
             element.setAttribute('name', this.options.name);
@@ -398,6 +399,32 @@ class NumericField extends SimpleInputField {
     }
 }
 
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range
+class SliderField extends NumericField {
+    protected createInnerElements(): Array<HTMLElement> {
+        let element = super.createInnerElements()[0] as HTMLInputElement;
+
+        // Wrap the elements to put a value label on the slider.
+
+        let label = document.createElement('span');
+        label.innerText = element.value;
+
+        element.addEventListener('input', function(event) {
+            label.innerText = element.value;
+        });
+
+        let container = document.createElement('div');
+        container.replaceChildren(element, label);
+
+        return [container];
+    }
+
+    protected finalizeInput(element: HTMLInputElement) {
+        super.finalizeInput(element);
+        element.type = 'range';
+    }
+}
+
 class DateFieldOptions extends FieldOptions {
     min: timestamp.Timestamp | undefined = undefined;
     max: timestamp.Timestamp | undefined = undefined;
@@ -524,6 +551,7 @@ export {
 
     NumericFieldOptions,
     NumericField,
+    SliderField,
 
     DateFieldOptions,
     DateField,
