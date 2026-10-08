@@ -353,6 +353,28 @@ class TextField extends SimpleInputField {
     }
 }
 
+class EmailField extends TextField {
+    protected finalizeInput(element: HTMLInputElement) {
+        super.finalizeInput(element);
+        element.type = 'email';
+    }
+
+    // Emails cannot be empty strings.
+    protected getInnerValue(): any {
+        let value = super.getInnerValue();
+
+        if (value == null) {
+            return undefined;
+        }
+
+        if (value.length == 0) {
+            return undefined;
+        }
+
+        return value;
+    }
+}
+
 class NumericFieldOptions extends FieldOptions {
     min: number | undefined = undefined;
     max: number | undefined = undefined;
@@ -548,6 +570,7 @@ export {
     SimpleInputField,
 
     TextField,
+    EmailField,
 
     NumericFieldOptions,
     NumericField,
