@@ -651,18 +651,18 @@ class TimeField extends SimpleInputField {
     }
 }
 
-class RadioFieldOptions extends FieldOptions {
+class ChoiceFieldOptions extends FieldOptions {
     // Mapping of label to value.
     choices: Record<string, any> = {};
 
     choiceLabelBefore: boolean = false;
 }
 
-// A set of radio buttons.
+// A set of "choices" (e.g., radio buttons or checkboxes).
 // Note that this class is more strict than normal radio buttons, because each choice has to have a unique label.
-class RadioField extends Field {
-    constructor(options: RadioFieldOptions = new RadioFieldOptions()) {
-        options = Object.assign(new RadioFieldOptions(), options);
+abstract class ChoiceField extends Field {
+    constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
+        options = Object.assign(new ChoiceFieldOptions(), options);
         super(options);
 
         let foundDefault = false;
@@ -674,12 +674,12 @@ class RadioField extends Field {
 
         if ((this.options.defaultValue != null) && !foundDefault) {
             console.error(this);
-            throw new Error(`Radio field has a default value that was not seen in the choices: '${this.options.defaultValue}'.`);
+            throw new Error(`Choice field has a default value that was not seen in the choices: '${this.options.defaultValue}'.`);
         }
     }
 
     protected createInnerElements(): Array<HTMLElement> {
-        let options = (this.options as RadioFieldOptions);
+        let options = (this.options as ChoiceFieldOptions);
 
         let element = document.createElement('div');
         element.id = this.id;
@@ -688,26 +688,26 @@ class RadioField extends Field {
             let label = document.createElement('label');
             label.innerText = labelText;
 
-            let radio = document.createElement('input') as HTMLInputElement;
-            radio.type = 'radio';
-            radio.value = value;
-            radio.dataset.label = labelText;
+            let choice = document.createElement('input') as HTMLInputElement;
+            choice.type = this.getInputType();
+            choice.value = value;
+            choice.dataset.label = labelText;
 
             if (this.options.name != null) {
-                radio.setAttribute('name', this.options.name);
+                choice.setAttribute('name', this.options.name);
             }
 
             if ((this.options.defaultValue != null) && (this.options.defaultValue === value)) {
-                radio.checked = true;
+                choice.checked = true;
             }
 
             let pair = document.createElement('div');
 
             if (options.choiceLabelBefore) {
                 pair.appendChild(label);
-                pair.appendChild(radio);
+                pair.appendChild(choice);
             } else {
-                pair.appendChild(radio);
+                pair.appendChild(choice);
                 pair.appendChild(label);
             }
 
@@ -722,23 +722,26 @@ class RadioField extends Field {
         return [element];
     }
 
-    protected getInnerValue(): any {
-        let options = (this.options as RadioFieldOptions);
+    // Get all the checked choices.
+    protected getChecked(): Record<string, any> {
+        let options = (this.options as ChoiceFieldOptions);
 
-        for (const radio of this.element.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
-            if (radio.checked) {
-                // Fetch the value from the passed in options to keep types.
-                return options.choices[radio.dataset.label as string];
+        let checked: Record<string, any> = {};
+        for (const choice of this.element.querySelectorAll<HTMLInputElement>(`input[type="${this.getInputType()}"]`)) {
+            if (choice.checked) {
+                // Fetch the value from the passed in options to preserve types.
+                let label = (choice.dataset.label as string);
+                checked[label] = options.choices[label];
             }
         }
 
-        return undefined;
+        return checked;
     }
 
     protected validateInnerInput(onlyMessage: boolean): string | undefined {
         let hasSelection = false;
-        for (const radio of this.element.querySelectorAll<HTMLInputElement>('input[type="radio"]')) {
-            if (radio.checked) {
+        for (const choice of this.element.querySelectorAll<HTMLInputElement>(`input[type="${this.getInputType()}"]`)) {
+            if (choice.checked) {
                 hasSelection = true;
             }
         }
@@ -748,6 +751,45 @@ class RadioField extends Field {
         }
 
         return undefined;
+    }
+
+    // Get the type for the input tag for this field.
+    protected abstract getInputType(): string;
+}
+
+// A set of radio buttons.
+class RadioField extends ChoiceField {
+    constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
+        options = Object.assign(new ChoiceFieldOptions(), options);
+        super(options);
+    }
+
+    protected getInputType(): string {
+        return 'radio';
+    }
+
+    protected getInnerValue(): any {
+        for (const [key, value] of Object.entries(this.getChecked())) {
+            return value;
+        }
+
+        return undefined;
+    }
+}
+
+// A set of checkboxes.
+class CheckboxField extends ChoiceField {
+    constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
+        options = Object.assign(new ChoiceFieldOptions(), options);
+        super(options);
+    }
+
+    protected getInputType(): string {
+        return 'checkbox';
+    }
+
+    protected getInnerValue(): any {
+        return this.getChecked();
     }
 }
 
@@ -779,6 +821,8 @@ export {
     TimeFieldOptions,
     TimeField,
 
-    RadioFieldOptions,
+    ChoiceFieldOptions,
+    ChoiceField,
     RadioField,
+    CheckboxField,
 }

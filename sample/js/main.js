@@ -166,6 +166,17 @@ const inputFields = [
         'Yes': true,
         'No': false,
     }}),
+
+    new edq.model.field.CheckboxField({'name': 'basic-checkbox', label: 'Basic Checkbox', choices: {
+        'string': 'abc',
+        'int': 123,
+        'float': 3.14,
+        'null': null,
+    }}),
+    new edq.model.field.CheckboxField({'name': 'required-checkbox', label: 'Required Checkbox', choiceLabelBefore: true, required: true, choices: {
+        'Yes': true,
+        'No': false,
+    }}),
 ];
 
 document.addEventListener("DOMContentLoaded", main);
