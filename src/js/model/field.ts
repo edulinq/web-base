@@ -37,7 +37,7 @@ class FieldOptions {
     required: boolean = false;
 
     // Placeholder text to display (if possible).
-    placeholder: string = '';
+    placeholder: string | undefined = undefined;
 
     // An optional function to call instead of standard validation on a field's value.
     inputValidationFunc: InputValidationFunction | undefined = undefined;
@@ -320,7 +320,7 @@ abstract class SimpleInputField extends Field {
         return [element];
     }
 
-    private getElement(): HTMLInputElement {
+    protected getElement(): HTMLInputElement {
         return (this.element.querySelector<HTMLInputElement>('input') as HTMLInputElement);
     }
 
@@ -793,6 +793,46 @@ class CheckboxField extends ChoiceField {
     }
 }
 
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file
+class FileFieldOptions extends FieldOptions {
+    // The allowed file types/mimes for this field.
+    // See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file#accept
+    allowedTypes: Array<string> | string | undefined = undefined;
+
+    multiple: boolean = false;
+}
+
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/time
+class FileField extends SimpleInputField {
+    constructor(options: FileFieldOptions = new FileFieldOptions()) {
+        options = Object.assign(new FileFieldOptions(), options);
+        super(options);
+    }
+
+    protected finalizeInput(element: HTMLInputElement) {
+        let options = (this.options as FileFieldOptions);
+
+        element.type = 'file';
+
+        if (options.allowedTypes != null) {
+            let values = options.allowedTypes;
+            if ((typeof values) === 'string') {
+                values = [values];
+            }
+
+            element.accept = values.join(',');
+        }
+
+        if (options.multiple != null) {
+            element.multiple = options.multiple;
+        }
+    }
+
+    protected getInnerValue(): any {
+        return this.getElement().files;
+    }
+}
+
 export {
     InputValidationFunction,
     InputExtractionFunc,
@@ -825,4 +865,7 @@ export {
     ChoiceField,
     RadioField,
     CheckboxField,
+
+    FileFieldOptions,
+    FileField,
 }

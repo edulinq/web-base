@@ -177,6 +177,9 @@ const inputFields = [
         'Yes': true,
         'No': false,
     }}),
+
+    new edq.model.field.FileField({'name': 'basic-file', label: 'Basic File'}),
+    new edq.model.field.FileField({'name': 'multiple-image-file', label: 'Multiple Image Files', multiple: true, allowedTypes: 'image/*'}),
 ];
 
 document.addEventListener("DOMContentLoaded", main);
