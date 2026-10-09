@@ -290,8 +290,16 @@ class FieldSet {
 
 // A base class for all "simple" inputs fields backed by an `input` tag.
 abstract class SimpleInputField extends Field {
+    // Get the tag used for input on this element.
+    // This will usually be 'input', but gives an opportunity for children to override.
+    // Despite the ability to change tag types, this class will still assume that a `HTMLInputElement` is produced.
+    // It is up to any overriding children to make the proper adjustments.
+    protected getInputTag(): string {
+        return 'input';
+    }
+
     protected createInnerElements(): Array<HTMLElement> {
-        let element = document.createElement('input') as HTMLInputElement;
+        let element = document.createElement(this.getInputTag()) as HTMLInputElement;
         element.id = this.id;
 
         if (this.options.name != null) {
@@ -321,7 +329,7 @@ abstract class SimpleInputField extends Field {
     }
 
     protected getElement(): HTMLInputElement {
-        return (this.element.querySelector<HTMLInputElement>('input') as HTMLInputElement);
+        return (this.element.querySelector<HTMLInputElement>(this.getInputTag()) as HTMLInputElement);
     }
 
     protected getInnerValue(): any {
@@ -466,6 +474,36 @@ class SecretField extends TextField {
         container.replaceChildren(element, label, checkbox);
 
         return [container];
+    }
+}
+
+class TextAreaFieldOptions extends TextFieldOptions {
+    rows: number | undefined = undefined;
+    cols: number | undefined = undefined;
+}
+
+// See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea
+class TextAreaField extends TextField {
+    constructor(options: TextAreaFieldOptions = new TextAreaFieldOptions()) {
+        options = Object.assign(new TextAreaFieldOptions(), options);
+        super(options);
+    }
+
+    protected getInputTag(): string {
+        return 'textarea';
+    }
+
+    protected finalizeInput(rawElement: HTMLInputElement) {
+        let element: HTMLTextAreaElement = ((rawElement as unknown) as HTMLTextAreaElement);
+        let options = (this.options as TextAreaFieldOptions);
+
+        if (options.rows != null) {
+            element.rows = options.rows;
+        }
+
+        if (options.cols != null) {
+            element.cols = options.cols;
+        }
     }
 }
 
@@ -849,6 +887,7 @@ export {
     EmailField,
     PhoneNumberField,
     SecretField,
+    TextAreaField,
 
     NumericFieldOptions,
     NumericField,

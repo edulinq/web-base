@@ -133,6 +133,9 @@ const inputFields = [
     new edq.model.field.TextField({'name': 'required-text', label: 'Required Text', required: true, placeholder: 'Required Text'}),
     new edq.model.field.TextField({'name': 'default-text', label: 'Default Text', defaultValue: 'Some Default Value', placeholder: 'Default Text'}),
 
+    new edq.model.field.TextAreaField({'name': 'basic-textarea', label: 'Basic Text Area', placeholder: 'Placeholder Text'}),
+    new edq.model.field.TextAreaField({'name': 'tall-textarea', label: 'Tall Text Area', rows: 10}),
+
     new edq.model.field.EmailField({'name': 'basic-email', label: 'Basic Email', placeholder: 'test@edulinq.org'}),
 
     new edq.model.field.PhoneNumberField({'name': 'basic-phone', label: 'Basic Phone'}),
