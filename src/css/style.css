@@ -266,17 +266,20 @@ fieldset {
     flex-grow: 1;
 }
 
-.edq-field-secret input[type="checkbox"] {
+.edq-field-secret input[type="checkbox"],
+.edq-field-secret input[type="radio"] {
     flex-grow: 0.1;
     width: 0;
 }
 
+.edq-field-checkbox > div,
 .edq-field-radio > div {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
+.edq-field-checkbox > div > div,
 .edq-field-radio > div > div {
     display: flex;
     flex-direction: row;
