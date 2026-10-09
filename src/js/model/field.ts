@@ -553,6 +553,14 @@ class NumericField extends SimpleInputField {
     }
 }
 
+// A numeric field that can only have integers.
+class IntegerField extends NumericField {
+    protected finalizeInput(element: HTMLInputElement) {
+        super.finalizeInput(element);
+        element.pattern = '\d*';
+    }
+}
+
 // See: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/range
 class SliderField extends NumericField {
     protected createInnerElements(): Array<HTMLElement> {
@@ -891,6 +899,7 @@ export {
 
     NumericFieldOptions,
     NumericField,
+    IntegerField,
     SliderField,
 
     DateFieldOptions,
