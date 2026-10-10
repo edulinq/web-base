@@ -40,6 +40,12 @@ To runs tests, use the `scripts/run_tests.sh` script:
 ./scripts/run_tests.sh
 ```
 
+Any parameters are passed directly to `npm test`.
+So, you can do things like run a single test ('SampleTest') with:
+```
+./scripts/run_tests.sh -t SampleTest
+```
+
 ## Design Goals
 
 TEST
