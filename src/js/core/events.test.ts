@@ -2,7 +2,7 @@ import * as events from './events';
 
 const TEST_EVENT_NAME: string = 'test-event';
 
-test("getEventPromise() base", async function() {
+test("getEventPromise() base", function() {
     events.removeAllListeners();
 
     const eventInfo = new events.EventInfo(TEST_EVENT_NAME);
@@ -19,7 +19,7 @@ test("getEventPromise() base", async function() {
     });
 })
 
-test("getEventPromise() query", async function() {
+test("getEventPromise() query", function() {
     events.removeAllListeners();
 
     const query = new events.EventInfo(TEST_EVENT_NAME, {'a': 1});
@@ -38,7 +38,7 @@ test("getEventPromise() query", async function() {
 })
 
 // Ensure that a listener removes itself right before the promise resolves.
-test("getEventPromise() remove self", async function() {
+test("getEventPromise() remove self", function() {
     events.removeAllListeners();
     expect(events.getListenerCounts()).toStrictEqual({});
 
@@ -52,7 +52,7 @@ test("getEventPromise() remove self", async function() {
     });
 })
 
-test("removeAllListeners() base", async function() {
+test("removeAllListeners() base", function() {
     events.removeAllListeners();
     expect(events.getListenerCounts()).toStrictEqual({});
 
@@ -65,7 +65,7 @@ test("removeAllListeners() base", async function() {
     expect(events.getListenerCounts()).toStrictEqual({});
 })
 
-test("removeListeners() base", async function() {
+test("removeListeners() base", function() {
     events.removeAllListeners();
     expect(events.getListenerCounts()).toStrictEqual({});
 
