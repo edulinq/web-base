@@ -8,7 +8,7 @@ test("getEventPromise() base", function() {
     const eventInfo = new events.EventInfo(TEST_EVENT_NAME);
     const promise = events.getEventPromise(eventInfo);
 
-    events.dispatchEvent(eventInfo);
+    events.dispatch(eventInfo);
 
     return promise.then(function(event) {
         const newEventInfo = events.EventInfo.fromEvent(event);
@@ -26,7 +26,7 @@ test("getEventPromise() query", function() {
     const promise = events.getEventPromise(query);
 
     const eventInfo = new events.EventInfo(TEST_EVENT_NAME, {'a': 1, 'b': 2});
-    events.dispatchEvent(eventInfo);
+    events.dispatch(eventInfo);
 
     return promise.then(function(event) {
         const newEventInfo = events.EventInfo.fromEvent(event);
@@ -45,7 +45,7 @@ test("getEventPromise() remove self", function() {
     const eventInfo = new events.EventInfo(TEST_EVENT_NAME);
     const promise = events.getEventPromise(eventInfo);
 
-    events.dispatchEvent(eventInfo);
+    events.dispatch(eventInfo);
 
     return promise.then(function(event) {
         expect(events.getListenerCounts()).toStrictEqual({});

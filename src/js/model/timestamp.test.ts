@@ -1,4 +1,4 @@
-import * as timestamp from './timestamp.js';
+import * as timestamp from './timestamp';
 
 test("now() base", function() {
     expect(timestamp.now()).toBeDefined();

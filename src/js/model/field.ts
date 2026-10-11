@@ -862,7 +862,7 @@ class FileField extends SimpleInputField {
 
         if (options.allowedTypes != null) {
             let values = options.allowedTypes;
-            if ((typeof values) === 'string') {
+            if ((typeof(values)) === 'string') {
                 values = [values];
             }
 

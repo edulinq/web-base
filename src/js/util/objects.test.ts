@@ -1,5 +1,15 @@
 import * as objects from './objects';
 
+class TestClass {
+    a: string;
+    b: number;
+
+    constructor(a: string, b: number) {
+        this.a = a;
+        this.b = b;
+    }
+}
+
 const testPrimitives: Array<any> = [
     // Strings
     '',
@@ -27,6 +37,7 @@ const testPrimitives: Array<any> = [
 const testObjects: Array<any> = [
     {},
     {'a': 1},
+    new TestClass('abc', 123),
 ];
 
 // These are "objects" that are not pure objects.
@@ -34,6 +45,7 @@ const testNonObjects: Array<any> = [
     new Map(),
     new Set(),
     new Date(),
+    /abc/,
 ];
 
 const testArrays: Array<any> = [
@@ -172,6 +184,11 @@ describe("deepEqual() base", function() {
         [{'a': {'b': 1}}, {'a': {'b': 1}}, true],
         [{'a': {'b': 1}}, {'a': {'b': 999}}, false],
         [{'a': {'b': false}}, {'a': {'b': 0}}, false],
+
+        [{}, new TestClass('abc', 123), false],
+        [new TestClass('abc', 123), new TestClass('abc', 123), true],
+        [new TestClass('abc', 123), new TestClass('zzz', 123), false],
+        [{'a': 'abc', 'b': 123}, new TestClass('abc', 123), true],
 
         // Arrays
 

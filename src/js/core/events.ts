@@ -157,7 +157,7 @@ class EventListener {
 
 // Dispatch an event.
 // All listeners that match this event will be triggered.
-function dispatchEvent(eventInfo: EventInfo) {
+function dispatch(eventInfo: EventInfo) {
     eventElement.dispatchEvent(new CustomEvent(eventInfo.name, {detail: eventInfo.details}));
 }
 
@@ -203,7 +203,7 @@ function getListenerCounts(): Record<string, number> {
 export {
     EventInfo,
 
-    dispatchEvent,
+    dispatch,
     getEventPromise,
     removeAllListeners,
     removeListeners,

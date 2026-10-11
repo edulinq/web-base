@@ -4,6 +4,6 @@ function init() {
     runtime.setTestingMode(true);
 }
 
-beforeEach(function() {
+beforeAll(function() {
     init();
 });

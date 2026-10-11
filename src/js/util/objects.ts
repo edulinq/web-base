@@ -20,6 +20,7 @@ function isObject(value: any): boolean {
 // This is a simple implementation that is not extremely robust or performant.
 // This does not handle cycles (e.g., an object pointing to itself).
 // Functions will only be check if they reference the same function (not content).
+// Objects are compared the same regardless of how they were created (literal, class declaration, class expression, etc).
 function deepEqual(a: any, b: any): boolean {
     // Check for identity.
     if (a === b) {
