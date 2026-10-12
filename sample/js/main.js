@@ -119,9 +119,8 @@ function loadRouting() {
 
 function loadCards() {
     document.querySelector('.section-cards-link div').replaceChildren((new edq.render.cards.CardArea(linkCards)).getElement());
-
-    // TEST - Small Cards
-    // TEST - Large Cards
+    document.querySelector('.section-cards-small div').replaceChildren((new edq.render.cards.CardArea(smallCards)).getElement());
+    document.querySelector('.section-cards-large div').replaceChildren((new edq.render.cards.CardArea(largeCards)).getElement());
 }
 
 function main() {
@@ -134,6 +133,13 @@ function main() {
     loadInputFields();
     loadCards();
 }
+
+const loremIpsum = [
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'Integer auctor aliquam neque, a feugiat velit. Nullam vel varius nulla, non faucibus massa.',
+    'Ut condimentum velit vitae justo imperdiet venenatis. Curabitur quis neque iaculis, rutrum metus ac, posuere mi.',
+    'Ut elit lacus, mattis eu libero id, sollicitudin scelerisque neque. Donec a accumsan urna. Maecenas sodales lectus nec sapien cursus egestas.',
+];
 
 const codeBlocks = {
     'plaintext': ['.txt', 'This is just some text.'],
@@ -208,6 +214,20 @@ const linkCards = [
     new edq.render.cards.LinkCard('Some Link 1', '#cards/link?index=1'),
     new edq.render.cards.LinkCard('Some Link 2', '#cards/link?index=2'),
     new edq.render.cards.LinkCard('Some Link 3', '#cards/link?index=3'),
+];
+
+const smallCards = [
+    new edq.render.cards.SmallCard('1'),
+    new edq.render.cards.SmallCard('Card 2'),
+    new edq.render.cards.SmallCard('Small Card 3'),
+    new edq.render.cards.SmallCard('Some Small Card 4'),
+];
+
+const largeCards = [
+    new edq.render.cards.LargeCard('Large Card 1', loremIpsum.slice(0, 1)),
+    new edq.render.cards.LargeCard('Large Card 2', loremIpsum.slice(0, 2)),
+    new edq.render.cards.LargeCard('Large Card 3', loremIpsum.slice(0, 3)),
+    new edq.render.cards.LargeCard('Large Card 4', loremIpsum.slice(0, 4)),
 ];
 
 document.addEventListener("DOMContentLoaded", main);

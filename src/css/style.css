@@ -521,54 +521,6 @@ input[type="checkbox"]:focus {
     border-radius: var(--curve-radius-large);
 }
 
-.card-header,
-.template-content .page-information {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: min(1.75rem, 4.5vw);
-    gap: 1.0rem;
-    border-radius: var(--curve-radius-large);
-}
-
-.card-header {
-    margin-bottom: 1.0rem;
-}
-
-.card-header h2 {
-    margin-bottom: 0rem;
-}
-
-.card-header .card-title {
-    display: flex;
-    align-self: center;
-    max-width: fit-content;
-}
-
-.card-sections {
-    display: flex;
-    flex-direction: column;
-}
-
-.card-sections > div {
-    display: block;
-    padding: 1.0rem;
-    border-radius: var(--curve-radius-large);
-}
-
-.card-section {
-    margin-bottom: 1rem;
-}
-
-.card-section:last-of-type {
-    margin-bottom: 0rem;
-}
-
-.card-section h2 {
-    text-align: start;
-}
-
 .card-area {
     display: flex;
     flex-direction: row;
@@ -585,7 +537,7 @@ input[type="checkbox"]:focus {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 
     min-width: min-content;
 
@@ -595,6 +547,8 @@ input[type="checkbox"]:focus {
 
     outline: 3px solid var(--color-bg-accent-primary);
     outline-offset: -2px;
+
+    padding: 1.5rem;
 }
 
 .card:hover {
@@ -603,10 +557,29 @@ input[type="checkbox"]:focus {
     background: var(--color-bg-accent-gradient);
 }
 
-.card a {
-    padding: 1.5rem;
-    text-decoration: none;
+.card[data-type='link'] {
     word-break: keep-all;
+    padding: 0;
+}
+
+.card[data-type='link'] > a {
+    padding: 1.5rem;
+}
+
+.card > a,
+.card > span,
+.card > p {
+    text-decoration: none;
+}
+
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+    text-align: center;
+    margin-bottom: 0.5em;
+    word-break: keep-all;
+}
+
+.card[data-type='large'] p {
+    text-align: start;
 }
 
 .home-page,

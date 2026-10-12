@@ -18,6 +18,63 @@ describe("LinkCard base", function() {
     });
 });
 
+describe("SmallCard base", function() {
+    // [[card, expected], ...]
+    const testCases: Array<[cards.SmallCard, string]> = [
+        [
+            new cards.SmallCard('text', 'name'),
+            '<div class="card drop-shadow" data-type="small" data-name="name"><span>text</span></div>',
+        ],
+        [
+            new cards.SmallCard('text'),
+            '<div class="card drop-shadow" data-type="small" data-name="small"><span>text</span></div>',
+        ],
+    ];
+
+    test.each(testCases)("%s", function(card, expected) {
+        expect(card.getElement().outerHTML).toBe(expected);
+    });
+});
+
+describe("LargeCard base", function() {
+    // [[card, expected], ...]
+    const testCases: Array<[cards.LargeCard, string]> = [
+        // Empty
+        [
+            new cards.LargeCard(undefined, ''),
+            '<div class="card drop-shadow" data-type="large" data-name="large"><p></p></div>',
+        ],
+
+        // String Paragraph
+        [
+            new cards.LargeCard('header', 'text', 'name'),
+            '<div class="card drop-shadow" data-type="large" data-name="name"><h3>header</h3><p>text</p></div>',
+        ],
+
+        // Array Paragraphs
+        [
+            new cards.LargeCard('header', ['text1', 'text2'], 'name'),
+            '<div class="card drop-shadow" data-type="large" data-name="name"><h3>header</h3><p>text1</p><p>text2</p></div>',
+        ],
+
+        // Header Tag
+        [
+            new cards.LargeCard('header', 'text', 'name', 'h2'),
+            '<div class="card drop-shadow" data-type="large" data-name="name"><h2>header</h2><p>text</p></div>',
+        ],
+
+        // No Header
+        [
+            new cards.LargeCard(undefined, 'text'),
+            '<div class="card drop-shadow" data-type="large" data-name="large"><p>text</p></div>',
+        ],
+    ];
+
+    test.each(testCases)("%s", function(card, expected) {
+        expect(card.getElement().outerHTML).toBe(expected);
+    });
+});
+
 describe("CardArea base", function() {
     // [[card, expected], ...]
     const testCases: Array<[cards.CardArea, string]> = [
