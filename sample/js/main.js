@@ -69,7 +69,7 @@ function loadCodeBlocks() {
     for (const [language, [extension, text]] of Object.entries(codeBlocks)) {
         let container = document.createElement('div');
         container.classList.add('code-container');
-        edq.render.code.block(container, text, language, `code${extension}`);
+        edq.render.code.block(container, text, language);
 
         let label = document.createElement('p');
         label.innerText = language;
@@ -107,10 +107,21 @@ function loadInputFields() {
     document.querySelector('div.input-fields').replaceChildren(fieldSet.element, resultsArea);
 }
 
+function loadRouting() {
+    edq.core.routing.addRoute(new edq.core.routing.RegexRoute('.*', function(request) {
+        let container = document.querySelector('.routing-target div');
+        edq.render.code.block(container, edq.util.json.pretty(request), 'json');
+    }));
+
+    edq.core.routing.init();
+    edq.core.routing.route();
+}
+
 function main() {
     edq.util.brightness.initBrightmode();
     edq.util.table.enableSortingAll();
 
+    loadRouting();
     loadIcons();
     loadCodeBlocks();
     loadInputFields();
