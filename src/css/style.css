@@ -11,7 +11,8 @@ html {
 }
 
 /* Add additional selection elements to increase the power of the selector. */
-.page-body .content .hidden {
+.page .hidden,
+.page > .content .hidden {
     display: none;
 }
 
@@ -110,7 +111,18 @@ pre > code {
     display: flex;
     flex-direction: column;
 
-    min-height: 100vh;
+    height: 100vh;
+}
+
+.page > .body {
+    flex-grow: 1;
+    padding: 0.5rem;
+    overflow-y: auto;
+}
+
+.page > .body > .page-content {
+    max-width: 80rem;
+    margin: 10px auto;
 }
 
 .page p {
@@ -141,6 +153,10 @@ fieldset {
     align-items: center;
 }
 
+.header h1 {
+    margin: 0;
+}
+
 .header > div {
     display: flex;
     align-items: center;
@@ -148,8 +164,8 @@ fieldset {
     flex-basis: 0;
     word-break: keep-all;
 
-    padding-top: 1.0rem;
-    padding-bottom: 1.0rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .header .site-nav {
@@ -222,11 +238,6 @@ fieldset {
     font-weight: var(--font-weight-bold);
     text-decoration: underline;
     color: var(--color-text-accent);
-}
-
-.page > .content {
-    max-width: 80rem;
-    margin: 10px auto;
 }
 
 .edq-fieldset {
@@ -495,12 +506,6 @@ input[type="checkbox"]:focus {
     .header .site-branding svg {
         display: none;
     }
-}
-
-.page-body {
-    flex-grow: 1;
-
-    padding: 0.5rem;
 }
 
 .content-area {

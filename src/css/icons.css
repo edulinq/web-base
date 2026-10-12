@@ -5,12 +5,12 @@ svg {
     width: var(--icon-size-small);
 }
 
-.page .content .icon {
+.page .page-content .icon {
     padding: 1.0em;
     border-radius: var(--curve-radius-large);
 }
 
-.page .content svg {
+.page .page-content svg {
     flex-shrink: 1;
     height: var(--icon-size-larger);
     width: var(--icon-size-larger);
