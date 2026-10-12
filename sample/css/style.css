@@ -1,3 +1,12 @@
+table.colorscheme th,
+table.colorscheme td {
+    padding: 0.75rem;
+}
+
+table.colorscheme .card span {
+    padding: 0.5rem;
+}
+
 .section-icons .container {
     display: flex;
     flex-direction: row;
