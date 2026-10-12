@@ -117,6 +117,13 @@ function loadRouting() {
     edq.core.routing.route();
 }
 
+function loadCards() {
+    document.querySelector('.section-cards-link div').replaceChildren((new edq.render.cards.CardArea(linkCards)).getElement());
+
+    // TEST - Small Cards
+    // TEST - Large Cards
+}
+
 function main() {
     edq.util.brightness.initBrightmode();
     edq.util.table.enableSortingAll();
@@ -125,6 +132,7 @@ function main() {
     loadIcons();
     loadCodeBlocks();
     loadInputFields();
+    loadCards();
 }
 
 const codeBlocks = {
@@ -194,6 +202,12 @@ const inputFields = [
 
     new edq.model.field.FileField({'name': 'basic-file', label: 'Basic File'}),
     new edq.model.field.FileField({'name': 'multiple-image-file', label: 'Multiple Image Files', multiple: true, allowedTypes: 'image/*'}),
+];
+
+const linkCards = [
+    new edq.render.cards.LinkCard('Some Link 1', '#cards/link?index=1'),
+    new edq.render.cards.LinkCard('Some Link 2', '#cards/link?index=2'),
+    new edq.render.cards.LinkCard('Some Link 3', '#cards/link?index=3'),
 ];
 
 document.addEventListener("DOMContentLoaded", main);

@@ -564,7 +564,7 @@ input[type="checkbox"]:focus {
     text-align: start;
 }
 
-.cards-area {
+.card-area {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
