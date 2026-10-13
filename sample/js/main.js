@@ -1,4 +1,4 @@
-import * as edq from '../edq/js/edq.js';
+import * as edq from '../edq/js/edq.mjs';
 
 const ICONS_URL = 'edq/images/icons.svg';
 
