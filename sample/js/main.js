@@ -111,6 +111,13 @@ function loadRouting() {
     edq.core.routing.addRoute(new edq.core.routing.RegexRoute('.*', function(request) {
         let container = document.querySelector('.routing-target div');
         edq.render.code.block(container, edq.util.json.pretty(request), 'json');
+
+        if (request.path === 'nav') {
+            let target = document.querySelector(`[data-nav-target="${request.params?.target}"]`);
+            if (target != null) {
+                target.scrollIntoView();
+            }
+        }
     }));
 
     edq.core.routing.init();
