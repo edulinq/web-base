@@ -109,10 +109,23 @@ function loadInputFields() {
 
 function loadRouting() {
     edq.core.routing.addRoute(new edq.core.routing.RegexRoute('.*', function(request) {
+        // Update the routing showcase section.
         let container = document.querySelector('.routing-target div');
         edq.render.code.block(container, edq.util.json.pretty(request), 'json');
 
+        // Handle the nav bar.
         if (request.path === 'nav') {
+            // Deal with the nav highlight.
+            let navItem = document.querySelector(`.nav-item a[href='${request.toString()}']`)?.parentElement;
+            document.querySelectorAll('.nav-item').forEach(function(element) {
+                element.classList.remove('nav-highlight');
+            });
+
+            if (navItem != null) {
+                navItem.classList.add('nav-highlight');
+            }
+
+            // Scroll to the target.
             let target = document.querySelector(`[data-nav-target="${request.params?.target}"]`);
             if (target != null) {
                 target.scrollIntoView();

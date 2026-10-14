@@ -150,7 +150,7 @@ fieldset {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
 }
 
 .header h1 {
@@ -172,7 +172,7 @@ fieldset {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: stretch;
 
     /* Remove the padding from the nav itself.
      * The padding will be put on each nav link for better hover effects. */
@@ -180,7 +180,16 @@ fieldset {
     padding-bottom: 0rem;
 }
 
-.header .nav-highlight {
+
+.header .nav-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-bottom: solid transparent;
+}
+
+.header .nav-item.nav-highlight {
     border-bottom: solid var(--color-bg-accent-tertiary);
 }
 
