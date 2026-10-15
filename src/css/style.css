@@ -32,9 +32,18 @@ hr {
 .section,
 .subsection,
 .subsubsection {
-    margin: min(1.5rem, 1vw);
     padding: 1.5rem;
     border-radius: var(--curve-radius-large);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 1em;
+}
+
+.section {
+    margin: min(1.5rem, 1vw);
 }
 
 table.standard-table {
@@ -94,6 +103,13 @@ h5 {
 h6 {
     font-size: 0.75rem;
     margin-bottom: 0.375rem;
+}
+
+:is(h1, h2, h3, h4, h5, h6).bar {
+    text-align: center;
+
+    padding: 1.0em;
+    border-radius: var(--curve-radius-large);
 }
 
 p > code,
@@ -213,8 +229,6 @@ fieldset {
     align-items: center;
     justify-content: center;
     font-weight: var(--font-weight-bold);
-    height: fit-content;
-    width: fit-content;
 }
 
 .header .site-branding svg {
@@ -447,6 +461,7 @@ input[type="checkbox"]:focus {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: stretch;
 
     min-width: min-content;
 

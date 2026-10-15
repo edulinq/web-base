@@ -107,7 +107,7 @@
 }
 
 .primary-color hr {
-    border-color: var(--color-text-primary);
+    border-color: var(--color-bg-accent-primary);
 }
 
 .primary-color-low {
@@ -121,7 +121,7 @@
 }
 
 .primary-color-low hr {
-    border-color: var(--color-text-primary-low);
+    border-color: var(--color-bg-accent-primary-low);
 }
 
 .secondary-color {
@@ -139,7 +139,7 @@
 }
 
 .secondary-color hr {
-    border-color: var(--color-text-secondary);
+    border-color: var(--color-bg-accent-secondary);
 }
 
 .secondary-color-low {
@@ -157,7 +157,7 @@
 }
 
 .secondary-color-low hr {
-    border-color: var(--color-text-secondary-low);
+    border-color: var(--color-bg-accent-secondary-low);
 }
 
 .tertiary-color {
@@ -175,7 +175,7 @@
 }
 
 .tertiary-color hr {
-    border-color: var(--color-text-tertiary);
+    border-color: var(--color-bg-accent-tertiary);
 }
 
 .tertiary-color-low {
@@ -193,7 +193,7 @@
 }
 
 .tertiary-color-low hr {
-    border-color: var(--color-text-tertiary-low);
+    border-color: var(--color-bg-accent-tertiary-low);
 }
 
 .primary-accent-color {
