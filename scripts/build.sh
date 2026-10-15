@@ -60,7 +60,7 @@ function main() {
     if [[ "${prod}" = true ]]; then
         prodArgs='--minify'
         outJSPath=$(echo "${outJSPath}" | sed 's/.mjs$/.min.mjs/')
-        distDirName="prod"
+        distDirname="prod"
         zipDirname="${zipDirname}-min"
     fi
 
