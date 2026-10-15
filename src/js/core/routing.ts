@@ -93,10 +93,14 @@ class RoutingRequest {
 
 // The base class for locations that the router can match against and then route to.
 abstract class Route {
-    handler: RoutingHandler;
+    protected handler: RoutingHandler;
 
     constructor(handler: RoutingHandler) {
         this.handler = handler;
+    }
+
+    getHandler(): RoutingHandler {
+        return this.handler;
     }
 
     // See if this route matches the given request.
@@ -122,15 +126,62 @@ class StringRoute extends Route {
 class RegexRoute extends Route {
     pattern: RegExp;
 
-    constructor(pattern: RegExp, handler: RoutingHandler) {
+    // When true, match against a request's toString().
+    // otherwise match against a request's path.
+    matchFullRequest: boolean;
+
+    constructor(pattern: RegExp, handler: RoutingHandler, matchFullRequest: boolean = true) {
         super(handler);
 
         this.pattern = pattern;
+        this.matchFullRequest = matchFullRequest;
     }
 
     match(request: RoutingRequest): boolean {
-        return (request.path.match(this.pattern) != null);
+        let matchTarget = request.path;
+        if (this.matchFullRequest) {
+            matchTarget = request.toString();
+        }
+
+        return (matchTarget.match(this.pattern) != null);
     }
+}
+
+// A route that wraps an existing route, but also sets nav highlights (according to EduLinq styling).
+class NavRoute extends Route {
+    navTarget: string;
+
+    route: Route;
+
+    constructor(navTarget: string, route: Route) {
+        super(function(request: RoutingRequest) {
+            navHandlerWrapper(navTarget, route, request);
+        });
+
+        this.navTarget = navTarget;
+        this.route = route;
+    }
+
+    match(request: RoutingRequest): boolean {
+        return this.route.match(request);
+    }
+}
+
+// Handle standard navigation before calling the route's handler.
+function navHandlerWrapper(navTarget: string, route: Route, request: RoutingRequest) {
+    // Deselect and current nav highlights.
+    for (const element of document.querySelectorAll('.nav-item.nav-highlight')) {
+        element.classList.remove('nav-highlight');
+    }
+
+    // Add the new nav highlight.
+    let navItem = document.querySelector(`.nav-item[data-target='${navTarget}']`);
+    if (navItem != null) {
+        navItem.classList.add('nav-highlight');
+    }
+
+    // Call the existing handler.
+    route.getHandler()(request);
 }
 
 // Initialize routing.
@@ -173,7 +224,7 @@ function route(request: string | RoutingRequest | undefined = undefined) {
     let handler: RoutingHandler | undefined = undefined;
     for (const route of routes) {
         if (route.match(request)) {
-            handler = route.handler;
+            handler = route.getHandler();
             break;
         }
     }
@@ -254,6 +305,7 @@ export {
     Route,
     StringRoute,
     RegexRoute,
+    NavRoute,
 
     init,
     stop,

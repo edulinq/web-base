@@ -108,33 +108,32 @@ function loadInputFields() {
 }
 
 function loadRouting() {
-    edq.core.routing.addRoute(new edq.core.routing.RegexRoute('.*', function(request) {
-        // Update the routing showcase section.
-        let container = document.querySelector('.routing-target div');
-        edq.render.code.block(container, edq.util.json.pretty(request), 'json');
+    // All the routes just use the same handler (normally they would each have their own).
+    edq.core.routing.addRoute(new edq.core.routing.NavRoute('color-scheme', new edq.core.routing.RegexRoute('target=color-scheme', routeHandler)));
+    edq.core.routing.addRoute(new edq.core.routing.NavRoute('icons', new edq.core.routing.RegexRoute('target=icons', routeHandler)));
+    edq.core.routing.addRoute(new edq.core.routing.NavRoute('base-components', new edq.core.routing.RegexRoute('target=base-components', routeHandler)));
+    edq.core.routing.addRoute(new edq.core.routing.NavRoute('edulinq-components', new edq.core.routing.RegexRoute('target=edulinq-components', routeHandler)));
 
-        // Handle the nav bar.
-        if (request.path === 'nav') {
-            // Deal with the nav highlight.
-            let navItem = document.querySelector(`.nav-item a[href='${request.toString()}']`)?.parentElement;
-            document.querySelectorAll('.nav-item').forEach(function(element) {
-                element.classList.remove('nav-highlight');
-            });
-
-            if (navItem != null) {
-                navItem.classList.add('nav-highlight');
-            }
-
-            // Scroll to the target.
-            let target = document.querySelector(`[data-nav-target="${request.params?.target}"]`);
-            if (target != null) {
-                target.scrollIntoView();
-            }
-        }
-    }));
+    // Fallback to the same handler for everyone else.
+    edq.core.routing.setNotFound(routeHandler);
 
     edq.core.routing.init();
     edq.core.routing.route();
+}
+
+function routeHandler(request) {
+    // Update the routing showcase section.
+    let container = document.querySelector('.routing-target div');
+    edq.render.code.block(container, edq.util.json.pretty(request), 'json');
+
+    // Handle the nav bar.
+    if (request.path === 'nav') {
+        // Scroll to the target.
+        let target = document.querySelector(`[data-nav-target="${request.params?.target}"]`);
+        if (target != null) {
+            target.scrollIntoView();
+        }
+    }
 }
 
 function loadCards() {
