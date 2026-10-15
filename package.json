@@ -1,6 +1,6 @@
 {
     "name": "edq-web",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "The base web elements for EduLinq web development.",
     "homepage": "https://github.com/edulinq/web-base#readme",
     "bugs": {
