@@ -217,8 +217,9 @@ function route(request: string | RoutingRequest | undefined = undefined) {
     }
 
     // Set the current request and window hash (which will be set using the canonical request representation).
+    // Note the use of the history API (instead of `window.location`) to keep normalization rewrites out of the history.
     currentRequest = request;
-    window.location.hash = request.toString();
+    history.replaceState(undefined, '', request.toString());
 
     // Find a matching route/handler.
     let handler: RoutingHandler | undefined = undefined;
