@@ -18,6 +18,7 @@ class FieldOptions {
     // An optional name that will be attached to the field instance container and input (if it exists).
     // This is traditionally the name/key that is sent on form submit.
     name: string | undefined = undefined;
+
     // An optional label for the input.
     label: string | undefined = undefined;
 

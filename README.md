@@ -26,12 +26,12 @@ npm install .
 
 To create a development build, use:
 ```
-./scrupts/build.sh
+./scripts/build.sh
 ```
 
 Use `--prod` to make it a production build:
 ```
-./scrupts/build.sh --prod
+./scripts/build.sh --prod
 ```
 
 The build process places output into the `dist` directory.
