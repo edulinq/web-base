@@ -109,10 +109,10 @@ function loadInputFields() {
 
 function loadRouting() {
     // All the routes just use the same handler (normally they would each have their own).
-    edq.core.routing.addRoute(new edq.core.routing.NavRoute('color-scheme', new edq.core.routing.RegexRoute('target=color-scheme', routeHandler)));
-    edq.core.routing.addRoute(new edq.core.routing.NavRoute('icons', new edq.core.routing.RegexRoute('target=icons', routeHandler)));
-    edq.core.routing.addRoute(new edq.core.routing.NavRoute('base-components', new edq.core.routing.RegexRoute('target=base-components', routeHandler)));
-    edq.core.routing.addRoute(new edq.core.routing.NavRoute('edulinq-components', new edq.core.routing.RegexRoute('target=edulinq-components', routeHandler)));
+    edq.core.routing.addRoute(new edq.core.routing.NavExactRoute(new edq.core.routing.RegexRoute('target=color-scheme', routeHandler)));
+    edq.core.routing.addRoute(new edq.core.routing.NavExactRoute(new edq.core.routing.RegexRoute('target=icons', routeHandler)));
+    edq.core.routing.addRoute(new edq.core.routing.NavExactRoute(new edq.core.routing.RegexRoute('target=base-components', routeHandler)));
+    edq.core.routing.addRoute(new edq.core.routing.NavExactRoute(new edq.core.routing.RegexRoute('target=edulinq-components', routeHandler)));
 
     // Fallback to the same handler for everyone else.
     edq.core.routing.setNotFound(routeHandler);

@@ -147,7 +147,8 @@ class RegexRoute extends Route {
     }
 }
 
-// A route that wraps an existing route, but also sets nav highlights (according to EduLinq styling).
+// A route that wraps an existing route,
+// but also sets nav highlights with `.nav-item[data-target='${navTarget}']`.
 class NavRoute extends Route {
     navTarget: string;
 
@@ -155,7 +156,7 @@ class NavRoute extends Route {
 
     constructor(navTarget: string, route: Route) {
         super(function(request: RoutingRequest) {
-            navHandlerWrapper(navTarget, route, request);
+            NavRoute.navHandlerWrapper(navTarget, route, request);
         });
 
         this.navTarget = navTarget;
@@ -165,23 +166,57 @@ class NavRoute extends Route {
     match(request: RoutingRequest): boolean {
         return this.route.match(request);
     }
+
+    private static navHandlerWrapper(navTarget: string, route: Route, request: RoutingRequest) {
+        // Deselect and current nav highlights.
+        for (const element of document.querySelectorAll('.nav-item.nav-highlight')) {
+            element.classList.remove('nav-highlight');
+        }
+
+        // Add the new nav highlight.
+        let navItem = document.querySelector(`.nav-item[data-target='${navTarget}']`);
+        if (navItem != null) {
+            navItem.classList.add('nav-highlight');
+        }
+
+        // Call the existing handler.
+        route.getHandler()(request);
+    }
 }
 
-// Handle standard navigation before calling the route's handler.
-function navHandlerWrapper(navTarget: string, route: Route, request: RoutingRequest) {
-    // Deselect and current nav highlights.
-    for (const element of document.querySelectorAll('.nav-item.nav-highlight')) {
-        element.classList.remove('nav-highlight');
+// A route that wraps an existing route,
+// but also sets nav highlights acording to an exact match between
+// the current location hash and the `.nav-item a[href]`.
+class NavExactRoute extends Route {
+    route: Route;
+
+    constructor(route: Route) {
+        super(function(request: RoutingRequest) {
+            NavExactRoute.navHandlerWrapper(route, request);
+        });
+
+        this.route = route;
     }
 
-    // Add the new nav highlight.
-    let navItem = document.querySelector(`.nav-item[data-target='${navTarget}']`);
-    if (navItem != null) {
-        navItem.classList.add('nav-highlight');
+    match(request: RoutingRequest): boolean {
+        return this.route.match(request);
     }
 
-    // Call the existing handler.
-    route.getHandler()(request);
+    private static navHandlerWrapper(route: Route, request: RoutingRequest) {
+        // Deselect and current nav highlights.
+        for (const element of document.querySelectorAll('.nav-item.nav-highlight')) {
+            element.classList.remove('nav-highlight');
+        }
+
+        // Add the new nav highlight.
+        let navItem = document.querySelector(`.nav-item:has(a[href='${getLocationHash()}'])`);
+        if (navItem != null) {
+            navItem.classList.add('nav-highlight');
+        }
+
+        // Call the existing handler.
+        route.getHandler()(request);
+    }
 }
 
 // Initialize routing.
@@ -307,6 +342,7 @@ export {
     StringRoute,
     RegexRoute,
     NavRoute,
+    NavExactRoute,
 
     init,
     stop,

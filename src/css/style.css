@@ -157,34 +157,38 @@ fieldset {
 }
 
 .header {
-    padding-left: min(1.0rem, 1vw);
-    padding-right: min(1.0rem, 1vw);
-    text-align: center;
+    padding: 0 min(1.0rem, 1vw);
+    min-height: max(3.0rem, 1vw);
+
     font-size: var(--font-size-smaller);
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .header h1 {
     margin: 0;
 }
 
-.header > div {
+.site-branding {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    flex-grow: 1;
-    flex-basis: 0;
-    word-break: keep-all;
+    gap: min(0.5rem, 0.5vw);
 
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    font-weight: var(--font-weight-bold);
 }
 
-.header .site-nav {
+.site-context {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: min(1.0rem, 1.0vw);
+}
+
+.site-nav {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -196,78 +200,24 @@ fieldset {
     padding-bottom: 0rem;
 }
 
-
-.header .nav-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    border-bottom: solid transparent;
+.nav-item {
 }
 
-.header .nav-item.nav-highlight {
-    border-bottom: solid var(--color-bg-accent-tertiary);
-}
-
-.header .nav-link,
-.header .site-branding {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: min(0.5rem, 0.5vw);
-}
-
-.header .nav-link {
-    /* Add padding to the nav link class for better hover effects. */
-    padding-top: 1.5rem;
-    padding-right: min(1rem, 1vw);
-    padding-bottom: 1.5rem;
-    padding-left: min(1rem, 1vw);
-}
-
-.header .site-branding {
-    align-items: center;
-    justify-content: center;
-    font-weight: var(--font-weight-bold);
-}
-
-.header .site-branding svg {
-    height: var(--logo-size-small);
-    width: var(--logo-size-small);
-}
-
-.header .nav-link:hover {
+.nav-item:hover {
     background: var(--color-highlighter);
 }
 
-@media (max-width: 700px) {
-    .header .nav-link svg,
-    .header .site-branding svg {
-        display: none;
-    }
+.nav-item.nav-highlight {
+    box-shadow: 0 -3px 0 var(--color-bg-accent-tertiary) inset;
 }
 
-.header a {
+.nav-item > a {
+    height: 100%;
+    display: block;
+    align-content: center;
+    padding: 0 0.75em;
+
     text-decoration: none;
-}
-
-.header .site-context {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    gap: min(1.0rem, 1.0vw);
-}
-
-.brightmode-toggle {
-    cursor: pointer;
-    color: var(--color-text-accent-low);
-}
-
-.brightmode-toggle span.active {
-    font-weight: var(--font-weight-bold);
-    text-decoration: underline;
-    color: var(--color-text-accent);
 }
 
 .edq-fieldset {
