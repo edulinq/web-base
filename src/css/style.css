@@ -43,7 +43,7 @@ hr {
 }
 
 .section {
-    margin: min(1.5rem, 1vw);
+    margin: min(1.5rem, 1svw);
 }
 
 table.standard-table {
@@ -123,24 +123,6 @@ pre > code {
     border-radius: var(--curve-radius-small);
 }
 
-.page {
-    display: flex;
-    flex-direction: column;
-
-    height: 100vh;
-}
-
-.page > .body {
-    flex-grow: 1;
-    padding: 0.5rem;
-    overflow-y: auto;
-}
-
-.page > .body > .page-content {
-    max-width: 80rem;
-    margin: 10px auto;
-}
-
 .page p {
     margin-bottom: 1rem;
 }
@@ -156,9 +138,24 @@ fieldset {
     border: none;
 }
 
+.page {
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+
+    height: 100%;
+}
+
+.page-content {
+    max-width: var(--page-content-max-width);
+    margin: 0 auto;
+}
+
 .header {
-    padding: 0 min(1.0rem, 1vw);
-    min-height: max(3.0rem, 1vw);
+    position: sticky;
+    top: 0;
+
+    padding: 0 var(--headfoot-horizontal-padding);
+    min-height: var(--header-min-height);
 
     font-size: var(--font-size-smaller);
 
@@ -170,12 +167,17 @@ fieldset {
     margin: 0;
 }
 
+/* Add a margin because of the sticky header. */
+* {
+    scroll-margin-top: calc(2rem + var(--header-min-height));
+}
+
 .site-branding {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: min(0.5rem, 0.5vw);
+    gap: min(0.5rem, 0.5svw);
 
     font-weight: var(--font-weight-bold);
 }
@@ -185,7 +187,7 @@ fieldset {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap: min(1.0rem, 1.0vw);
+    gap: min(1.0rem, 1.0svw);
 }
 
 .site-nav {
@@ -290,12 +292,12 @@ textarea {
     box-shadow: 2px 2px 1px var(--color-bg-shadow);
 
     cursor: pointer;
-    max-width: 80vw;
+    max-width: 80svw;
 }
 
 textarea {
-    min-height: 5vw;
-    min-width: 20vw;
+    min-height: 5svw;
+    min-width: 20svw;
 }
 
 button:disabled,
@@ -358,8 +360,8 @@ input[type="checkbox"]:focus {
 }
 
 .footer {
-    height: 1.5rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    min-height: var(--footer-height);
+    padding: 0.25rem var(--headfoot-horizontal-padding);
 
     display: flex;
     flex-direction: row;
@@ -405,7 +407,7 @@ input[type="checkbox"]:focus {
 }
 
 .card {
-    flex-basis: 20vw;
+    flex-basis: 20svw;
     flex-grow: 1;
 
     display: flex;

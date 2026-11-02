@@ -71,10 +71,15 @@
     --color-light-bg-error: rgba(0, 0, 0, 0.1);
     --color-dark-bg-error: rgba(255, 255, 255, 0.1);
 
-    /* Additional Constants */
+    /* Sizing */
 
-    --curve-radius-small: 8px;
-    --curve-radius-large: 16px;
+    --page-content-max-width: 80rem;
+
+    --header-min-height: 3.0rem;
+    --footer-min-height: 2rem;
+    --headfoot-horizontal-padding: 1rem;
+
+    /* Icons */
 
     --logo-size-large: 144px;
     --logo-size-normal: 54px;
@@ -86,6 +91,8 @@
     --icon-size-small: 30px;
     --icon-size-smaller: 24px;
 
+    /* Font */
+
     --font-size-larger: 1.40rem;
     --font-size-large: 1.30rem;
     --font-size-normal: 1.15rem;
@@ -94,6 +101,11 @@
 
     --font-weight-normal: 450;
     --font-weight-bold: 650;
+
+    /* Additional Constants */
+
+    --curve-radius-small: 8px;
+    --curve-radius-large: 16px;
 }
 
 .primary-color {
