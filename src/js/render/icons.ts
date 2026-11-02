@@ -6,11 +6,12 @@ let icons: Record<string, string> = {};
 
 let defaultIconText = '';
 
-function addIcon(name: string, text: string) {
+// Register an icon into the system.
+function add(name: string, text: string) {
     icons[name] = text;
 }
 
-function getIconElement(name: string | undefined | null, title: string | undefined = undefined, classes: Array<string> | DOMTokenList = []) {
+function getElement(name: string | undefined | null, title: string | undefined = undefined, classes: Array<string> | DOMTokenList = []) {
     if (name == null) {
         throw new Error("Icon must have a name.");
     }
@@ -38,16 +39,22 @@ function getIconElement(name: string | undefined | null, title: string | undefin
 
 // Replace all icon placeholders in the document with actual icons.
 // A placeholder should be: `<icon class='edq-icon-placeholder' name='<icon name>' />`.
-function replaceIconPlaceholders() {
+function replacePlaceholders() {
     for (const element of document.querySelectorAll<HTMLElement>('icon.icon-placeholder')) {
         element.classList.replace('icon-placeholder', 'icon');
-        let newElement = getIconElement(element.getAttribute('name'), element.textContent, element.classList);
+        let newElement = getElement(element.getAttribute('name'), element.textContent, element.classList);
         element.parentElement?.replaceChild(newElement, element);
     }
 }
 
+// Get the registered icon names.
+function getNames(): Array<String> {
+    return Object.keys(icons).sort();
+}
+
 export {
-    addIcon,
-    getIconElement,
-    replaceIconPlaceholders,
+    add,
+    getElement,
+    getNames,
+    replacePlaceholders,
 }

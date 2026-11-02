@@ -28,13 +28,22 @@ function main() {
     echo "" >> "${ICONS_OUT_PATH}"
     echo "import * as icons from './icons'" >> "${ICONS_OUT_PATH}"
     echo "" >> "${ICONS_OUT_PATH}"
+    echo "function init() {" >> "${ICONS_OUT_PATH}"
 
     for path in "${ICONS_SOURCE_DIR}"/*.svg ; do
         local baseName=$(basename "${path}" | sed 's/.svg$//')
         local text=$(cat "${path}" | sed 's/<\/\?\(svg\|?xml\)[^>]*>//' | tr '\n' ' ' | sed 's/\s\+/ /g')
 
-        echo "icons.addIcon('${baseName}', '${text}');" >> "${ICONS_OUT_PATH}"
+        echo "    icons.add('${baseName}', '${text}');" >> "${ICONS_OUT_PATH}"
     done
+
+    echo "}" >> "${ICONS_OUT_PATH}"
+    echo "" >> "${ICONS_OUT_PATH}"
+    echo "init();" >> "${ICONS_OUT_PATH}"
+    echo "" >> "${ICONS_OUT_PATH}"
+    echo "export {" >> "${ICONS_OUT_PATH}"
+    echo "    init," >> "${ICONS_OUT_PATH}"
+    echo "}" >> "${ICONS_OUT_PATH}"
 
     return 0
 }
