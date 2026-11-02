@@ -13,3 +13,5 @@ node_modules/
 old/
 
 /.test-build/
+
+/src/js/render/icons-data.ts

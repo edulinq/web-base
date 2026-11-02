@@ -25,14 +25,14 @@ jobs:
       - name: Check Version
         run: ./scripts/check_version.sh
 
-      - name: Check Types
-        run: ./scripts/check_types.sh
-
       - name: Build
         run: ./scripts/build.sh
 
       - name: Build Prod
         run: ./scripts/build.sh --prod
+
+      - name: Check Types
+        run: ./scripts/check_types.sh
 
       - name: Test
         run: ./scripts/run_tests.sh

@@ -143,6 +143,8 @@ function loadCards() {
 }
 
 function main() {
+    edq.render.icons.replaceIconPlaceholders();
+
     edq.util.brightness.initBrightmode();
     edq.util.table.enableSortingAll();
 

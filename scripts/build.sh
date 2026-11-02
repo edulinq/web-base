@@ -24,6 +24,8 @@ readonly JS_BASE_OUT_PATH="${BUILD_DIR}/js/edq.mjs"
 
 readonly IMAGES_DIR="${SOURCE_DIR}/images"
 
+readonly ICONS_COMPILE_SCRIPT="${THIS_DIR}/compile_icons.sh"
+
 readonly CSS_OUT_PATH="${BUILD_DIR}/css/edq.css"
 readonly CSS_PATHS=(
     "${SOURCE_DIR}/css/constants.css"
@@ -77,7 +79,10 @@ function main() {
     rm -rf "${distDir}" && mkdir -p "${distDir}"
     rm -rf "${sampleDistDir}" && mkdir -p "${sampleDistDir}"
 
-    # Bundle JS.
+    # Compile Icons
+    "${ICONS_COMPILE_SCRIPT}"
+
+    # Bundle JS
     mkdir -p $(dirname "${outJSPath}")
     "${ESBUILD_BIN}" "${JS_INDEX_PATH}" --bundle --outfile="${outJSPath}" --sourcemap --platform=neutral --target=chrome60,edge79,firefox55,safari15 ${prodArgs}
     echo -e "/* ${versionMessage} */\n" | cat - "${outJSPath}" > "${JS_TEMP_OUT_PATH}"
