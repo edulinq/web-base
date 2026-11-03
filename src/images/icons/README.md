@@ -13,7 +13,7 @@ Icons should look like the following:
 ```
 Where `...` is the actual content of the SVG.
 
-Note that the width and height are set to 100.
+Note that the width and height are set to 100 units.
 
 All icons should be monochrome (with the background being transparent) with no coloring information specified.
 Setting the `fill` in CSS should be all that is necessary to color the icons.
