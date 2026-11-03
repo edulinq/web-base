@@ -1,10 +1,15 @@
 const DEFAULT_LANGUAGE = 'plaintext';
 
+const FALLBACK_ICON_NAME = '__fallback__';
+let fallbackIconText = `
+    <text x="35" y="80" font-size="80">?</text>
+`;
+
 // Registered icons.
 // {name: svg inner text, ...}
-let icons: Record<string, string> = {};
-
-let defaultIconText = '';
+let icons: Record<string, string> = {
+    [FALLBACK_ICON_NAME]: fallbackIconText,
+};
 
 // Register an icon into the system.
 function add(name: string, text: string) {
@@ -18,8 +23,8 @@ function getElement(name: string | undefined | null, title: string | undefined =
 
     let text = icons[name];
     if (text == null) {
-        console.warn(`Cannot find icon '${name}', falling back to default.`);
-        text = defaultIconText;
+        console.warn(`Cannot find icon '${name}', falling back to '${FALLBACK_ICON_NAME}'.`);
+        text = fallbackIconText;
     }
 
     if (title == null) {
@@ -53,6 +58,8 @@ function getNames(): Array<String> {
 }
 
 export {
+    FALLBACK_ICON_NAME,
+
     add,
     getElement,
     getNames,

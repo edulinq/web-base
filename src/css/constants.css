@@ -112,6 +112,7 @@
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
     fill: var(--color-text-primary);
+    stroke: var(--color-text-primary);
 }
 
 .primary-color code {
@@ -127,6 +128,7 @@
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary-low);
     fill: var(--color-text-primary-low);
+    stroke: var(--color-text-primary-low);
 }
 
 .primary-color-low code {
@@ -142,6 +144,7 @@
     background-color: var(--color-bg-secondary);
     color: var(--color-text-secondary);
     fill: var(--color-text-secondary);
+    stroke: var(--color-text-secondary);
 }
 
 .secondary-color a {
@@ -161,6 +164,7 @@
     background-color: var(--color-bg-secondary);
     color: var(--color-text-secondary-low);
     fill: var(--color-text-secondary-low);
+    stroke: var(--color-text-secondary-low);
 }
 
 .secondary-color-low a {
@@ -180,6 +184,7 @@
     background-color: var(--color-bg-tertiary);
     color: var(--color-text-tertiary);
     fill: var(--color-text-tertiary);
+    stroke: var(--color-text-tertiary);
 }
 
 .tertiary-color a {
@@ -199,17 +204,20 @@
     background-color: var(--color-bg-tertiary);
     color: var(--color-text-tertiary-low);
     fill: var(--color-text-tertiary-low);
+    stroke: var(--color-text-tertiary-low);
 }
 
 .tertiary-color-low a {
     color: var(--color-text-tertiary-low);
     fill: var(--color-text-tertiary-low);
+    stroke: var(--color-text-tertiary-low);
 }
 
 .tertiary-color-low code {
     background-color: var(--color-bg-primary);
     color: var(--color-text-tertiary);
     fill: var(--color-text-tertiary);
+    stroke: var(--color-text-tertiary);
 }
 
 .tertiary-color-low hr {
@@ -220,11 +228,13 @@
     background-color: var(--color-bg-accent-primary);
     color: var(--color-text-accent);
     fill: var(--color-text-accent);
+    stroke: var(--color-text-accent);
 }
 
 .primary-accent-color a {
     color: var(--color-text-accent);
     fill: var(--color-text-accent);
+    stroke: var(--color-text-accent);
 }
 
 .primary-accent-color code {
@@ -236,6 +246,7 @@
     background-color: var(--color-bg-accent-primary);
     color: var(--color-text-accent-low);
     fill: var(--color-text-accent-low);
+    stroke: var(--color-text-accent-low);
 }
 
 .primary-accent-color-text-low a {
@@ -255,6 +266,7 @@
     background-color: var(--color-bg-accent-secondary);
     color: var(--color-text-accent);
     fill: var(--color-text-accent);
+    stroke: var(--color-text-accent);
 }
 
 .secondary-accent-color a {
@@ -270,6 +282,7 @@
     background-color: var(--color-bg-accent-secondary);
     color: var(--color-text-accent-low);
     fill: var(--color-text-accent-low);
+    stroke: var(--color-text-accent-low);
 }
 
 .secondary-accent-color-text-low a {
@@ -285,12 +298,14 @@
     background-color: var(--color-bg-accent-secondary-low);
     color: var(--color-text-accent-low);
     fill: var(--color-text-accent-low);
+    stroke: var(--color-text-accent-low);
 }
 
 .tertiary-accent-color {
     background-color: var(--color-bg-accent-tertiary);
     color: var(--color-text-accent);
     fill: var(--color-text-accent);
+    stroke: var(--color-text-accent);
 }
 
 .tertiary-accent-color a {
@@ -306,6 +321,7 @@
     background-color: var(--color-bg-accent-tertiary);
     color: var(--color-text-accent-low);
     fill: var(--color-text-accent-low);
+    stroke: var(--color-text-accent-low);
 }
 
 .tertiary-accent-color-text-low a {
@@ -321,6 +337,7 @@
     background-color: var(--color-bg-accent-tertiary-low);
     color: var(--color-text-accent-low);
     fill: var(--color-text-accent-low);
+    stroke: var(--color-text-accent-low);
 }
 
 .gradient-accent-color {
