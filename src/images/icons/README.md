@@ -15,5 +15,15 @@ Where `...` is the actual content of the SVG.
 
 Note that the width and height are set to 100 units.
 
-All icons should be monochrome (with the background being transparent) with no coloring information specified.
-Setting the `fill` in CSS should be all that is necessary to color the icons.
+All icons should be monochrome with no coloring information specified.
+Setting `fill` and `stroke` in CSS should be all that is necessary to color the icons.
+
+## Third-Party Icons
+
+The following icons are not owned by EduLinq,
+and are used according to fair use and to represent their owning entities:
+
+ - [Discord](./discord.svg)
+ - [GitHub](./github.svg)
+
+All icons not mentioned here are owned by EduLinq and subject to the license in the root of this repository.
