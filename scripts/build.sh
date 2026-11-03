@@ -23,6 +23,7 @@ readonly JS_TEMP_OUT_PATH="${BUILD_DIR}/js/edq.temp.mjs"
 readonly JS_BASE_OUT_PATH="${BUILD_DIR}/js/edq.mjs"
 
 readonly IMAGES_DIR="${SOURCE_DIR}/images"
+readonly ICONS_OUT_DIR="${BUILD_DIR}/images/icons"
 
 readonly ICONS_COMPILE_SCRIPT="${THIS_DIR}/compile_icons.sh"
 
@@ -96,8 +97,9 @@ function main() {
     cp "${LICENSE_PATH}" "${BUILD_DIR}/"
     echo "${version}" > "${BUILD_DIR}/version.txt"
 
-    # Copy images.
+    # Copy images (but not icons (those are compiled)).
     cp -r "${IMAGES_DIR}" "${BUILD_DIR}/"
+    rm -r "${ICONS_OUT_DIR}"
 
     # Copy build output to the distribution dir.
     cp -r "${BUILD_DIR}"/* "${distDir}/"
