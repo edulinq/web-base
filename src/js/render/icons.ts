@@ -2,7 +2,7 @@ const DEFAULT_LANGUAGE = 'plaintext';
 
 const FALLBACK_ICON_NAME = '__fallback__';
 let fallbackIconText = `
-    <text x="35" y="80" font-size="80">?</text>
+    <text x="30" y="85" font-size="95">?</text>
 `;
 
 // Registered icons.

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width='100' height='100' viewBox='0 0 100 100' xmlns="http://www.w3.org/2000/svg">
+    <g transform="scale(2.80) translate(-2.5, -2.5)">
+        <path stroke-width="2" fill="none" stroke-miterlimit="10" d="M29.55,9.49c1.02,1.04,1.02,2.72,0,3.75s-2.67,1.04-3.69,0-1.02-2.72,0-3.75,2.67-1.04,3.69,0Z"/>
+        <path d="M8.36,31.14V6.15s0-.01-.01-.01h-2.61v27.66s0,.01.01.01h27.17v-2.66s0-.01-.01-.01H8.36Z"/>
+        <path stroke-width="2" fill="none" stroke-miterlimit="10" d="M15.88,16.91c1.02,1.04,1.02,2.72,0,3.75s-2.67,1.04-3.69,0-1.02-2.72,0-3.75,2.67-1.04,3.69,0Z"/>
+        <path stroke-width="2" fill="none" stroke-miterlimit="10" d="M24.45,22.8c1.02,1.04,1.02,2.72,0,3.75s-2.67,1.04-3.69,0-1.02-2.72,0-3.75,2.67-1.04,3.69,0Z"/>
+        <line stroke-width="2" fill="none" stroke-miterlimit="10" x1="15.88" y1="20.66" x2="20" y2="23.26"/>
+        <line stroke-width="2" fill="none" stroke-miterlimit="10" x1="23.82" y1="22.32" x2="27.16" y2="14.02"/>
+    </g>
+</svg>
