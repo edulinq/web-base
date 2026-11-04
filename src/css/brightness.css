@@ -2,154 +2,149 @@
 
 /* Default to light colors. */
 html {
-    --color-bg-primary: var(--color-light-bg-primary);
-    --color-bg-secondary: var(--color-light-bg-secondary);
-    --color-bg-tertiary: var(--color-light-bg-tertiary);
+    --color-primary-bg: var(--color-light-primary-bg);
+    --color-primary-text: var(--color-light-primary-text);
+    --color-primary-link: var(--color-light-primary-link);
+    --color-primary-outline: var(--color-light-primary-outline);
+    --color-primary-code-bg: var(--color-light-primary-code-bg);
+    --color-primary-code-text: var(--color-light-primary-code-text);
+    --color-primary-code-outline: var(--color-light-primary-code-outline);
+    --color-primary-accent-bg: var(--color-light-primary-accent-bg);
+    --color-primary-accent-text: var(--color-light-primary-accent-text);
+    --color-primary-accent-link: var(--color-light-primary-accent-link);
+    --color-primary-accent-outline: var(--color-light-primary-accent-outline);
+    --color-primary-error-text: var(--color-light-primary-error-text);
 
-    --color-bg-accent-primary: var(--color-light-bg-accent-primary);
-    --color-bg-accent-primary-low: var(--color-light-bg-accent-primary-low);
-    --color-bg-accent-secondary: var(--color-light-bg-accent-secondary);
-    --color-bg-accent-secondary-low: var(--color-light-bg-accent-secondary-low);
-    --color-bg-accent-tertiary: var(--color-light-bg-accent-tertiary);
-    --color-bg-accent-tertiary-low: var(--color-light-bg-accent-tertiary-low);
-    --color-bg-accent-gradient: var(--color-light-bg-accent-gradient);
-    --color-bg-error: var(--color-light-bg-error);
-
-    --color-text-primary: var(--color-light-text-primary);
-    --color-text-secondary: var(--color-light-text-secondary);
-    --color-text-tertiary: var(--color-light-text-tertiary);
-
-    --color-text-accent: var(--color-light-text-accent);
-    --color-text-accent-low: var(--color-light-text-accent-low);
-
-    --color-text-link: var(--color-light-text-link);
-    --color-text-link-low: var(--color-light-text-link-low);
-
-    --color-text-primary-low: var(--color-light-text-primary-low);
-    --color-text-secondary-low: var(--color-light-text-secondary-low);
-    --color-text-tertiary-low: var(--color-light-text-tertiary-low);
+    --color-secondary-bg: var(--color-light-secondary-bg);
+    --color-secondary-text: var(--color-light-secondary-text);
+    --color-secondary-link: var(--color-light-secondary-link);
+    --color-secondary-outline: var(--color-light-secondary-outline);
+    --color-secondary-code-bg: var(--color-light-secondary-code-bg);
+    --color-secondary-code-text: var(--color-light-secondary-code-text);
+    --color-secondary-code-outline: var(--color-light-secondary-code-outline);
+    --color-secondary-accent-bg: var(--color-light-secondary-accent-bg);
+    --color-secondary-accent-text: var(--color-light-secondary-accent-text);
+    --color-secondary-accent-link: var(--color-light-secondary-accent-link);
+    --color-secondary-accent-outline: var(--color-light-secondary-accent-outline);
+    --color-secondary-error-text: var(--color-light-secondary-error-text);
 }
 
 /* Let system setting override default color scheme. */
 @media (prefers-color-scheme: light) {
     html {
-        --color-bg-primary: var(--color-light-bg-primary);
-        --color-bg-secondary: var(--color-light-bg-secondary);
-        --color-bg-tertiary: var(--color-light-bg-tertiary);
+        --color-primary-bg: var(--color-light-primary-bg);
+        --color-primary-text: var(--color-light-primary-text);
+        --color-primary-link: var(--color-light-primary-link);
+        --color-primary-outline: var(--color-light-primary-outline);
+        --color-primary-code-bg: var(--color-light-primary-code-bg);
+        --color-primary-code-text: var(--color-light-primary-code-text);
+        --color-primary-code-outline: var(--color-light-primary-code-outline);
+        --color-primary-accent-bg: var(--color-light-primary-accent-bg);
+        --color-primary-accent-text: var(--color-light-primary-accent-text);
+        --color-primary-accent-link: var(--color-light-primary-accent-link);
+        --color-primary-accent-outline: var(--color-light-primary-accent-outline);
+        --color-primary-error-text: var(--color-light-primary-error-text);
 
-        --color-bg-accent-primary: var(--color-light-bg-accent-primary);
-        --color-bg-accent-primary-low: var(--color-light-bg-accent-primary-low);
-        --color-bg-accent-secondary: var(--color-light-bg-accent-secondary);
-        --color-bg-accent-secondary-low: var(--color-light-bg-accent-secondary-low);
-        --color-bg-accent-tertiary: var(--color-light-bg-accent-tertiary);
-        --color-bg-accent-tertiary-low: var(--color-light-bg-accent-tertiary-low);
-        --color-bg-accent-gradient: var(--color-light-bg-accent-gradient);
-        --color-bg-error: var(--color-light-bg-error);
-
-        --color-text-primary: var(--color-light-text-primary);
-        --color-text-secondary: var(--color-light-text-secondary);
-        --color-text-tertiary: var(--color-light-text-tertiary);
-
-        --color-text-accent: var(--color-light-text-accent);
-        --color-text-accent-low: var(--color-light-text-accent-low);
-
-        --color-text-link: var(--color-light-text-link);
-        --color-text-link-low: var(--color-light-text-link-low);
-
-        --color-text-primary-low: var(--color-light-text-primary-low);
-        --color-text-secondary-low: var(--color-light-text-secondary-low);
-        --color-text-tertiary-low: var(--color-light-text-tertiary-low);
+        --color-secondary-bg: var(--color-light-secondary-bg);
+        --color-secondary-text: var(--color-light-secondary-text);
+        --color-secondary-link: var(--color-light-secondary-link);
+        --color-secondary-outline: var(--color-light-secondary-outline);
+        --color-secondary-code-bg: var(--color-light-secondary-code-bg);
+        --color-secondary-code-text: var(--color-light-secondary-code-text);
+        --color-secondary-code-outline: var(--color-light-secondary-code-outline);
+        --color-secondary-accent-bg: var(--color-light-secondary-accent-bg);
+        --color-secondary-accent-text: var(--color-light-secondary-accent-text);
+        --color-secondary-accent-link: var(--color-light-secondary-accent-link);
+        --color-secondary-accent-outline: var(--color-light-secondary-accent-outline);
+        --color-secondary-error-text: var(--color-light-secondary-error-text);
     }
 }
 
 @media (prefers-color-scheme: dark) {
     html {
-        --color-bg-primary: var(--color-dark-bg-primary);
-        --color-bg-secondary: var(--color-dark-bg-secondary);
-        --color-bg-tertiary: var(--color-dark-bg-tertiary);
+        --color-primary-bg: var(--color-dark-primary-bg);
+        --color-primary-text: var(--color-dark-primary-text);
+        --color-primary-link: var(--color-dark-primary-link);
+        --color-primary-outline: var(--color-dark-primary-outline);
+        --color-primary-code-bg: var(--color-dark-primary-code-bg);
+        --color-primary-code-text: var(--color-dark-primary-code-text);
+        --color-primary-code-outline: var(--color-dark-primary-code-outline);
+        --color-primary-accent-bg: var(--color-dark-primary-accent-bg);
+        --color-primary-accent-text: var(--color-dark-primary-accent-text);
+        --color-primary-accent-link: var(--color-dark-primary-accent-link);
+        --color-primary-accent-outline: var(--color-dark-primary-accent-outline);
+        --color-primary-error-text: var(--color-dark-primary-error-text);
 
-        --color-bg-accent-primary: var(--color-dark-bg-accent-primary);
-        --color-bg-accent-primary-low: var(--color-dark-bg-accent-primary-low);
-        --color-bg-accent-secondary: var(--color-dark-bg-accent-secondary);
-        --color-bg-accent-secondary-low: var(--color-dark-bg-accent-secondary-low);
-        --color-bg-accent-tertiary: var(--color-dark-bg-accent-tertiary);
-        --color-bg-accent-tertiary-low: var(--color-dark-bg-accent-tertiary-low);
-        --color-bg-accent-gradient: var(--color-dark-bg-accent-gradient);
-        --color-bg-error: var(--color-dark-bg-error);
-
-        --color-text-primary: var(--color-dark-text-primary);
-        --color-text-secondary: var(--color-dark-text-secondary);
-        --color-text-tertiary: var(--color-dark-text-tertiary);
-
-        --color-text-accent: var(--color-dark-text-accent);
-        --color-text-accent-low: var(--color-dark-text-accent-low);
-
-        --color-text-link: var(--color-dark-text-link);
-        --color-text-link-low: var(--color-dark-text-link-low);
-
-        --color-text-primary-low: var(--color-dark-text-primary-low);
-        --color-text-secondary-low: var(--color-dark-text-secondary-low);
-        --color-text-tertiary-low: var(--color-dark-text-tertiary-low);
+        --color-secondary-bg: var(--color-dark-secondary-bg);
+        --color-secondary-text: var(--color-dark-secondary-text);
+        --color-secondary-link: var(--color-dark-secondary-link);
+        --color-secondary-outline: var(--color-dark-secondary-outline);
+        --color-secondary-code-bg: var(--color-dark-secondary-code-bg);
+        --color-secondary-code-text: var(--color-dark-secondary-code-text);
+        --color-secondary-code-outline: var(--color-dark-secondary-code-outline);
+        --color-secondary-accent-bg: var(--color-dark-secondary-accent-bg);
+        --color-secondary-accent-text: var(--color-dark-secondary-accent-text);
+        --color-secondary-accent-link: var(--color-dark-secondary-accent-link);
+        --color-secondary-accent-outline: var(--color-dark-secondary-accent-outline);
+        --color-secondary-error-text: var(--color-dark-secondary-error-text);
     }
 }
 
 /* Let explicit setting override system default. */
 .lightmode {
-    --color-bg-primary: var(--color-light-bg-primary);
-    --color-bg-secondary: var(--color-light-bg-secondary);
-    --color-bg-tertiary: var(--color-light-bg-tertiary);
+    --color-primary-bg: var(--color-light-primary-bg);
+    --color-primary-text: var(--color-light-primary-text);
+    --color-primary-link: var(--color-light-primary-link);
+    --color-primary-outline: var(--color-light-primary-outline);
+    --color-primary-code-bg: var(--color-light-primary-code-bg);
+    --color-primary-code-text: var(--color-light-primary-code-text);
+    --color-primary-code-outline: var(--color-light-primary-code-outline);
+    --color-primary-accent-bg: var(--color-light-primary-accent-bg);
+    --color-primary-accent-text: var(--color-light-primary-accent-text);
+    --color-primary-accent-link: var(--color-light-primary-accent-link);
+    --color-primary-accent-outline: var(--color-light-primary-accent-outline);
+    --color-primary-error-text: var(--color-light-primary-error-text);
 
-    --color-bg-accent-primary: var(--color-light-bg-accent-primary);
-    --color-bg-accent-primary-low: var(--color-light-bg-accent-primary-low);
-    --color-bg-accent-secondary: var(--color-light-bg-accent-secondary);
-    --color-bg-accent-secondary-low: var(--color-light-bg-accent-secondary-low);
-    --color-bg-accent-tertiary: var(--color-light-bg-accent-tertiary);
-    --color-bg-accent-tertiary-low: var(--color-light-bg-accent-tertiary-low);
-    --color-bg-accent-gradient: var(--color-light-bg-accent-gradient);
-    --color-bg-error: var(--color-light-bg-error);
-
-    --color-text-primary: var(--color-light-text-primary);
-    --color-text-secondary: var(--color-light-text-secondary);
-    --color-text-tertiary: var(--color-light-text-tertiary);
-
-    --color-text-accent: var(--color-light-text-accent);
-    --color-text-accent-low: var(--color-light-text-accent-low);
-
-    --color-text-link: var(--color-light-text-link);
-    --color-text-link-low: var(--color-light-text-link-low);
-
-    --color-text-primary-low: var(--color-light-text-primary-low);
-    --color-text-secondary-low: var(--color-light-text-secondary-low);
-    --color-text-tertiary-low: var(--color-light-text-tertiary-low);
+    --color-secondary-bg: var(--color-light-secondary-bg);
+    --color-secondary-text: var(--color-light-secondary-text);
+    --color-secondary-link: var(--color-light-secondary-link);
+    --color-secondary-outline: var(--color-light-secondary-outline);
+    --color-secondary-code-bg: var(--color-light-secondary-code-bg);
+    --color-secondary-code-text: var(--color-light-secondary-code-text);
+    --color-secondary-code-outline: var(--color-light-secondary-code-outline);
+    --color-secondary-accent-bg: var(--color-light-secondary-accent-bg);
+    --color-secondary-accent-text: var(--color-light-secondary-accent-text);
+    --color-secondary-accent-link: var(--color-light-secondary-accent-link);
+    --color-secondary-accent-outline: var(--color-light-secondary-accent-outline);
+    --color-secondary-error-text: var(--color-light-secondary-error-text);
 }
 
 .darkmode {
-    --color-bg-primary: var(--color-dark-bg-primary);
-    --color-bg-secondary: var(--color-dark-bg-secondary);
-    --color-bg-tertiary: var(--color-dark-bg-tertiary);
+    --color-primary-bg: var(--color-dark-primary-bg);
+    --color-primary-text: var(--color-dark-primary-text);
+    --color-primary-link: var(--color-dark-primary-link);
+    --color-primary-outline: var(--color-dark-primary-outline);
+    --color-primary-code-bg: var(--color-dark-primary-code-bg);
+    --color-primary-code-text: var(--color-dark-primary-code-text);
+    --color-primary-code-outline: var(--color-dark-primary-code-outline);
+    --color-primary-accent-bg: var(--color-dark-primary-accent-bg);
+    --color-primary-accent-text: var(--color-dark-primary-accent-text);
+    --color-primary-accent-link: var(--color-dark-primary-accent-link);
+    --color-primary-accent-outline: var(--color-dark-primary-accent-outline);
+    --color-primary-error-text: var(--color-dark-primary-error-text);
 
-    --color-bg-accent-primary: var(--color-dark-bg-accent-primary);
-    --color-bg-accent-primary-low: var(--color-dark-bg-accent-primary-low);
-    --color-bg-accent-secondary: var(--color-dark-bg-accent-secondary);
-    --color-bg-accent-secondary-low: var(--color-dark-bg-accent-secondary-low);
-    --color-bg-accent-tertiary: var(--color-dark-bg-accent-tertiary);
-    --color-bg-accent-tertiary-low: var(--color-dark-bg-accent-tertiary-low);
-    --color-bg-accent-gradient: var(--color-dark-bg-accent-gradient);
-    --color-bg-error: var(--color-dark-bg-error);
-
-    --color-text-primary: var(--color-dark-text-primary);
-    --color-text-secondary: var(--color-dark-text-secondary);
-    --color-text-tertiary: var(--color-dark-text-tertiary);
-
-    --color-text-accent: var(--color-dark-text-accent);
-    --color-text-accent-low: var(--color-dark-text-accent-low);
-
-    --color-text-link: var(--color-dark-text-link);
-    --color-text-link-low: var(--color-dark-text-link-low);
-
-    --color-text-primary-low: var(--color-dark-text-primary-low);
-    --color-text-secondary-low: var(--color-dark-text-secondary-low);
-    --color-text-tertiary-low: var(--color-dark-text-tertiary-low);
+    --color-secondary-bg: var(--color-dark-secondary-bg);
+    --color-secondary-text: var(--color-dark-secondary-text);
+    --color-secondary-link: var(--color-dark-secondary-link);
+    --color-secondary-outline: var(--color-dark-secondary-outline);
+    --color-secondary-code-bg: var(--color-dark-secondary-code-bg);
+    --color-secondary-code-text: var(--color-dark-secondary-code-text);
+    --color-secondary-code-outline: var(--color-dark-secondary-code-outline);
+    --color-secondary-accent-bg: var(--color-dark-secondary-accent-bg);
+    --color-secondary-accent-text: var(--color-dark-secondary-accent-text);
+    --color-secondary-accent-link: var(--color-dark-secondary-accent-link);
+    --color-secondary-accent-outline: var(--color-dark-secondary-accent-outline);
+    --color-secondary-error-text: var(--color-dark-secondary-error-text);
 }
 
 html.no-brightness-selection .darkmode-only,
@@ -157,15 +152,4 @@ html.no-brightness-selection .lightmode-only,
 html.lightmode .darkmode-only,
 html.darkmode .lightmode-only {
     display: none;
-}
-
-.brightmode-toggle {
-    cursor: pointer;
-    color: var(--color-text-accent-low);
-}
-
-.brightmode-toggle span.active {
-    font-weight: var(--font-weight-bold);
-    text-decoration: underline;
-    color: var(--color-text-accent);
 }

@@ -15,52 +15,59 @@
         <script type='module' src='js/main.js'></script>
     </head>
     <body>
-        <div class='page primary-color'>
-            <div class='header primary-accent-color'>
-                <div class='site-nav'>
-                    <div class='nav-item'>
-                        <a href='#nav?target=color-scheme'>
-                            Color Scheme
-                        </a>
+        <div class='page theme-primary'>
+            <div class='header'>
+                <div class='site-header theme-primary'>
+                    <div class='site-branding'>
+                        <span>EduLinq Web Base</span>
                     </div>
-                    <div class='nav-item'>
-                        <a href='#nav?target=icons'>
-                            Icons
-                        </a>
-                    </div>
-                    <div class='nav-item'>
-                        <a href='#nav?target=base-components'>
-                            Base Components
-                        </a>
-                    </div>
-                    <div class='nav-item'>
-                        <a href='#nav?target=edulinq-components'>
-                            EduLinq Components
-                        </a>
-                    </div>
-                </div>
-                <div class='site-branding'>
-                    <h1>EduLinq Web Base</h1>
-                </div>
-                <div class='site-context'>
-                    <div class='brightmode-toggle'>
-                        <div>
-                            <icon class='icon-placeholder selector lightmode lightmode-only' name='moon'>Toggle Light Mode</icon>
-                            <icon class='icon-placeholder selector darkmode darkmode-only' name='sun'>Toggle Dark Mode</icon>
+                    <nav class='site-nav'>
+                        <div class='nav-item'>
+                            <a href='#nav?target=color-scheme'>
+                                Color Scheme
+                            </a>
                         </div>
+                        <div class='nav-item'>
+                            <a href='#nav?target=icons'>
+                                Icons
+                            </a>
+                        </div>
+                        <div class='nav-item'>
+                            <a href='#nav?target=base-components'>
+                                Base Components
+                            </a>
+                        </div>
+                        <div class='nav-item'>
+                            <a href='#nav?target=edulinq-components'>
+                                EduLinq Components
+                            </a>
+                        </div>
+                    </nav>
+                    <div class='site-context'>
+                    </div>
+                </div>
+
+                <div class='page-header theme-accent'>
+                    <div class='breadcrumbs'>
+                        <span><a href='#'>Home</a></span>
+                        <span><a href='#TEST'>TEST</a></span>
+                    </div>
+                    <div class='brightmode-toggle'>
+                        <icon class='icon-placeholder selector lightmode lightmode-only' name='moon'>Toggle Light Mode</icon>
+                        <icon class='icon-placeholder selector darkmode darkmode-only' name='sun'>Toggle Dark Mode</icon>
                     </div>
                 </div>
             </div>
 
-            <div class='page-content primary-color'>
+            <div class='page-content'>
 
-                <div class='section secondary-color'>
+                <div class='section theme-secondary'>
                     <h2 data-nav-target='color-scheme'>Color Scheme</h2>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Light Mode</h3>
 
-                        <div class='subsubsection darkmode primary-color' style='width: fit-content;'>
+                        <div class='subsubsection' style='width: fit-content;'>
                             <!-- Use an iframe to prevent interference from page style with the specific table cells. -->
                             <iframe height='700px' width='825px' sandbox srcdoc="
                                 <link rel=&apos;stylesheet&apos; type=&apos;text/css&apos; href=&apos;edq/css/edq.css&apos;>
@@ -71,93 +78,74 @@
                                             <th></th>
                                             <th>Primary</th>
                                             <th>Secondary</th>
-                                            <th>Tertiary</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>Background</td>
-                                            <td class=&apos;primary-color&apos;></td>
-                                            <td class=&apos;secondary-color&apos;></td>
-                                            <td class=&apos;tertiary-color&apos;></td>
+                                            <td class=&apos;theme-primary&apos;></td>
+                                            <td class=&apos;theme-secondary&apos;></td>
                                         </tr>
                                         <tr>
                                             <td>Text</td>
-                                            <td class=&apos;primary-color&apos;><span>Primary</span></td>
-                                            <td class=&apos;secondary-color&apos;><span>Secondary</span></td>
-                                            <td class=&apos;tertiary-color&apos;><span>Tertiary</span></td>
+                                            <td class=&apos;theme-primary&apos;><span>Primary</span></td>
+                                            <td class=&apos;theme-secondary&apos;><span>Secondary</span></td>
                                         </tr>
                                         <tr>
                                             <td>Accent</td>
-                                            <td class=&apos;primary-color&apos;><span class=&apos;primary-accent-color&apos;>Primary</span></td>
-                                            <td class=&apos;secondary-color&apos;><span class=&apos;secondary-accent-color&apos;>Secondary</span></td>
-                                            <td class=&apos;tertiary-color&apos;><span class=&apos;tertiary-accent-color&apos;>Tertiary</span></td>
+                                            <td class=&apos;theme-primary&apos;><span class=&apos;theme-accent&apos;>Primary</span></td>
+                                            <td class=&apos;theme-secondary&apos;><span class=&apos;theme-accent&apos;>Secondary</span></td>
                                         </tr>
                                         <tr>
                                             <td>Link</td>
-                                            <td class=&apos;primary-color&apos;><a href=&apos;#&apos;>Primary</a></td>
-                                            <td class=&apos;secondary-color&apos;><a href=&apos;#&apos;>Secondary</a></td>
-                                            <td class=&apos;tertiary-color&apos;><a href=&apos;#&apos;>Tertiary</a></td>
+                                            <td class=&apos;theme-primary&apos;><a href=&apos;#&apos;>Primary</a></td>
+                                            <td class=&apos;theme-secondary&apos;><a href=&apos;#&apos;>Secondary</a></td>
                                         </tr>
                                         <tr>
                                             <td>Code</td>
-                                            <td class=&apos;primary-color&apos;><code>Primary</code></td>
-                                            <td class=&apos;secondary-color&apos;><code>Secondary</code></td>
-                                            <td class=&apos;tertiary-color&apos;><code>Tertiary</code></td>
+                                            <td class=&apos;theme-primary&apos;><code>Primary</code></td>
+                                            <td class=&apos;theme-secondary&apos;><code>Secondary</code></td>
                                         </tr>
                                         <tr>
                                             <td>Button</td>
-                                            <td class=&apos;primary-color&apos;><button>Primary</button></td>
-                                            <td class=&apos;secondary-color&apos;><button>Secondary</button></td>
-                                            <td class=&apos;tertiary-color&apos;><button>Tertiary</button></td>
+                                            <td class=&apos;theme-primary&apos;><button>Primary</button></td>
+                                            <td class=&apos;theme-secondary&apos;><button>Secondary</button></td>
                                         </tr>
                                         <tr>
                                             <td>Button (Disabled)</td>
-                                            <td class=&apos;primary-color&apos;><button disabled>Primary</button></td>
-                                            <td class=&apos;secondary-color&apos;><button disabled>Secondary</button></td>
-                                            <td class=&apos;tertiary-color&apos;><button disabled>Tertiary</button></td>
+                                            <td class=&apos;theme-primary&apos;><button disabled>Primary</button></td>
+                                            <td class=&apos;theme-secondary&apos;><button disabled>Secondary</button></td>
                                         </tr>
                                         <tr>
                                             <td>Card (Link)</td>
-                                            <td class=&apos;primary-color&apos;>
+                                            <td class=&apos;theme-primary&apos;>
                                                 <div class='card drop-shadow' data-type='link' data-name='link'>
                                                     <span><a>Primary</a></span>
                                                 </div>
                                             </td>
-                                            <td class=&apos;secondary-color&apos;>
+                                            <td class=&apos;theme-secondary&apos;>
                                                 <div class='card drop-shadow' data-type='link' data-name='link'>
                                                     <span><a>Secondary</a></span>
-                                                </div>
-                                            </td>
-                                            <td class=&apos;tertiary-color&apos;>
-                                                <div class='card drop-shadow' data-type='link' data-name='link'>
-                                                    <span><a>Tertiary</a></span>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Card (Small)</td>
-                                            <td class=&apos;primary-color&apos;>
+                                            <td class=&apos;theme-primary&apos;>
                                                 <div class='card drop-shadow' data-type='small' data-name='small'>
                                                     <span>Primary</span>
                                                 </div>
                                             </td>
-                                            <td class=&apos;secondary-color&apos;>
+                                            <td class=&apos;theme-secondary&apos;>
                                                 <div class='card drop-shadow' data-type='small' data-name='small'>
                                                     <span>Secondary</span>
-                                                </div>
-                                            </td>
-                                            <td class=&apos;tertiary-color&apos;>
-                                                <div class='card drop-shadow' data-type='small' data-name='small'>
-                                                    <span>Tertiary</span>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Horizontal Rule</td>
-                                            <td class=&apos;primary-color&apos;><hr /></td>
-                                            <td class=&apos;secondary-color&apos;><hr /></td>
-                                            <td class=&apos;tertiary-color&apos;><hr /></td>
+                                            <td class=&apos;theme-primary&apos;><hr /></td>
+                                            <td class=&apos;theme-secondary&apos;><hr /></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -166,10 +154,10 @@
                         </div>
                     </div>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Dark Mode</h3>
 
-                        <div class='subsubsection lightmode primary-color' style='width: fit-content;'>
+                        <div class='subsubsection' style='width: fit-content;'>
                             <!-- Use an iframe to prevent interference from page style with the specific table cells. -->
                             <iframe height='700px' width='825px' sandbox srcdoc="
                                 <link rel=&apos;stylesheet&apos; type=&apos;text/css&apos; href=&apos;edq/css/edq.css&apos;>
@@ -180,93 +168,74 @@
                                             <th></th>
                                             <th>Primary</th>
                                             <th>Secondary</th>
-                                            <th>Tertiary</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>Background</td>
-                                            <td class=&apos;primary-color&apos;></td>
-                                            <td class=&apos;secondary-color&apos;></td>
-                                            <td class=&apos;tertiary-color&apos;></td>
+                                            <td class=&apos;theme-primary&apos;></td>
+                                            <td class=&apos;theme-secondary&apos;></td>
                                         </tr>
                                         <tr>
                                             <td>Text</td>
-                                            <td class=&apos;primary-color&apos;><span>Primary</span></td>
-                                            <td class=&apos;secondary-color&apos;><span>Secondary</span></td>
-                                            <td class=&apos;tertiary-color&apos;><span>Tertiary</span></td>
+                                            <td class=&apos;theme-primary&apos;><span>Primary</span></td>
+                                            <td class=&apos;theme-secondary&apos;><span>Secondary</span></td>
                                         </tr>
                                         <tr>
                                             <td>Accent</td>
-                                            <td class=&apos;primary-color&apos;><span class=&apos;primary-accent-color&apos;>Primary</span></td>
-                                            <td class=&apos;secondary-color&apos;><span class=&apos;secondary-accent-color&apos;>Secondary</span></td>
-                                            <td class=&apos;tertiary-color&apos;><span class=&apos;tertiary-accent-color&apos;>Tertiary</span></td>
+                                            <td class=&apos;theme-primary&apos;><span class=&apos;theme-accent&apos;>Primary</span></td>
+                                            <td class=&apos;theme-secondary&apos;><span class=&apos;theme-accent&apos;>Secondary</span></td>
                                         </tr>
                                         <tr>
                                             <td>Link</td>
-                                            <td class=&apos;primary-color&apos;><a href=&apos;#&apos;>Primary</a></td>
-                                            <td class=&apos;secondary-color&apos;><a href=&apos;#&apos;>Secondary</a></td>
-                                            <td class=&apos;tertiary-color&apos;><a href=&apos;#&apos;>Tertiary</a></td>
+                                            <td class=&apos;theme-primary&apos;><a href=&apos;#&apos;>Primary</a></td>
+                                            <td class=&apos;theme-secondary&apos;><a href=&apos;#&apos;>Secondary</a></td>
                                         </tr>
                                         <tr>
                                             <td>Code</td>
-                                            <td class=&apos;primary-color&apos;><code>Primary</code></td>
-                                            <td class=&apos;secondary-color&apos;><code>Secondary</code></td>
-                                            <td class=&apos;tertiary-color&apos;><code>Tertiary</code></td>
+                                            <td class=&apos;theme-primary&apos;><code>Primary</code></td>
+                                            <td class=&apos;theme-secondary&apos;><code>Secondary</code></td>
                                         </tr>
                                         <tr>
                                             <td>Button</td>
-                                            <td class=&apos;primary-color&apos;><button>Primary</button></td>
-                                            <td class=&apos;secondary-color&apos;><button>Secondary</button></td>
-                                            <td class=&apos;tertiary-color&apos;><button>Tertiary</button></td>
+                                            <td class=&apos;theme-primary&apos;><button>Primary</button></td>
+                                            <td class=&apos;theme-secondary&apos;><button>Secondary</button></td>
                                         </tr>
                                         <tr>
                                             <td>Button (Disabled)</td>
-                                            <td class=&apos;primary-color&apos;><button disabled>Primary</button></td>
-                                            <td class=&apos;secondary-color&apos;><button disabled>Secondary</button></td>
-                                            <td class=&apos;tertiary-color&apos;><button disabled>Tertiary</button></td>
+                                            <td class=&apos;theme-primary&apos;><button disabled>Primary</button></td>
+                                            <td class=&apos;theme-secondary&apos;><button disabled>Secondary</button></td>
                                         </tr>
                                         <tr>
                                             <td>Card (Link)</td>
-                                            <td class=&apos;primary-color&apos;>
+                                            <td class=&apos;theme-primary&apos;>
                                                 <div class='card drop-shadow' data-type='link' data-name='link'>
                                                     <span><a>Primary</a></span>
                                                 </div>
                                             </td>
-                                            <td class=&apos;secondary-color&apos;>
+                                            <td class=&apos;theme-secondary&apos;>
                                                 <div class='card drop-shadow' data-type='link' data-name='link'>
                                                     <span><a>Secondary</a></span>
-                                                </div>
-                                            </td>
-                                            <td class=&apos;tertiary-color&apos;>
-                                                <div class='card drop-shadow' data-type='link' data-name='link'>
-                                                    <span><a>Tertiary</a></span>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Card (Small)</td>
-                                            <td class=&apos;primary-color&apos;>
+                                            <td class=&apos;theme-primary&apos;>
                                                 <div class='card drop-shadow' data-type='small' data-name='small'>
                                                     <span>Primary</span>
                                                 </div>
                                             </td>
-                                            <td class=&apos;secondary-color&apos;>
+                                            <td class=&apos;theme-secondary&apos;>
                                                 <div class='card drop-shadow' data-type='small' data-name='small'>
                                                     <span>Secondary</span>
-                                                </div>
-                                            </td>
-                                            <td class=&apos;tertiary-color&apos;>
-                                                <div class='card drop-shadow' data-type='small' data-name='small'>
-                                                    <span>Tertiary</span>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Horizontal Rule</td>
-                                            <td class=&apos;primary-color&apos;><hr /></td>
-                                            <td class=&apos;secondary-color&apos;><hr /></td>
-                                            <td class=&apos;tertiary-color&apos;><hr /></td>
+                                            <td class=&apos;theme-primary&apos;><hr /></td>
+                                            <td class=&apos;theme-secondary&apos;><hr /></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -276,17 +245,17 @@
                     </div>
                 </div>
 
-                <div class='section section-icons secondary-color'>
+                <div class='section section-icons theme-secondary'>
                     <h2 data-nav-target='icons'>Icons</h2>
 
                     <div class='container'>
                     </div>
                 </div>
 
-                <div class='section secondary-color'>
+                <div class='section theme-secondary'>
                     <h2 data-nav-target='base-components'>Base Components</h2>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Paragraphs</h3>
 
                         <div>
@@ -351,7 +320,7 @@
                         </div>
                     </div>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Headers</h3>
 
                         <h1>Header 1</h1>
@@ -372,11 +341,11 @@
                         <h6>Header 6</h6>
                         <p>Paragraph text.</p>
 
-                        <h1 class='bar primary-accent-color'>Header 1 - Bar</h1>
+                        <h1 class='bar'>Header 1 - Bar</h1>
                         <p>Paragraph text.</p>
                     </div>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Inline Text Decoration</h3>
 
                         <p>Some <strong>bold</strong> text.</p>
@@ -388,7 +357,7 @@
                         <p>Some <code>code</code> text.</p>
                     </div>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Unordered Lists</h3>
 
                         <ul>
@@ -416,7 +385,7 @@
                         </ul>
                     </div>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Ordered Lists</h3>
 
                         <ol>
@@ -444,7 +413,7 @@
                         </ol>
                     </div>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Tables</h3>
 
                         <table class='standard-table sortable-table'>
@@ -475,14 +444,14 @@
                         </table>
                     </div>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Code Blocks</h3>
 
                         <div class='code-blocks'>
                         </div>
                     </div>
 
-                    <div class='subsection section-inputs tertiary-color'>
+                    <div class='subsection section-inputs theme-primary'>
                         <h3>Inputs</h3>
 
                         <div class='input-fields'>
@@ -490,10 +459,10 @@
                     </div>
                 </div>
 
-                <div class='section secondary-color'>
+                <div class='section theme-secondary'>
                     <h2 data-nav-target='edulinq-components'>EduLinq Components</h2>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Routing</h3>
 
                         <div class='routing-target'>
@@ -502,20 +471,20 @@
                         </div>
                     </div>
 
-                    <div class='subsection tertiary-color'>
+                    <div class='subsection theme-primary'>
                         <h3>Cards</h3>
 
-                        <div class='subsubsection section-cards-link primary-color'>
+                        <div class='subsubsection section-cards-link theme-secondary'>
                             <h4>Link Cards</h4>
                             <div></div>
                         </div>
 
-                        <div class='subsubsection section-cards-small primary-color'>
+                        <div class='subsubsection section-cards-small theme-secondary'>
                             <h4>Small Cards</h4>
                             <div></div>
                         </div>
 
-                        <div class='subsubsection section-cards-large primary-color'>
+                        <div class='subsubsection section-cards-large theme-secondary'>
                             <h4>Large Cards</h4>
                             <div></div>
                         </div>
@@ -523,7 +492,7 @@
                 </div>
             </div>
 
-            <div class='footer primary-accent-color'>
+            <div class='footer theme-accent'>
                 <div class='left'>
                     <span>©2026 EduLinq</span>
                 </div>

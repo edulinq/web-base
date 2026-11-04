@@ -1,0 +1,23 @@
+/* EduLinq Table Style */
+
+table.standard-table {
+    border-collapse: collapse;
+}
+
+table.standard-table th,
+table.standard-table td {
+    padding: 0.50rem;
+}
+
+table.standard-table th,
+table.standard-table tr:not(:last-child) {
+    border-bottom: 1px solid var(--color-text-secondary);
+}
+
+table.sortable-table th[data-ascending='true']::after {
+    content: ' ↑';
+}
+
+table.sortable-table th[data-ascending='false']::after {
+    content: ' ↓';
+}

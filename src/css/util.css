@@ -1,6 +1,7 @@
 /* Utility CSS Rules */
 
-.hidden {
+.hidden,
+html body .hidden {
     display: none;
 }
 

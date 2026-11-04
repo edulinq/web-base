@@ -25,19 +25,8 @@ readonly JS_BASE_OUT_PATH="${BUILD_DIR}/js/edq.mjs"
 readonly IMAGES_DIR="${SOURCE_DIR}/images"
 readonly ICONS_OUT_DIR="${BUILD_DIR}/images/icons"
 
+readonly CSS_COMPILE_SCRIPT="${THIS_DIR}/compile_css.sh"
 readonly ICONS_COMPILE_SCRIPT="${THIS_DIR}/compile_icons.sh"
-
-readonly CSS_OUT_PATH="${BUILD_DIR}/css/edq.css"
-readonly CSS_PATHS=(
-    "${SOURCE_DIR}/css/constants.css"
-    "${SOURCE_DIR}/vendor/normalize.css"
-    "${SOURCE_DIR}/vendor/prismjs/prism-dark.css"
-    "${SOURCE_DIR}/vendor/prismjs/prism-light.css"
-    "${SOURCE_DIR}/css/brightness.css"
-    "${SOURCE_DIR}/css/icons.css"
-    "${SOURCE_DIR}/css/util.css"
-    "${SOURCE_DIR}/css/style.css"
-)
 
 function main() {
     local prod=false
@@ -90,8 +79,7 @@ function main() {
     mv "${JS_TEMP_OUT_PATH}" "${outJSPath}"
 
     # Concat CSS into a single file.
-    mkdir -p $(dirname "${CSS_OUT_PATH}")
-    echo -e "/* ${versionMessage} */\n" | cat - "${CSS_PATHS[@]}" > "${CSS_OUT_PATH}"
+    "${CSS_COMPILE_SCRIPT}"
 
     # Copy license and version.
     cp "${LICENSE_PATH}" "${BUILD_DIR}/"

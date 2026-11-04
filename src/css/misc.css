@@ -1,0 +1,12 @@
+/* EduLinq Misc Style */
+
+.required-color {
+    color: var(--color-text-error);
+}
+
+:is(h1, h2, h3, h4, h5, h6).bar {
+    text-align: center;
+
+    padding: 1.0em;
+    border-radius: var(--curve-radius-large);
+}

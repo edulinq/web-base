@@ -1,0 +1,175 @@
+/* EduLinq Layout */
+
+.page p {
+    margin-bottom: 1rem;
+}
+
+.page ul,
+.page ol {
+    margin-left: 2rem;
+}
+
+.page {
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+
+    height: 100%;
+}
+
+.page-content {
+    max-width: var(--page-content-max-width);
+    margin: 0 auto;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+
+    font-size: var(--font-size-smaller);
+}
+
+.site-header,
+.page-header,
+.footer {
+    padding: 0 max(2rem, calc((100svw - var(--headfoot-max-width)) / 2));
+}
+
+.site-header {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.site-branding span {
+    margin: 0.25em 0;
+    font-size: 1.75em;
+}
+
+.page-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.breadcrumbs span {
+    margin: auto 0;
+}
+
+.breadcrumbs span:not(:last-child)::after {
+    content: ">";
+    margin: 0 0.5em;
+}
+
+.page-header .breadcrumbs a {
+    text-decoration: none;
+}
+
+.page-header .brightmode-toggle {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1em;
+
+    cursor: pointer;
+}
+
+.page-header .brightmode-toggle .icon {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+* {
+    scroll-margin-top: 5rem;
+}
+
+.site-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+
+.site-context {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: min(1.0rem, 1.0svw);
+}
+
+.nav-item:hover {
+    background: var(--color-highlighter);
+}
+
+.nav-item.nav-highlight {
+    box-shadow: 0 -3px 0 var(--color-bg-accent-tertiary) inset;
+}
+
+div.nav-item > a {
+    height: 100%;
+    display: block;
+    align-content: center;
+    padding: 0 0.75em;
+
+    text-decoration: none;
+    color: var(--color-primary-text);
+}
+
+.footer {
+    min-height: var(--footer-min-height);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.footer .left {
+    text-align: left;
+}
+
+.footer .center {
+    text-align: center;
+}
+
+.footer .right {
+    text-align: right;
+}
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    flex-grow: 1000;
+}
+
+.content {
+    padding: 1.0rem;
+    border-radius: var(--curve-radius-large);
+}
+
+.section,
+.subsection,
+.subsubsection {
+    padding: 1.5rem;
+    border-radius: var(--curve-radius-large);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 1em;
+}
+
+.section {
+    margin: min(1.5rem, 1svw);
+}

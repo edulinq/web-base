@@ -4,7 +4,7 @@ describe("LinkCard base", function() {
     // [[card, expected], ...]
     const testCases: Array<[cards.LinkCard, string]> = [
         [
-            new cards.LinkCard('text', 'link', 'name'),
+            new cards.LinkCard('text', 'link', {name: 'name'} as cards.LinkCardOptions),
             '<div class="card drop-shadow" data-type="link" data-name="name"><a href="link"><span>text</span></a></div>',
         ],
         [
@@ -22,7 +22,7 @@ describe("SmallCard base", function() {
     // [[card, expected], ...]
     const testCases: Array<[cards.SmallCard, string]> = [
         [
-            new cards.SmallCard('text', 'name'),
+            new cards.SmallCard('text', {name: 'name'} as cards.SmallCardOptions),
             '<div class="card drop-shadow" data-type="small" data-name="name"><span>text</span></div>',
         ],
         [
@@ -47,19 +47,19 @@ describe("LargeCard base", function() {
 
         // String Paragraph
         [
-            new cards.LargeCard('header', 'text', 'name'),
+            new cards.LargeCard('header', 'text', {name: 'name'} as cards.LargeCardOptions),
             '<div class="card drop-shadow" data-type="large" data-name="name"><h3>header</h3><p>text</p></div>',
         ],
 
         // Array Paragraphs
         [
-            new cards.LargeCard('header', ['text1', 'text2'], 'name'),
+            new cards.LargeCard('header', ['text1', 'text2'], {name: 'name'} as cards.LargeCardOptions),
             '<div class="card drop-shadow" data-type="large" data-name="name"><h3>header</h3><p>text1</p><p>text2</p></div>',
         ],
 
         // Header Tag
         [
-            new cards.LargeCard('header', 'text', 'name', 'h2'),
+            new cards.LargeCard('header', 'text', {name: 'name', headerTag: 'h2'} as cards.LargeCardOptions),
             '<div class="card drop-shadow" data-type="large" data-name="name"><h2>header</h2><p>text</p></div>',
         ],
 

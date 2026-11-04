@@ -5,16 +5,19 @@ const CARD_TYPE_LARGE: string = 'large';
 abstract class Card {
     type: string;
     name: string;
+    extraClasses: Array<string> | DOMTokenList
 
-    constructor(type: string, name: string = 'unknown') {
+    constructor(type: string, name: string = 'unknown', extraClasses: Array<string> | DOMTokenList = []) {
         this.type = type;
         this.name = name;
+        this.extraClasses = extraClasses;
     }
 
     getElement(): HTMLElement {
         let element = document.createElement('div');
         element.classList.add('card');
         element.classList.add('drop-shadow');
+        element.classList.add(...this.extraClasses);
 
         element.dataset['type'] = this.type;
         element.dataset['name'] = this.name;
@@ -27,13 +30,19 @@ abstract class Card {
     protected abstract getInnerElements(): Array<HTMLElement>;
 }
 
+class LinkCardOptions {
+    name: string = CARD_TYPE_LINK;
+    extraClasses: Array<string> | DOMTokenList = [];
+}
+
 // A card that has some short text that serves as a link.
 class LinkCard extends Card {
     text: string;
     link: string;
 
-    constructor(text: string, link: string, name: string = CARD_TYPE_LINK) {
-        super(CARD_TYPE_LINK, name);
+    constructor(text: string, link: string, options: LinkCardOptions = new LinkCardOptions()) {
+        options = Object.assign(new LinkCardOptions(), options);
+        super(CARD_TYPE_LINK, options.name, options.extraClasses);
 
         this.text = text;
         this.link = link;
@@ -51,12 +60,18 @@ class LinkCard extends Card {
     }
 }
 
+class SmallCardOptions {
+    name: string = CARD_TYPE_SMALL;
+    extraClasses: Array<string> | DOMTokenList = [];
+}
+
 // A card that has some text (usually short) with no headers or breaks.
 class SmallCard extends Card {
     text: string;
 
-    constructor(text: string, name: string = CARD_TYPE_SMALL) {
-        super(CARD_TYPE_SMALL, name);
+    constructor(text: string, options: SmallCardOptions = new SmallCardOptions()) {
+        options = Object.assign(new SmallCardOptions(), options);
+        super(CARD_TYPE_SMALL, options.name, options.extraClasses);
 
         this.text = text;
     }
@@ -69,6 +84,12 @@ class SmallCard extends Card {
     }
 }
 
+class LargeCardOptions {
+    name: string = CARD_TYPE_LARGE;
+    extraClasses: Array<string> | DOMTokenList = [];
+    headerTag: string = 'h3';
+}
+
 // A card that has a large amount of text and possibly a header.
 class LargeCard extends Card {
     header: string | undefined;
@@ -76,15 +97,16 @@ class LargeCard extends Card {
 
     paragraphs: Array<string>;
 
-    constructor(header: string | undefined, paragraphs: string | Array<string>, name: string = CARD_TYPE_LARGE, headerTag: string = 'h3') {
-        super(CARD_TYPE_LARGE, name);
+    constructor(header: string | undefined, paragraphs: string | Array<string>, options: LargeCardOptions = new LargeCardOptions()) {
+        options = Object.assign(new LargeCardOptions(), options);
+        super(CARD_TYPE_LARGE, options.name, options.extraClasses);
 
         if ((typeof(paragraphs)) === 'string') {
             paragraphs = [paragraphs];
         }
 
         this.header = header;
-        this.headerTag = headerTag;
+        this.headerTag = options.headerTag;
         this.paragraphs = paragraphs;
     }
 
@@ -138,6 +160,10 @@ export {
     LinkCard,
     SmallCard,
     LargeCard,
+
+    LinkCardOptions,
+    SmallCardOptions,
+    LargeCardOptions,
 
     CardArea,
 }

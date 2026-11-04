@@ -185,23 +185,23 @@ const inputFields = [
 ];
 
 const linkCards = [
-    new edq.render.cards.LinkCard('Some Link 1', '#cards/link?index=1'),
-    new edq.render.cards.LinkCard('Some Link 2', '#cards/link?index=2'),
-    new edq.render.cards.LinkCard('Some Link 3', '#cards/link?index=3'),
+    new edq.render.cards.LinkCard('Some Link 1', '#cards/link?index=1', {extraClasses: ['theme-primary']}),
+    new edq.render.cards.LinkCard('Some Link 2', '#cards/link?index=2', {extraClasses: ['theme-primary']}),
+    new edq.render.cards.LinkCard('Some Link 3', '#cards/link?index=3', {extraClasses: ['theme-primary']}),
 ];
 
 const smallCards = [
-    new edq.render.cards.SmallCard('1'),
-    new edq.render.cards.SmallCard('Card 2'),
-    new edq.render.cards.SmallCard('Small Card 3'),
-    new edq.render.cards.SmallCard('Some Small Card 4'),
+    new edq.render.cards.SmallCard('1', {extraClasses: ['theme-primary']}),
+    new edq.render.cards.SmallCard('Card 2', {extraClasses: ['theme-primary']}),
+    new edq.render.cards.SmallCard('Small Card 3', {extraClasses: ['theme-primary']}),
+    new edq.render.cards.SmallCard('Some Small Card 4', {extraClasses: ['theme-primary']}),
 ];
 
 const largeCards = [
-    new edq.render.cards.LargeCard('Large Card 1', loremIpsum.slice(0, 1)),
-    new edq.render.cards.LargeCard('Large Card 2', loremIpsum.slice(0, 2)),
-    new edq.render.cards.LargeCard('Large Card 3', loremIpsum.slice(0, 3)),
-    new edq.render.cards.LargeCard('Large Card 4', loremIpsum.slice(0, 4)),
+    new edq.render.cards.LargeCard('Large Card 1', loremIpsum.slice(0, 1), {extraClasses: ['theme-primary']}),
+    new edq.render.cards.LargeCard('Large Card 2', loremIpsum.slice(0, 2), {extraClasses: ['theme-primary']}),
+    new edq.render.cards.LargeCard('Large Card 3', loremIpsum.slice(0, 3), {extraClasses: ['theme-primary']}),
+    new edq.render.cards.LargeCard('Large Card 4', loremIpsum.slice(0, 4), {extraClasses: ['theme-primary']}),
 ];
 
 document.addEventListener("DOMContentLoaded", main);
