@@ -6,9 +6,6 @@ html {
     --color-primary-text: var(--color-light-primary-text);
     --color-primary-link: var(--color-light-primary-link);
     --color-primary-outline: var(--color-light-primary-outline);
-    --color-primary-code-bg: var(--color-light-primary-code-bg);
-    --color-primary-code-text: var(--color-light-primary-code-text);
-    --color-primary-code-outline: var(--color-light-primary-code-outline);
     --color-primary-accent-bg: var(--color-light-primary-accent-bg);
     --color-primary-accent-text: var(--color-light-primary-accent-text);
     --color-primary-accent-link: var(--color-light-primary-accent-link);
@@ -19,9 +16,6 @@ html {
     --color-secondary-text: var(--color-light-secondary-text);
     --color-secondary-link: var(--color-light-secondary-link);
     --color-secondary-outline: var(--color-light-secondary-outline);
-    --color-secondary-code-bg: var(--color-light-secondary-code-bg);
-    --color-secondary-code-text: var(--color-light-secondary-code-text);
-    --color-secondary-code-outline: var(--color-light-secondary-code-outline);
     --color-secondary-accent-bg: var(--color-light-secondary-accent-bg);
     --color-secondary-accent-text: var(--color-light-secondary-accent-text);
     --color-secondary-accent-link: var(--color-light-secondary-accent-link);
@@ -36,9 +30,6 @@ html {
         --color-primary-text: var(--color-light-primary-text);
         --color-primary-link: var(--color-light-primary-link);
         --color-primary-outline: var(--color-light-primary-outline);
-        --color-primary-code-bg: var(--color-light-primary-code-bg);
-        --color-primary-code-text: var(--color-light-primary-code-text);
-        --color-primary-code-outline: var(--color-light-primary-code-outline);
         --color-primary-accent-bg: var(--color-light-primary-accent-bg);
         --color-primary-accent-text: var(--color-light-primary-accent-text);
         --color-primary-accent-link: var(--color-light-primary-accent-link);
@@ -49,9 +40,6 @@ html {
         --color-secondary-text: var(--color-light-secondary-text);
         --color-secondary-link: var(--color-light-secondary-link);
         --color-secondary-outline: var(--color-light-secondary-outline);
-        --color-secondary-code-bg: var(--color-light-secondary-code-bg);
-        --color-secondary-code-text: var(--color-light-secondary-code-text);
-        --color-secondary-code-outline: var(--color-light-secondary-code-outline);
         --color-secondary-accent-bg: var(--color-light-secondary-accent-bg);
         --color-secondary-accent-text: var(--color-light-secondary-accent-text);
         --color-secondary-accent-link: var(--color-light-secondary-accent-link);
@@ -66,9 +54,6 @@ html {
         --color-primary-text: var(--color-dark-primary-text);
         --color-primary-link: var(--color-dark-primary-link);
         --color-primary-outline: var(--color-dark-primary-outline);
-        --color-primary-code-bg: var(--color-dark-primary-code-bg);
-        --color-primary-code-text: var(--color-dark-primary-code-text);
-        --color-primary-code-outline: var(--color-dark-primary-code-outline);
         --color-primary-accent-bg: var(--color-dark-primary-accent-bg);
         --color-primary-accent-text: var(--color-dark-primary-accent-text);
         --color-primary-accent-link: var(--color-dark-primary-accent-link);
@@ -79,9 +64,6 @@ html {
         --color-secondary-text: var(--color-dark-secondary-text);
         --color-secondary-link: var(--color-dark-secondary-link);
         --color-secondary-outline: var(--color-dark-secondary-outline);
-        --color-secondary-code-bg: var(--color-dark-secondary-code-bg);
-        --color-secondary-code-text: var(--color-dark-secondary-code-text);
-        --color-secondary-code-outline: var(--color-dark-secondary-code-outline);
         --color-secondary-accent-bg: var(--color-dark-secondary-accent-bg);
         --color-secondary-accent-text: var(--color-dark-secondary-accent-text);
         --color-secondary-accent-link: var(--color-dark-secondary-accent-link);
@@ -96,9 +78,6 @@ html {
     --color-primary-text: var(--color-light-primary-text);
     --color-primary-link: var(--color-light-primary-link);
     --color-primary-outline: var(--color-light-primary-outline);
-    --color-primary-code-bg: var(--color-light-primary-code-bg);
-    --color-primary-code-text: var(--color-light-primary-code-text);
-    --color-primary-code-outline: var(--color-light-primary-code-outline);
     --color-primary-accent-bg: var(--color-light-primary-accent-bg);
     --color-primary-accent-text: var(--color-light-primary-accent-text);
     --color-primary-accent-link: var(--color-light-primary-accent-link);
@@ -109,9 +88,6 @@ html {
     --color-secondary-text: var(--color-light-secondary-text);
     --color-secondary-link: var(--color-light-secondary-link);
     --color-secondary-outline: var(--color-light-secondary-outline);
-    --color-secondary-code-bg: var(--color-light-secondary-code-bg);
-    --color-secondary-code-text: var(--color-light-secondary-code-text);
-    --color-secondary-code-outline: var(--color-light-secondary-code-outline);
     --color-secondary-accent-bg: var(--color-light-secondary-accent-bg);
     --color-secondary-accent-text: var(--color-light-secondary-accent-text);
     --color-secondary-accent-link: var(--color-light-secondary-accent-link);
@@ -124,9 +100,6 @@ html {
     --color-primary-text: var(--color-dark-primary-text);
     --color-primary-link: var(--color-dark-primary-link);
     --color-primary-outline: var(--color-dark-primary-outline);
-    --color-primary-code-bg: var(--color-dark-primary-code-bg);
-    --color-primary-code-text: var(--color-dark-primary-code-text);
-    --color-primary-code-outline: var(--color-dark-primary-code-outline);
     --color-primary-accent-bg: var(--color-dark-primary-accent-bg);
     --color-primary-accent-text: var(--color-dark-primary-accent-text);
     --color-primary-accent-link: var(--color-dark-primary-accent-link);
@@ -137,9 +110,6 @@ html {
     --color-secondary-text: var(--color-dark-secondary-text);
     --color-secondary-link: var(--color-dark-secondary-link);
     --color-secondary-outline: var(--color-dark-secondary-outline);
-    --color-secondary-code-bg: var(--color-dark-secondary-code-bg);
-    --color-secondary-code-text: var(--color-dark-secondary-code-text);
-    --color-secondary-code-outline: var(--color-dark-secondary-code-outline);
     --color-secondary-accent-bg: var(--color-dark-secondary-accent-bg);
     --color-secondary-accent-text: var(--color-dark-secondary-accent-text);
     --color-secondary-accent-link: var(--color-dark-secondary-accent-link);

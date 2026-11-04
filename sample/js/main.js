@@ -1,5 +1,40 @@
 import * as edq from '../edq/js/edq.mjs';
 
+function loadColorScheme() {
+    let container = document.querySelector('.section-colorscheme');
+
+    for (const brightmode of ['light', 'dark']) {
+        let outline = (brightmode === 'light') ? 'black' : 'white';
+
+        let brightmodeContainer = document.createElement('div');
+        brightmodeContainer.classList.add('subsection', 'theme-primary');
+        container.appendChild(brightmodeContainer);
+
+        let brightmodeLabel = document.createElement('h3');
+        brightmodeLabel.style.textTransform = 'capitalize';
+        brightmodeLabel.textContent = `${brightmode} Mode`;
+        brightmodeContainer.appendChild(brightmodeLabel);
+
+        let contentContainer = document.createElement('div');
+        brightmodeContainer.appendChild(contentContainer);
+
+        for (const palette of ['primary', 'secondary']) {
+            let subsection = document.createElement('div');
+            subsection.classList.add('subsubsection', `${brightmode}mode`, `theme-${palette}`);
+            subsection.style.outline = `2px solid ${outline}`;
+            subsection.innerHTML = `<h4 style='text-transform: capitalize;'>${palette} Palette</h4>` + colorSchemeColorTable;
+            contentContainer.appendChild(subsection);
+        }
+
+        let subsection = document.createElement('div');
+        subsection.classList.add('subsubsection', `${brightmode}mode`, `theme-primary`);
+        subsection.style.outline = `2px solid ${outline}`;
+        subsection.innerHTML = `<h4>Elements</h4>` + colorSchemeElementTable;
+        contentContainer.appendChild(subsection);
+    }
+
+}
+
 function loadIcons() {
     let children = [];
     for (const name of edq.render.icons.getNames()) {
@@ -138,6 +173,8 @@ function main() {
     edq.util.table.enableSortingAll();
 
     loadRouting();
+
+    loadColorScheme();
     loadIcons();
     loadCodeBlocks();
     loadInputFields();
@@ -239,5 +276,154 @@ const largeCards = [
     new edq.render.cards.LargeCard('Large Card 3', loremIpsum.slice(0, 3), {extraClasses: ['theme-primary']}),
     new edq.render.cards.LargeCard('Large Card 4', loremIpsum.slice(0, 4), {extraClasses: ['theme-primary']}),
 ];
+
+const colorSchemeColorTable = `
+    <table class='colorscheme standard-table' style='text-align: center;'>
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>White</th>
+                <th>Black</th>
+                <th>Recommended</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Background</td>
+                <td style='background-color: white; color: var(--color-active-bg);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-bg);'><span>█</span></td>
+                <td style='background-color: var(--color-inactive-bg); color: var(--color-active-bg);'><span>█</span></td>
+            </tr>
+            <tr>
+                <td>Text</td>
+                <td style='background-color: white; color: var(--color-active-text);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-text);'><span>█</span></td>
+                <td style='background-color: var(--color-active-bg); color: var(--color-active-text);'><span>█</span></td>
+            </tr>
+            <tr>
+                <td>Link</td>
+                <td style='background-color: white; color: var(--color-active-link);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-link);'><span>█</span></td>
+                <td style='background-color: var(--color-active-bg); color: var(--color-active-link);'><span>█</span></td>
+            </tr>
+            <tr>
+                <td>Outline</td>
+                <td style='background-color: white; color: var(--color-active-outline);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-outline);'><span>█</span></td>
+                <td style='background-color: var(--color-active-bg); color: var(--color-active-outline);'><span>█</span></td>
+            </tr>
+            <tr>
+                <td>Accent Background</td>
+                <td style='background-color: white; color: var(--color-active-accent-bg);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-accent-bg);'><span>█</span></td>
+                <td style='background-color: var(--color-active-bg); color: var(--color-active-accent-bg);'><span>█</span></td>
+            </tr>
+            <tr>
+                <td>Accent Text</td>
+                <td style='background-color: white; color: var(--color-active-accent-text);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-accent-text);'><span>█</span></td>
+                <td style='background-color: var(--color-active-accent-bg); color: var(--color-active-accent-text);'><span>█</span></td>
+            </tr>
+            <tr>
+                <td>Accent Link</td>
+                <td style='background-color: white; color: var(--color-active-accent-link);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-accent-link);'><span>█</span></td>
+                <td style='background-color: var(--color-active-accent-bg); color: var(--color-active-accent-link);'><span>█</span></td>
+            </tr>
+            <tr>
+                <td>Accent Outline</td>
+                <td style='background-color: white; color: var(--color-active-accent-outline);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-accent-outline);'><span>█</span></td>
+                <td style='background-color: var(--color-active-accent-bg); color: var(--color-active-accent-outline);'><span>█</span></td>
+            </tr>
+            <tr>
+                <td>Error</td>
+                <td style='background-color: white; color: var(--color-active-error-text);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-error-text);'><span>█</span></td>
+                <td style='background-color: var(--color-active-bg); color: var(--color-active-error-text);'><span>█</span></td>
+            </tr>
+        </tbody>
+    </table>
+`;
+
+const colorSchemeElementTable = `
+    <table class='colorscheme standard-table'>
+        <thead>
+            <tr>
+                <th>Element</th>
+                <th>Primary</th>
+                <th>Secondary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Background</td>
+                <td class='theme-primary'></td>
+                <td class='theme-secondary'></td>
+            </tr>
+            <tr>
+                <td>Text</td>
+                <td class='theme-primary'><span>Primary</span></td>
+                <td class='theme-secondary'><span>Secondary</span></td>
+            </tr>
+            <tr>
+                <td>Accent</td>
+                <td class='theme-primary'><span class='theme-accent'>Primary</span></td>
+                <td class='theme-secondary'><span class='theme-accent'>Secondary</span></td>
+            </tr>
+            <tr>
+                <td>Link</td>
+                <td class='theme-primary'><a href='#'>Primary</a></td>
+                <td class='theme-secondary'><a href='#'>Secondary</a></td>
+            </tr>
+            <tr>
+                <td>Code</td>
+                <td class='theme-primary'><code>Primary</code></td>
+                <td class='theme-secondary'><code>Secondary</code></td>
+            </tr>
+            <tr>
+                <td>Button</td>
+                <td class='theme-primary'><button>Primary</button></td>
+                <td class='theme-secondary'><button>Secondary</button></td>
+            </tr>
+            <tr>
+                <td>Button (Disabled)</td>
+                <td class='theme-primary'><button disabled=''>Primary</button></td>
+                <td class='theme-secondary'><button disabled=''>Secondary</button></td>
+            </tr>
+            <tr>
+                <td>Card (Link)</td>
+                <td class='theme-primary'>
+                    <div class='card drop-shadow' data-type='link' data-name='link'>
+                        <span><a>Primary</a></span>
+                    </div>
+                </td>
+                <td class='theme-secondary'>
+                    <div class='card drop-shadow' data-type='link' data-name='link'>
+                        <span><a>Secondary</a></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Card (Small)</td>
+                <td class='theme-primary'>
+                    <div class='card drop-shadow' data-type='small' data-name='small'>
+                        <span>Primary</span>
+                    </div>
+                </td>
+                <td class='theme-secondary'>
+                    <div class='card drop-shadow' data-type='small' data-name='small'>
+                        <span>Secondary</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Horizontal Rule</td>
+                <td class='theme-primary'><hr></td>
+                <td class='theme-secondary'><hr></td>
+            </tr>
+        </tbody>
+    </table>
+`;
 
 document.addEventListener("DOMContentLoaded", main);

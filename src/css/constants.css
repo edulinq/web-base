@@ -5,7 +5,6 @@
  * The colors pallets are ordered as: `primary` and  `secondary`.
  * If more colors are needed, these should be cycled through again.
  * Accents can be used as small splashes of color on their respective background.
- * Generated code will define `.theme-primary`, `.theme-secondary`,`.theme-accent`, and `.theme-error` according to the color constants.
  */
 
 :root {
@@ -73,9 +72,6 @@
     --color-primary-text: inherit;
     --color-primary-link: inherit;
     --color-primary-outline: inherit;
-    --color-primary-code-bg: inherit;
-    --color-primary-code-text: inherit;
-    --color-primary-code-outline: inherit;
     --color-primary-accent-bg: inherit;
     --color-primary-accent-text: inherit;
     --color-primary-accent-link: inherit;
@@ -86,9 +82,6 @@
     --color-secondary-text: inherit;
     --color-secondary-link: inherit;
     --color-secondary-outline: inherit;
-    --color-secondary-code-bg: inherit;
-    --color-secondary-code-text: inherit;
-    --color-secondary-code-outline: inherit;
     --color-secondary-accent-bg: inherit;
     --color-secondary-accent-text: inherit;
     --color-secondary-accent-link: inherit;
@@ -97,15 +90,12 @@
 
     /**
      * Active Context Variables
-     * The generated code will set these depending on the currently active theme palette.
+     * The generated rules will set these depending on the currently active theme palette.
      */
     --color-active-bg: inherit;
     --color-active-text: inherit;
     --color-active-link: inherit;
     --color-active-outline: inherit;
-    --color-active-code-bg: inherit;
-    --color-active-code-text: inherit;
-    --color-active-code-outline: inherit;
     --color-active-accent-bg: inherit;
     --color-active-accent-text: inherit;
     --color-active-accent-link: inherit;
@@ -114,15 +104,12 @@
 
     /**
      * Inactive Context Variables
-     * The generated code will set these depending on the currently inactive theme palette.
+     * The generated rules will set these depending on the currently inactive theme palette.
      */
     --color-inactive-bg: inherit;
     --color-inactive-text: inherit;
     --color-inactive-link: inherit;
     --color-inactive-outline: inherit;
-    --color-inactive-code-bg: inherit;
-    --color-inactive-code-text: inherit;
-    --color-inactive-code-outline: inherit;
     --color-inactive-accent-bg: inherit;
     --color-inactive-accent-text: inherit;
     --color-inactive-accent-link: inherit;

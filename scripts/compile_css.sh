@@ -38,6 +38,8 @@ readonly AUTO_THEME_PREFIXES=(
     '.theme-primary .theme-secondary'
     '.theme-primary .theme-secondary .theme-primary'
     '.theme-primary .theme-secondary .theme-primary .theme-secondary'
+    '.theme-primary .theme-secondary .theme-primary .theme-secondary .theme-primary'
+    '.theme-primary .theme-secondary .theme-primary .theme-secondary .theme-primary .theme-secondary'
 )
 
 function main() {
@@ -71,7 +73,6 @@ function main() {
             inactive='primary'
         fi
 
-        # Normal
         echo "" >> "${CSS_OUT_PATH}"
         echo "${prefix} {" >> "${CSS_OUT_PATH}"
         echo "    --color-active-bg: var(--color-${active}-bg);" >> "${CSS_OUT_PATH}"
