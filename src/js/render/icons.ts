@@ -32,6 +32,7 @@ function getElement(name: string | undefined | null, title: string | undefined =
     }
 
     let svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgElement.classList.add('icon');
     svgElement.classList.add(...classes);
     svgElement.setAttribute('viewBox', '0 0 100 100');
     svgElement.innerHTML = `

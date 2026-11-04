@@ -65,72 +65,6 @@
     --color-light-secondary-accent-outline: var(--_common-light-outline);
     --color-light-secondary-error-text: var(--_common-light-error);
 
-
-
-
-
-
-    /* TEST
-
-    --color-light-bg-primary: #dcdcfb;
-    --color-light-bg-secondary: #ebebff;
-    --color-light-bg-tertiary: #ffffff;
-
-    --color-light-bg-accent-primary: rgb(134, 114, 231);
-    --color-light-bg-accent-primary-low: rgba(134, 114, 231, 0.8);
-    --color-light-bg-accent-secondary: rgb(151, 227, 254);
-    --color-light-bg-accent-secondary-low: rgba(151, 227, 254, 0.8);
-    --color-light-bg-accent-tertiary: rgb(217, 4, 142);
-    --color-light-bg-accent-tertiary-low: rgba(217, 4, 142, 0.8);
-
-    --color-light-bg-accent-gradient: linear-gradient(60deg, var(--color-light-bg-tertiary) 0%, var(--color-light-bg-secondary) 50%, var(--color-light-bg-primary) 100%);
-
-    --color-light-text-primary: rgba(0, 0, 0, 0.90);
-    --color-light-text-secondary: rgba(0, 0, 0, 0.75);
-    --color-light-text-tertiary: rgba(0, 0, 0, 0.65);
-    --color-light-text-accent: rgba(0, 0, 0, 0.90);
-
-    --color-light-text-link: rgb(0, 68, 204);
-    --color-light-text-link-low: rgb(0, 68, 204, 0.8);
-
-    --color-light-text-primary-low: rgba(0, 0, 0, 0.60);
-    --color-light-text-secondary-low: rgba(0, 0, 0, 0.55);
-    --color-light-text-tertiary-low: rgba(0, 0, 0, 0.45);
-    --color-light-text-accent-low: rgba(0, 0, 0, 0.45);
-
-    --color-dark-bg-primary: #2c2934;
-    --color-dark-bg-secondary: #171322;
-    --color-dark-bg-tertiary: #0b0812;
-
-    --color-dark-text-primary: rgba(255, 255, 255, 0.90);
-    --color-dark-text-secondary: rgba(255, 255, 255, 0.80);
-    --color-dark-text-tertiary: rgba(255, 255, 255, 0.70);
-    --color-dark-text-accent: rgba(255, 255, 255, 0.90);
-
-    --color-dark-text-link: rgb(122, 170, 255);
-    --color-dark-text-link-low: rgb(122, 170, 255, 0.8);
-
-    --color-dark-text-primary-low: rgba(255, 255, 255, 0.50);
-    --color-dark-text-secondary-low: rgba(255, 255, 255, 0.45);
-    --color-dark-text-tertiary-low: rgba(255, 255, 255, 0.40);
-    --color-dark-text-accent-low: rgba(255, 255, 255, 0.45);
-
-    --color-dark-bg-accent-primary: rgb(134, 114, 231);
-    --color-dark-bg-accent-primary-low: rgb(134, 114, 231, 0.8);
-    --color-dark-bg-accent-secondary: rgba(176, 0, 120, 1);
-    --color-dark-bg-accent-secondary-low: rgba(176, 0, 120, 0.8);
-    --color-dark-bg-accent-tertiary: rgb(77, 204, 233);
-    --color-dark-bg-accent-tertiary-low: rgba(77, 204, 233, 0.8);
-    --color-dark-bg-accent-gradient: linear-gradient(60deg, var(--color-dark-bg-tertiary) 0%, var(--color-dark-bg-secondary) 50%, var(--color-dark-bg-primary) 100%);
-
-    --color-bg-shadow: #0c0814;
-
-    --color-highlighter: rgba(255, 255, 255, 0.1);
-    --color-text-error: #f40055;
-    --color-light-bg-error: rgba(0, 0, 0, 0.1);
-    --color-dark-bg-error: rgba(255, 255, 255, 0.1);
-    */
-
     /* Sizing */
 
     --page-content-max-width: 80rem;
@@ -138,29 +72,25 @@
 
     --footer-min-height: 2rem;
 
-    /* TEST
-    --headfoot-horizontal-padding: 1rem;
-    */
-
-    /* Icons */
-
-    --logo-size-large: 144px;
-    --logo-size-normal: 54px;
-    --logo-size-small: 42px;
-
-    --icon-size-larger: 48px;
-    --icon-size-large: 42px;
-    --icon-size-normal: 36px;
-    --icon-size-small: 30px;
-    --icon-size-smaller: 24px;
-
     /* Font */
 
-    --font-size-larger: 1.40rem;
-    --font-size-large: 1.30rem;
-    --font-size-normal: 1.15rem;
-    --font-size-small: 1.00rem;
-    --font-size-smaller: 0.90rem;
+    --base-font-size: 12pt;
+    --base-font-family: "Montserrat", Verdana, sans-serif;
+
+    --font-size-largest: 2.00rem;
+    --font-size-larger: 1.50rem;
+    --font-size-large: 1.17rem;
+    --font-size-normal: 1.00rem;
+    --font-size-small: 0.83rem;
+    --font-size-smaller: 0.67rem;
+    --font-size-smallest: 0.50rem;
+
+    --font-size-h1: 2.00rem;
+    --font-size-h2: 1.50rem;
+    --font-size-h3: 1.30rem;
+    --font-size-h4: 1.00rem;
+    --font-size-h5: 0.80rem;
+    --font-size-h6: 0.70rem;
 
     --font-weight-normal: 450;
     --font-weight-bold: 650;
@@ -169,6 +99,12 @@
 
     --curve-radius-small: 8px;
     --curve-radius-large: 16px;
+}
 
-    /* TEST */
+html {
+    font-optical-sizing: auto;
+    font-size: var(--base-font-size);
+    font-family: var(--base-font-family);
+    font-weight: var(--font-weight-normal);
+    font-style: normal;
 }
