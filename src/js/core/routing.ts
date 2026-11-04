@@ -219,6 +219,58 @@ class NavExactRoute extends Route {
     }
 }
 
+interface Breadcrumb {
+    label: string;
+    link: string;
+}
+
+// A route that wraps an existing route,
+// but also sets the given breadcrumbs in `.breadcrumbs`.
+class BreadcrumbRoute extends Route {
+    breadcrumbs: Array<Breadcrumb>;
+
+    route: Route;
+
+    constructor(breadcrumbs: Array<Breadcrumb>, route: Route) {
+        super(function(request: RoutingRequest) {
+            BreadcrumbRoute.navHandlerWrapper(breadcrumbs, route, request);
+        });
+
+        this.breadcrumbs = breadcrumbs;
+        this.route = route;
+    }
+
+    match(request: RoutingRequest): boolean {
+        return this.route.match(request);
+    }
+
+    private static navHandlerWrapper(breadcrumbs: Array<Breadcrumb>, route: Route, request: RoutingRequest) {
+        let container = document.querySelector('.breadcrumbs');
+        if (container == null) {
+            console.warn("BreadcrumbRoute used, but Cannot find breadcrumb container (`.breadcrumbs`).");
+            route.getHandler()(request);
+            return;
+        }
+
+        let elements = [];
+        for (const breadcrumb of breadcrumbs) {
+            let linkElement = document.createElement('a');
+            linkElement.href = breadcrumb.link;
+            linkElement.textContent = breadcrumb.label;
+
+            let parentElement = document.createElement('span');
+            parentElement.appendChild(linkElement);
+
+            elements.push(parentElement);
+        }
+
+        container.replaceChildren(...elements);
+
+        // Call the existing handler.
+        route.getHandler()(request);
+    }
+}
+
 // Initialize routing.
 function init() {
     currentRequest = undefined;
@@ -339,10 +391,15 @@ export {
     RoutingHandler,
     RoutingRequest,
     Route,
+
     StringRoute,
     RegexRoute,
+
     NavRoute,
     NavExactRoute,
+
+    Breadcrumb,
+    BreadcrumbRoute,
 
     init,
     stop,

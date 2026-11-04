@@ -62,10 +62,46 @@ function loadInputFields() {
 
 function loadRouting() {
     // All the routes just use the same handler (normally they would each have their own).
-    edq.core.routing.addRoute(new edq.core.routing.NavExactRoute(new edq.core.routing.RegexRoute('target=color-scheme', routeHandler)));
-    edq.core.routing.addRoute(new edq.core.routing.NavExactRoute(new edq.core.routing.RegexRoute('target=icons', routeHandler)));
-    edq.core.routing.addRoute(new edq.core.routing.NavExactRoute(new edq.core.routing.RegexRoute('target=base-components', routeHandler)));
-    edq.core.routing.addRoute(new edq.core.routing.NavExactRoute(new edq.core.routing.RegexRoute('target=edulinq-components', routeHandler)));
+
+    edq.core.routing.addRoute(
+        new edq.core.routing.BreadcrumbRoute([{label: 'Home', link: '#'}],
+            new edq.core.routing.NavExactRoute(
+                new edq.core.routing.StringRoute('', routeHandler),
+            ),
+        ),
+    );
+
+    edq.core.routing.addRoute(
+        new edq.core.routing.BreadcrumbRoute([{label: 'Home', link: '#'}, {label: 'Color Scheme', link: '#nav?target=color-scheme'}],
+            new edq.core.routing.NavExactRoute(
+                new edq.core.routing.RegexRoute('target=color-scheme', routeHandler),
+            ),
+        ),
+    );
+
+    edq.core.routing.addRoute(
+        new edq.core.routing.BreadcrumbRoute([{label: 'Home', link: '#'}, {label: 'Icons', link: '#nav?target=icons'}],
+            new edq.core.routing.NavExactRoute(
+                new edq.core.routing.RegexRoute('target=icons', routeHandler),
+            ),
+        ),
+    );
+
+    edq.core.routing.addRoute(
+        new edq.core.routing.BreadcrumbRoute([{label: 'Home', link: '#'}, {label: 'Base Components', link: '#nav?target=base-components'}],
+            new edq.core.routing.NavExactRoute(
+                new edq.core.routing.RegexRoute('target=base-components', routeHandler),
+            ),
+        ),
+    );
+
+    edq.core.routing.addRoute(
+        new edq.core.routing.BreadcrumbRoute([{label: 'Home', link: '#'}, {label: 'EduLinq Components', link: '#nav?target=edulinq-components'}],
+            new edq.core.routing.NavExactRoute(
+                new edq.core.routing.RegexRoute('target=edulinq-components', routeHandler),
+            ),
+        ),
+    );
 
     // Fallback to the same handler for everyone else.
     edq.core.routing.setNotFound(routeHandler);
