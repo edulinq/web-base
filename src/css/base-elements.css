@@ -78,13 +78,13 @@ button,
 input,
 select,
 textarea {
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text-secondary);
+    background-color: var(--color-inactive-bg);
+    color: var(--color-inactive-text);
 
-    border-color: var(--color-text-secondary);
+    border-color: var(--color-inactive-text);
     border-width: 2px;
     border-radius: var(--curve-radius-small);
-    box-shadow: 2px 2px 1px var(--color-bg-shadow);
+    box-shadow: 2px 2px 1px var(--color-inactive-outline);
 
     cursor: pointer;
     max-width: 80svw;
@@ -99,9 +99,7 @@ button:disabled,
 input:disabled,
 select:disabled,
 textarea:disabled {
-    background-color: var(--color-bg-secondary-low);
-    color: var(--color-text-secondary-low);
-    border-color: var(--color-text-secondary-low);
+    filter: brightness(0.50);
     cursor: no-drop;
 }
 
@@ -121,7 +119,7 @@ button:hover:not([disabled]),
 input:hover:not([disabled]),
 select:hover:not([disabled]),
 textarea:hover:not([disabled]) {
-    box-shadow: -1px -1px 0px var(--color-bg-shadow);
+    box-shadow: -1px -1px 0px var(--color-active-outline);
 }
 
 button:hover:not([disabled]) {
@@ -136,15 +134,15 @@ textarea:focus:not([disabled]) {
 }
 
 input[type="checkbox"] {
-    accent-color: var(--color-bg-accent-secondary);
+    accent-color: var(--color-inactive-accent-bg);
     height: 1.25rem;
     width: 1.25rem;
 }
 
 input[type="checkbox"]:hover:not([disabled]) {
-    box-shadow: 2px 2px 0px var(--color-bg-shadow);
+    box-shadow: 2px 2px 0px var(--color-active-outline);
 }
 
 input[type="checkbox"]:focus {
-    box-shadow: 2px 2px 1px var(--color-bg-shadow);
+    box-shadow: 2px 2px 1px var(--color-active-outline);
 }

@@ -64,59 +64,41 @@ function main() {
     echo "/* Generated Rules */" >> "${CSS_OUT_PATH}"
 
     for prefix in "${AUTO_THEME_PREFIXES[@]}" ; do
-        local base=$(echo "${prefix}" | sed 's/.*-\(\w\+\)$/\1/')
+        local active=$(echo "${prefix}" | sed 's/.*-\(\w\+\)$/\1/')
+
+        local inactive='secondary'
+        if [[ $active == 'secondary' ]] ; then
+            inactive='primary'
+        fi
 
         # Normal
         echo "" >> "${CSS_OUT_PATH}"
         echo "${prefix} {" >> "${CSS_OUT_PATH}"
-        echo "    background-color: var(--color-${base}-bg);" >> "${CSS_OUT_PATH}"
-        echo "    color: var(--color-${base}-text);" >> "${CSS_OUT_PATH}"
-        echo "    fill: var(--color-${base}-text);" >> "${CSS_OUT_PATH}"
-        echo "    stroke: var(--color-${base}-text);" >> "${CSS_OUT_PATH}"
-        echo "    outline-color: var(--color-${base}-outline);" >> "${CSS_OUT_PATH}"
-        echo "    border-color: var(--color-${base}-outline);" >> "${CSS_OUT_PATH}"
-        echo "}" >> "${CSS_OUT_PATH}"
-
-        # Links
+        echo "    --color-active-bg: var(--color-${active}-bg);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-text: var(--color-${active}-text);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-link: var(--color-${active}-link);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-outline: var(--color-${active}-outline);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-code-bg: var(--color-${active}-code-bg);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-code-text: var(--color-${active}-code-text);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-code-outline: var(--color-${active}-code-outline);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-accent-bg: var(--color-${active}-accent-bg);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-accent-text: var(--color-${active}-accent-text);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-accent-link: var(--color-${active}-accent-link);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-accent-outline: var(--color-${active}-accent-outline);" >> "${CSS_OUT_PATH}"
+        echo "    --color-active-error-text: var(--color-${active}-error-text);" >> "${CSS_OUT_PATH}"
         echo "" >> "${CSS_OUT_PATH}"
-        echo "${prefix} a {" >> "${CSS_OUT_PATH}"
-        echo "    color: var(--color-${base}-link);" >> "${CSS_OUT_PATH}"
-        echo "    fill: var(--color-${base}-link);" >> "${CSS_OUT_PATH}"
-        echo "    stroke: var(--color-${base}-link);" >> "${CSS_OUT_PATH}"
-        echo "}" >> "${CSS_OUT_PATH}"
-
-        # Accent
-        echo "" >> "${CSS_OUT_PATH}"
-        echo "${prefix} .theme-accent {" >> "${CSS_OUT_PATH}"
-        echo "    background-color: var(--color-${base}-accent-bg);" >> "${CSS_OUT_PATH}"
-        echo "    color: var(--color-${base}-accent-text);" >> "${CSS_OUT_PATH}"
-        echo "    fill: var(--color-${base}-accent-text);" >> "${CSS_OUT_PATH}"
-        echo "    stroke: var(--color-${base}-accent-text);" >> "${CSS_OUT_PATH}"
-        echo "    outline-color: var(--color-${base}-accent-outline);" >> "${CSS_OUT_PATH}"
-        echo "    border-color: var(--color-${base}-accent-outline);" >> "${CSS_OUT_PATH}"
-        echo "}" >> "${CSS_OUT_PATH}"
-
-        # Accent Link
-        echo "" >> "${CSS_OUT_PATH}"
-        echo "${prefix} .theme-accent a {" >> "${CSS_OUT_PATH}"
-        echo "    color: var(--color-${base}-accent-link);" >> "${CSS_OUT_PATH}"
-        echo "    fill: var(--color-${base}-accent-link);" >> "${CSS_OUT_PATH}"
-        echo "    stroke: var(--color-${base}-accent-link);" >> "${CSS_OUT_PATH}"
-        echo "}" >> "${CSS_OUT_PATH}"
-
-        # Error
-        echo "" >> "${CSS_OUT_PATH}"
-        echo "${prefix} .theme-error {" >> "${CSS_OUT_PATH}"
-        echo "    color: var(--color-${base}-error-text);" >> "${CSS_OUT_PATH}"
-        echo "    fill: var(--color-${base}-error-text);" >> "${CSS_OUT_PATH}"
-        echo "    stroke: var(--color-${base}-error-text);" >> "${CSS_OUT_PATH}"
-        echo "}" >> "${CSS_OUT_PATH}"
-
-        # Drop Shadow
-        # This is special because box-shadow does not allow its color to be defined separately (and defaults to `color`).
-        echo "" >> "${CSS_OUT_PATH}"
-        echo "${prefix} .drop-shadow {" >> "${CSS_OUT_PATH}"
-        echo "    box-shadow: 2px 2px 0px var(--color-${base}-outline);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-bg: var(--color-${inactive}-bg);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-text: var(--color-${inactive}-text);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-link: var(--color-${inactive}-link);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-outline: var(--color-${inactive}-outline);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-code-bg: var(--color-${inactive}-code-bg);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-code-text: var(--color-${inactive}-code-text);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-code-outline: var(--color-${inactive}-code-outline);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-accent-bg: var(--color-${inactive}-accent-bg);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-accent-text: var(--color-${inactive}-accent-text);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-accent-link: var(--color-${inactive}-accent-link);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-accent-outline: var(--color-${inactive}-accent-outline);" >> "${CSS_OUT_PATH}"
+        echo "    --color-inactive-error-text: var(--color-${inactive}-error-text);" >> "${CSS_OUT_PATH}"
         echo "}" >> "${CSS_OUT_PATH}"
     done
 

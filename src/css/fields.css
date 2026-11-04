@@ -12,12 +12,13 @@
     gap: 0.25rem;
 }
 
-.edq-field .error-message {
-    color: var(--color-text-error);
+.edq-field .error-message,
+.edq-field label .required {
+    color: var(--color-active-error-text);
 }
 
 .edq-field input:invalid.touched {
-    border-color: var(--color-text-error);
+    border-color: var(--color-active-error-text);
 }
 
 .edq-field-slider > div,

@@ -87,7 +87,7 @@ abstract class Field {
             labelElement.innerText = this.options.label;
 
             if (this.options.required) {
-                labelElement.innerHTML += ' <span class="required-color">*</span>'
+                labelElement.innerHTML += ' <span class="required">*</span>'
             }
 
             if (this.options.labelBefore) {

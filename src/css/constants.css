@@ -65,6 +65,70 @@
     --color-light-secondary-accent-outline: var(--_common-light-outline);
     --color-light-secondary-error-text: var(--_common-light-error);
 
+    /**
+     * Brightness Mode Variables.
+     * These will be set depending on the active brightness (light/dark) mode.
+     */
+    --color-primary-bg: inherit;
+    --color-primary-text: inherit;
+    --color-primary-link: inherit;
+    --color-primary-outline: inherit;
+    --color-primary-code-bg: inherit;
+    --color-primary-code-text: inherit;
+    --color-primary-code-outline: inherit;
+    --color-primary-accent-bg: inherit;
+    --color-primary-accent-text: inherit;
+    --color-primary-accent-link: inherit;
+    --color-primary-accent-outline: inherit;
+    --color-primary-error-text: inherit;
+
+    --color-secondary-bg: inherit;
+    --color-secondary-text: inherit;
+    --color-secondary-link: inherit;
+    --color-secondary-outline: inherit;
+    --color-secondary-code-bg: inherit;
+    --color-secondary-code-text: inherit;
+    --color-secondary-code-outline: inherit;
+    --color-secondary-accent-bg: inherit;
+    --color-secondary-accent-text: inherit;
+    --color-secondary-accent-link: inherit;
+    --color-secondary-accent-outline: inherit;
+    --color-secondary-error-text: inherit;
+
+    /**
+     * Active Context Variables
+     * The generated code will set these depending on the currently active theme palette.
+     */
+    --color-active-bg: inherit;
+    --color-active-text: inherit;
+    --color-active-link: inherit;
+    --color-active-outline: inherit;
+    --color-active-code-bg: inherit;
+    --color-active-code-text: inherit;
+    --color-active-code-outline: inherit;
+    --color-active-accent-bg: inherit;
+    --color-active-accent-text: inherit;
+    --color-active-accent-link: inherit;
+    --color-active-accent-outline: inherit;
+    --color-active-error-text: inherit;
+
+    /**
+     * Inactive Context Variables
+     * The generated code will set these depending on the currently inactive theme palette.
+     */
+    --color-inactive-bg: inherit;
+    --color-inactive-text: inherit;
+    --color-inactive-link: inherit;
+    --color-inactive-outline: inherit;
+    --color-inactive-code-bg: inherit;
+    --color-inactive-code-text: inherit;
+    --color-inactive-code-outline: inherit;
+    --color-inactive-accent-bg: inherit;
+    --color-inactive-accent-text: inherit;
+    --color-inactive-accent-link: inherit;
+    --color-inactive-accent-outline: inherit;
+    --color-inactive-error-text: inherit;
+
     /* Sizing */
 
     --page-content-max-width: 80rem;
@@ -107,4 +171,42 @@ html {
     font-family: var(--base-font-family);
     font-weight: var(--font-weight-normal);
     font-style: normal;
+}
+
+.theme-primary,
+.theme-secondary {
+    background-color: var(--color-active-bg);
+    color: var(--color-active-text);
+    fill: var(--color-active-text);
+    stroke: var(--color-active-text);
+    outline-color: var(--color-active-outline);
+    border-color: var(--color-active-outline);
+}
+
+.theme-primary a,
+.theme-secondary a {
+    color: var(--color-active-link);
+    fill: var(--color-active-link);
+    stroke: var(--color-active-link);
+}
+
+.theme-accent {
+    background-color: var(--color-active-accent-bg);
+    color: var(--color-active-accent-text);
+    fill: var(--color-active-accent-text);
+    stroke: var(--color-active-accent-text);
+    outline-color: var(--color-active-accent-outline);
+    border-color: var(--color-active-accent-outline);
+}
+
+.theme-accent a {
+    color: var(--color-active-accent-link);
+    fill: var(--color-active-accent-link);
+    stroke: var(--color-active-accent-link);
+}
+
+.theme-error {
+    color: var(--color-active-error-text);
+    fill: var(--color-active-error-text);
+    stroke: var(--color-active-error-text);
 }
