@@ -30,30 +30,24 @@
     --color-dark-secondary-accent-outline: #842666;
     --color-dark-secondary-error-text: var(--color-dark-primary-error-text);
 
-    --_light-secondary-bg: #ebebff;
-
-    /* TEST - Replace these. */
-    --_common-light-outline: #0c0814;
-    --_common-light-link: #0044cc;
-
     --color-light-primary-bg: #dcdcfb;
     --color-light-primary-text: #3b3b40;
     --color-light-primary-link: #0044cc;
-    --color-light-primary-outline: var(--_common-light-outline);
-    --color-light-primary-accent-bg: #8672e7;
-    --color-light-primary-accent-text: #000000;
-    --color-light-primary-accent-link: #000000;
-    --color-light-primary-accent-outline: var(--_common-light-outline);
+    --color-light-primary-outline: #9287a9;
+    --color-light-primary-accent-bg: var(--color-dark-primary-accent-bg);
+    --color-light-primary-accent-text: var(--color-light-primary-text);
+    --color-light-primary-accent-link: #255dcd;
+    --color-light-primary-accent-outline: var(--color-dark-primary-accent-outline);
     --color-light-primary-error-text: var(--color-dark-primary-error-text);
 
-    --color-light-secondary-bg: var(--_light-secondary-bg);
-    --color-light-secondary-text: #3b3b40;
-    --color-light-secondary-link: var(--_common-light-link);
-    --color-light-secondary-outline: var(--_common-light-outline);
-    --color-light-secondary-accent-bg: #97e3fe;
+    --color-light-secondary-bg: #ebebff;
+    --color-light-secondary-text: var(--color-light-primary-text);
+    --color-light-secondary-link: var(--color-light-primary-link);
+    --color-light-secondary-outline: #524a63;
+    --color-light-secondary-accent-bg: #87d6f2;
     --color-light-secondary-accent-text: var(--color-light-primary-accent-text);
     --color-light-secondary-accent-link: var(--color-light-primary-accent-link);
-    --color-light-secondary-accent-outline: var(--_common-light-outline);
+    --color-light-secondary-accent-outline: #62a6be;
     --color-light-secondary-error-text: var(--color-light-primary-error-text);
 
     /**
