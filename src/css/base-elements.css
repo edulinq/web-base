@@ -81,8 +81,8 @@ textarea {
     background-color: var(--color-inactive-bg);
     color: var(--color-inactive-text);
 
-    border-color: var(--color-inactive-text);
-    border-width: 2px;
+    border-color: var(--color-inactive-outline);
+    border-width: 1px;
     border-radius: var(--curve-radius-small);
     box-shadow: 2px 2px 1px var(--color-inactive-outline);
 
@@ -119,7 +119,7 @@ button:hover:not([disabled]),
 input:hover:not([disabled]),
 select:hover:not([disabled]),
 textarea:hover:not([disabled]) {
-    box-shadow: -1px -1px 0px var(--color-active-outline);
+    filter: brightness(1.25);
 }
 
 button:hover:not([disabled]) {

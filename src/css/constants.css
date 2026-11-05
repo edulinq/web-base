@@ -10,59 +10,51 @@
 :root {
     /* Color Scheme */
 
-    --_dark-secondary-bg: #171322;
-
-    /* TEST - Replace these. */
-    --_common-dark-outline: #0c0814;
-    --_common-dark-link: rgb(122, 170, 255);
-    --_common-dark-error: #f40055;
-
     --color-dark-primary-bg: #2c2934;
-    --color-dark-primary-text: rgba(255, 255, 255, 0.90);
-    --color-dark-primary-link: var(--_common-dark-link);
-    --color-dark-primary-outline: var(--_common-dark-outline);
-    --color-dark-primary-accent-bg: rgb(134, 114, 231);
-    --color-dark-primary-accent-text: rgba(255, 255, 255, 0.90);
-    --color-dark-primary-accent-link: rgba(255, 255, 255, 0.90);
-    --color-dark-primary-accent-outline: var(--_common-dark-outline);
-    --color-dark-primary-error-text: var(--_common-dark-error);
+    --color-dark-primary-text: #dcdcfb;
+    --color-dark-primary-link: #7aaaff;
+    --color-dark-primary-outline: #4d485b;
+    --color-dark-primary-accent-bg: #8672e7;
+    --color-dark-primary-accent-text: var(--color-dark-primary-text);
+    --color-dark-primary-accent-link: #8db6ff;
+    --color-dark-primary-accent-outline: #514395;
+    --color-dark-primary-error-text: #f40055;
 
-    --color-dark-secondary-bg: var(--_dark-secondary-bg);
-    --color-dark-secondary-text: rgba(255, 255, 255, 0.80);
-    --color-dark-secondary-link: var(--_common-dark-link);
-    --color-dark-secondary-outline: var(--_common-dark-outline);
-    --color-dark-secondary-accent-bg: rgba(176, 0, 120, 1);
-    --color-dark-secondary-accent-text: var(--color-dark-primary-accent-text);
+    --color-dark-secondary-bg: #171323;
+    --color-dark-secondary-text: var(--color-dark-primary-text);
+    --color-dark-secondary-link: var(--color-dark-primary-link);
+    --color-dark-secondary-outline: #0c0814;
+    --color-dark-secondary-accent-bg: #b00078;
+    --color-dark-secondary-accent-text: var(--color-dark-secondary-text);
     --color-dark-secondary-accent-link: var(--color-dark-primary-accent-link);
-    --color-dark-secondary-accent-outline: var(--_common-dark-outline);
-    --color-dark-secondary-error-text: var(--_common-dark-error);
+    --color-dark-secondary-accent-outline: #842666;
+    --color-dark-secondary-error-text: var(--color-dark-primary-error-text);
 
     --_light-secondary-bg: #ebebff;
 
     /* TEST - Replace these. */
     --_common-light-outline: #0c0814;
-    --_common-light-link: rgb(0, 68, 204);
-    --_common-light-error: #f40055;
+    --_common-light-link: #0044cc;
 
     --color-light-primary-bg: #dcdcfb;
-    --color-light-primary-text: rgba(0, 0, 0, 0.90);
-    --color-light-primary-link: rgb(0, 68, 204);
+    --color-light-primary-text: #3b3b40;
+    --color-light-primary-link: #0044cc;
     --color-light-primary-outline: var(--_common-light-outline);
-    --color-light-primary-accent-bg: rgb(134, 114, 231);
-    --color-light-primary-accent-text: rgba(0, 0, 0, 0.90);
-    --color-light-primary-accent-link: rgba(0, 0, 0, 0.90);
+    --color-light-primary-accent-bg: #8672e7;
+    --color-light-primary-accent-text: #000000;
+    --color-light-primary-accent-link: #000000;
     --color-light-primary-accent-outline: var(--_common-light-outline);
-    --color-light-primary-error-text: var(--_common-light-error);
+    --color-light-primary-error-text: var(--color-dark-primary-error-text);
 
     --color-light-secondary-bg: var(--_light-secondary-bg);
-    --color-light-secondary-text: rgba(0, 0, 0, 0.75);
+    --color-light-secondary-text: #3b3b40;
     --color-light-secondary-link: var(--_common-light-link);
     --color-light-secondary-outline: var(--_common-light-outline);
-    --color-light-secondary-accent-bg: rgb(151, 227, 254);
+    --color-light-secondary-accent-bg: #97e3fe;
     --color-light-secondary-accent-text: var(--color-light-primary-accent-text);
     --color-light-secondary-accent-link: var(--color-light-primary-accent-link);
     --color-light-secondary-accent-outline: var(--_common-light-outline);
-    --color-light-secondary-error-text: var(--_common-light-error);
+    --color-light-secondary-error-text: var(--color-light-primary-error-text);
 
     /**
      * Brightness Mode Variables.

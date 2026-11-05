@@ -310,13 +310,19 @@ const colorSchemeColorTable = `
                 <td>Outline</td>
                 <td style='background-color: white; color: var(--color-active-outline);'><span>█</span></td>
                 <td style='background-color: black; color: var(--color-active-outline);'><span>█</span></td>
-                <td style='background-color: var(--color-active-bg); color: var(--color-active-outline);'><span>█</span></td>
+                <td style='background-color: var(--color-inactive-bg); color: var(--color-active-outline);'><span>█</span></td>
             </tr>
             <tr>
                 <td>Accent Background</td>
                 <td style='background-color: white; color: var(--color-active-accent-bg);'><span>█</span></td>
                 <td style='background-color: black; color: var(--color-active-accent-bg);'><span>█</span></td>
                 <td style='background-color: var(--color-active-bg); color: var(--color-active-accent-bg);'><span>█</span></td>
+            </tr>
+            <tr>
+                <td>Accent Background</td>
+                <td style='background-color: white; color: var(--color-active-accent-bg);'><span>█</span></td>
+                <td style='background-color: black; color: var(--color-active-accent-bg);'><span>█</span></td>
+                <td style='background-color: var(--color-inactive-bg); color: var(--color-active-accent-bg);'><span>█</span></td>
             </tr>
             <tr>
                 <td>Accent Text</td>
