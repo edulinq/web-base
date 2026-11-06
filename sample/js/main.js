@@ -55,34 +55,27 @@ function loadIcons() {
 function loadCodeBlocks() {
     let blocks = [];
     for (const [language, [extension, text]] of Object.entries(codeBlocks)) {
-        let container = document.createElement('div');
-        container.classList.add('code-container');
-        edq.render.code.block(container, text, language);
-
         let label = document.createElement('p');
         label.innerText = language;
 
         blocks.push(label);
-        blocks.push(container);
+        blocks.push(edq.render.code.block(text, language));
     }
 
     document.querySelector('div.code-blocks').replaceChildren(...blocks);
 }
 
 function loadInputFields() {
-    let resultsArea = document.createElement('div');
-    resultsArea.classList.add('results');
-
     let fieldSet = new edq.model.field.FieldSet(inputFields, {
         submitButtonText: 'Submit (No Validation)',
         submitButtonDisableWhenInvalid: false,
         submitCallback: function(values, _) {
-            edq.render.code.block(resultsArea, edq.util.json.pretty(values), 'json');
+            let resultsArea = edq.render.code.block(edq.util.json.pretty(values), 'json');
+
+            let oldResults = document.querySelector('div.input-fields > :nth-child(2)');
+            oldResults.parentElement.replaceChild(resultsArea, oldResults);
         },
     });
-
-    // Click the button right away to show the JSON.
-    fieldSet.element.querySelector('button.submit').click();
 
     // Add in an extra button for validation.
     let validateButton = document.createElement('button');
@@ -92,7 +85,12 @@ function loadInputFields() {
     });
     fieldSet.element.prepend(validateButton);
 
-    document.querySelector('div.input-fields').replaceChildren(fieldSet.element, resultsArea);
+    let dummyResults = document.createElement('div');
+
+    document.querySelector('div.input-fields').replaceChildren(fieldSet.element, dummyResults);
+
+    // Click the button right away to show the JSON.
+    fieldSet.element.querySelector('button.submit').click();
 }
 
 function loadRouting() {
@@ -147,8 +145,9 @@ function loadRouting() {
 
 function routeHandler(request) {
     // Update the routing showcase section.
-    let container = document.querySelector('.routing-target div');
-    edq.render.code.block(container, edq.util.json.pretty(request), 'json');
+    let oldContainer = document.querySelector('.routing-target div');
+    let newContainer = edq.render.code.block(edq.util.json.pretty(request), 'json');
+    oldContainer.parentElement.replaceChild(newContainer, oldContainer);
 
     // Handle the nav bar.
     if (request.path === 'nav') {
@@ -249,6 +248,17 @@ const inputFields = [
         'null': null,
     }}),
     new edq.model.field.CheckboxField({'name': 'required-checkbox', label: 'Required Checkbox', choiceLabelBefore: true, required: true, choices: {
+        'Yes': true,
+        'No': false,
+    }}),
+
+    new edq.model.field.DropdownField({'name': 'basic-dropdown', label: 'Basic Dropdown', includeNoChoice: false, choices: {
+        'string': 'abc',
+        'int': 123,
+        'float': 3.14,
+        'null': null,
+    }}),
+    new edq.model.field.DropdownField({'name': 'required-dropdown', label: 'Required Dropdown', choiceLabelBefore: true, required: true, choices: {
         'Yes': true,
         'No': false,
     }}),
