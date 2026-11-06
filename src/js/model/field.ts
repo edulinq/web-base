@@ -705,8 +705,8 @@ class ChoiceFieldOptions extends FieldOptions {
     choiceLabelBefore: boolean = false;
 }
 
-// A set of "choices" (e.g., radio buttons or checkboxes).
-// Note that this class is more strict than normal radio buttons, because each choice has to have a unique label.
+// A set of "choices" (e.g., dropdown, radio buttons, or checkboxes).
+// Note that this class is more strict than normal HTML variants, because each choice has to have a unique label.
 abstract class ChoiceField extends Field {
     constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
         options = Object.assign(new ChoiceFieldOptions(), options);
@@ -716,6 +716,7 @@ abstract class ChoiceField extends Field {
         for (const [labelText, value] of Object.entries(options.choices)) {
             if ((this.options.defaultValue != null) && (this.options.defaultValue === value)) {
                 foundDefault = true;
+                break;
             }
         }
 
@@ -723,6 +724,14 @@ abstract class ChoiceField extends Field {
             console.error(this);
             throw new Error(`Choice field has a default value that was not seen in the choices: '${this.options.defaultValue}'.`);
         }
+    }
+}
+
+// A ChoiceField that uses input tags as the basis of the choices (radio buttons and checkboxes).
+abstract class InputChoiceField extends Field {
+    constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
+        options = Object.assign(new ChoiceFieldOptions(), options);
+        super(options);
     }
 
     protected createInnerElements(): Array<HTMLElement> {
@@ -805,7 +814,7 @@ abstract class ChoiceField extends Field {
 }
 
 // A set of radio buttons.
-class RadioField extends ChoiceField {
+class RadioField extends InputChoiceField {
     constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
         options = Object.assign(new ChoiceFieldOptions(), options);
         super(options);
@@ -825,7 +834,7 @@ class RadioField extends ChoiceField {
 }
 
 // A set of checkboxes.
-class CheckboxField extends ChoiceField {
+class CheckboxField extends InputChoiceField {
     constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
         options = Object.assign(new ChoiceFieldOptions(), options);
         super(options);
@@ -837,6 +846,80 @@ class CheckboxField extends ChoiceField {
 
     protected getInnerValue(): any {
         return this.getChecked();
+    }
+}
+
+class DropdownFieldOptions extends ChoiceFieldOptions {
+    undefinedValue: string = '__edq_dropdown_undefined__';
+
+    // Inlucde an option at the beginning that indicates no choice has been made.
+    includeNoChoice: boolean = true;
+    noChoiceLabel: string = '--- Select Choice ---';
+}
+
+// A dropdown menu.
+// The value of `DropdownFieldOptions.undefinedValue` can be used to indicate a value that should be interpreted as no selection.
+// When this value is encountered, an undefined will be returned from getValue().
+// Because of the limitations of dropdown menus, a literal undefined cannot be used.
+class DropdownField extends ChoiceField {
+    constructor(options: DropdownFieldOptions = new DropdownFieldOptions()) {
+        options = Object.assign(new DropdownFieldOptions(), options);
+        super(options);
+    }
+
+    protected createInnerElements(): Array<HTMLElement> {
+        let options = (this.options as DropdownFieldOptions);
+
+        let selectElement = document.createElement('select');
+        selectElement.id = this.id;
+
+        if (this.options.name != null) {
+            selectElement.setAttribute('name', this.options.name);
+        }
+
+        let allChoices = Object.entries(options.choices);
+        if (options.includeNoChoice) {
+            allChoices.unshift([options.noChoiceLabel, options.undefinedValue]);
+        }
+
+        for (const [labelText, value] of allChoices) {
+            let choice = document.createElement('option') as HTMLOptionElement;
+            choice.value = value;
+            choice.textContent = labelText;
+
+            if ((this.options.defaultValue != null) && (this.options.defaultValue === value)) {
+                choice.selected = true;
+            }
+
+            selectElement.appendChild(choice);
+        }
+
+        // Mark the element as touched if it loses focus.
+        selectElement.addEventListener('focusout', function(event) {
+            selectElement.classList.add('touched');
+        });
+
+        return [selectElement];
+    }
+
+    protected validateInnerInput(onlyMessage: boolean): string | undefined {
+        // Note the hard check for undefined, as null is allowed.
+        if (this.options.required && (this.getInnerValue() === undefined)) {
+            return 'Please make a selection.';
+        }
+
+        return undefined;
+    }
+
+    protected getInnerValue(): any {
+        let options = (this.options as DropdownFieldOptions);
+
+        let rawValue = this.element.querySelector<HTMLSelectElement>('select')?.value;
+        if (rawValue === options.undefinedValue) {
+            return undefined;
+        }
+
+        return rawValue;
     }
 }
 
@@ -912,8 +995,10 @@ export {
 
     ChoiceFieldOptions,
     ChoiceField,
+    InputChoiceField,
     RadioField,
     CheckboxField,
+    DropdownField,
 
     FileFieldOptions,
     FileField,
