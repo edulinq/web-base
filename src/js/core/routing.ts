@@ -287,9 +287,14 @@ function routeFromEvent() {
     route();
 }
 
+// Route to the current hash, but force a route (instead of skipping a duplicate URL).
+function reload() {
+    route(undefined, true);
+}
+
 // Route to a specified target.
 // If no target is specified, use window.location.hash.
-function route(request: string | RoutingRequest | undefined = undefined) {
+function route(request: string | RoutingRequest | undefined = undefined, force: boolean = false) {
     if (request == null) {
         request = getLocationHash();
     }
@@ -299,7 +304,7 @@ function route(request: string | RoutingRequest | undefined = undefined) {
     }
 
     // Skip routing if the current request matches this one.
-    if ((currentRequest != null) && objects.deepEqual(currentRequest, request)) {
+    if (!force && (currentRequest != null) && objects.deepEqual(currentRequest, request)) {
         return;
     }
 
@@ -405,6 +410,7 @@ export {
     stop,
 
     route,
+    reload,
     addRoute,
     clearRoutes,
     setNotFound,

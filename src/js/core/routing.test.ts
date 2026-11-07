@@ -235,6 +235,28 @@ test("route() skip current location", function() {
     testHandlerCounts = {};
 });
 
+test("reload() base", function() {
+    routing.stop();
+    routing.clearRoutes();
+    testHandlerCounts = {};
+
+    for (const route of testRoutes) {
+        routing.addRoute(route);
+    }
+
+    routing.route('index');
+    routing.reload();
+
+    let expected = {
+        'index': 2,
+    };
+
+    expect(testHandlerCounts).toStrictEqual(expected);
+
+    routing.clearRoutes();
+    testHandlerCounts = {};
+});
+
 test("not found base", function() {
     routing.stop();
     routing.clearRoutes();
