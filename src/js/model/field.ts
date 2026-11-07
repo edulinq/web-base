@@ -48,6 +48,12 @@ class FieldOptions {
 
     // An optional function to clean a value extracted from a field.
     inputCleaningFunc: InputCleaningFunc | undefined = undefined;
+
+    // Additional classes to attach to the main field element.
+    extraClasses: Array<string> | DOMTokenList = [];
+
+    // A dataset to attach to the main field element.
+    dataset: Record<string, string> = {};
 }
 
 // A general representation of a user input field.
@@ -110,6 +116,9 @@ abstract class Field {
         let element = document.createElement('div');
         element.classList.add('edq-field');
         element.classList.add(`edq-field-${this.constructor.name.toLowerCase().replace(/field$/, '')}`);
+
+        element.classList.add(...this.options.extraClasses);
+        Object.assign(element.dataset, this.options.dataset);
 
         if (this.options.name != null) {
             element.setAttribute('name', this.options.name);
