@@ -170,6 +170,8 @@ html {
     stroke: var(--color-active-accent-text);
     outline-color: var(--color-active-accent-outline);
     border-color: var(--color-active-accent-outline);
+
+    text-shadow: 0 0 1px var(--color-active-bg);
 }
 
 .theme-accent a {

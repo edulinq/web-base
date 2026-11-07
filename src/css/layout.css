@@ -1,27 +1,18 @@
 /* EduLinq Layout */
 
-.page p {
-    margin-bottom: 1rem;
-}
-
-.page ul,
-.page ol {
-    margin-left: 2rem;
-}
-
 .page {
     display: grid;
     grid-template-rows: min-content 1fr min-content;
 
-    height: 100%;
+    min-height: 100svh;
 }
 
 .page-content {
-    max-width: var(--page-content-max-width);
+    width: min(90svw, var(--page-content-max-width));
     margin: 0 auto;
 }
 
-.header {
+.page > .header {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -31,7 +22,7 @@
 
 .site-header,
 .page-header,
-.footer {
+.page > .footer {
     padding: 0 max(2rem, calc((100svw - var(--headfoot-max-width)) / 2));
 }
 
