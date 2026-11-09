@@ -191,6 +191,24 @@ abstract class Field {
     protected abstract validateInnerInput(onlyMessage: boolean): string | undefined;
 }
 
+class FieldSetOptions {
+    // Include a submit button with this field set.
+    includeSubmitButton: boolean = true;
+
+    // The text for the submit button.
+    submitButtonText: string = 'Submit';
+
+    // If true, put the submit button (if it appears) before the input elements.
+    // Otherwise, put it last.
+    submitButtonFirst: boolean = true;
+
+    // If true, disable the submit button when any of the contained fields fail validation.
+    submitButtonDisableWhenInvalid: boolean = true;
+
+    // A callback for when the submit button is pressed.
+    submitCallback: FieldSetSubmitCallback | undefined = undefined;
+}
+
 // A collection of fields.
 // Each field MUST have a unique `name` member,
 // which will be used as the key for the field when fetching values.
@@ -199,60 +217,20 @@ class FieldSet {
     // The field instances contained in this object.
     fields: Array<Field>;
 
+    options: FieldSetOptions
+
     // The HTML element for this collection.
     element: HTMLElement;
 
-    constructor(
-            fields: Array<Field>, {
-            includeSubmitButton = true,
-            submitButtonText = 'Submit',
-            submitButtonDisableWhenInvalid = true,
-            submitCallback = undefined,
-            }: {
-                includeSubmitButton: boolean,
-                submitButtonText: string,
-                submitButtonDisableWhenInvalid: boolean,
-                submitCallback: FieldSetSubmitCallback | undefined,
-            }) {
+    constructor(fields: Array<Field>, options: FieldSetOptions = new FieldSetOptions()) {
         this.fields = fields;
+        this.options = Object.assign(new FieldSetOptions(), options);
 
         this.element = document.createElement('fieldset');
         this.element.classList.add('edq-fieldset');
 
         let seenNames = new Set();
         let children = [];
-
-        if (includeSubmitButton) {
-            let button = document.createElement('button');
-            button.classList.add('submit');
-            button.innerText = submitButtonText;
-
-            // Register the submission button callback.
-            if (submitCallback != null) {
-                let self = this;
-                button.addEventListener('click', function(event) {
-                    let values = self.getValues();
-                    submitCallback(values, self);
-                });
-            }
-
-            // Handle disabling/enabling the button based on if the fields are valid.
-            if (submitButtonDisableWhenInvalid) {
-                button.disabled = (this.validateInputs(true).length != 0);
-
-                let self = this;
-                this.element.addEventListener('change', function(event) {
-                    let messages = self.validateInputs(true);
-                    if (messages.length == 0) {
-                        button.disabled = false;
-                    } else {
-                        button.disabled = true;
-                    }
-                });
-            }
-
-            children.push(button);
-        }
 
         for (const field of fields) {
             if (field.options.name == null) {
@@ -267,6 +245,46 @@ class FieldSet {
 
             seenNames.add(field.options.name);
             children.push(field.element);
+        }
+
+        if (this.options.includeSubmitButton) {
+            let button = document.createElement('button');
+            button.classList.add('submit');
+            button.innerText = this.options.submitButtonText;
+
+            // Register the submission button callback.
+            if (this.options.submitCallback != null) {
+                let self = this;
+                button.addEventListener('click', function(event) {
+                    if (self.options.submitCallback == null) {
+                        return;
+                    }
+
+                    let values = self.getValues();
+                    self.options.submitCallback(values, self);
+                });
+            }
+
+            // Handle disabling/enabling the button based on if the fields are valid.
+            if (this.options.submitButtonDisableWhenInvalid) {
+                button.disabled = (this.validateInputs(true).length != 0);
+
+                let self = this;
+                this.element.addEventListener('change', function(event) {
+                    let messages = self.validateInputs(true);
+                    if (messages.length == 0) {
+                        button.disabled = false;
+                    } else {
+                        button.disabled = true;
+                    }
+                });
+            }
+
+            if (this.options.submitButtonFirst) {
+                children.unshift(button);
+            } else {
+                children.push(button);
+            }
         }
 
         this.element.replaceChildren(...children);
