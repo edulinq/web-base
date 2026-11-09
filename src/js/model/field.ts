@@ -728,8 +728,6 @@ class TimeField extends SimpleInputField {
 class ChoiceFieldOptions extends FieldOptions {
     // Mapping of label to value.
     choices: Record<string, any> = {};
-
-    choiceLabelBefore: boolean = false;
 }
 
 // A set of "choices" (e.g., dropdown, radio buttons, or checkboxes).
@@ -754,18 +752,33 @@ abstract class ChoiceField extends Field {
     }
 }
 
+class InputChoiceFieldOptions extends ChoiceFieldOptions {
+    // Put the label for a choice/option before the input element.
+    choiceLabelBefore: boolean = false;
+
+    // Put the choices/options inline.
+    inline: boolean = false;
+}
+
 // A ChoiceField that uses input tags as the basis of the choices (radio buttons and checkboxes).
 abstract class InputChoiceField extends Field {
-    constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
-        options = Object.assign(new ChoiceFieldOptions(), options);
+    constructor(options: InputChoiceFieldOptions = new InputChoiceFieldOptions()) {
+        options = Object.assign(new InputChoiceFieldOptions(), options);
         super(options);
     }
 
     protected createInnerElements(): Array<HTMLElement> {
-        let options = (this.options as ChoiceFieldOptions);
+        let options = (this.options as InputChoiceFieldOptions);
 
         let element = document.createElement('div');
         element.id = this.id;
+        element.classList.add(`edq-field-choices`);
+        element.classList.add(`edq-field-choices-inputs`);
+        element.classList.add(`edq-field-choices-${this.constructor.name.toLowerCase().replace(/field$/, '')}`);
+
+        if (options.inline) {
+            element.classList.add('inline');
+        }
 
         for (const [labelText, value] of Object.entries(options.choices)) {
             let label = document.createElement('label');
@@ -842,8 +855,8 @@ abstract class InputChoiceField extends Field {
 
 // A set of radio buttons.
 class RadioField extends InputChoiceField {
-    constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
-        options = Object.assign(new ChoiceFieldOptions(), options);
+    constructor(options: InputChoiceFieldOptions = new InputChoiceFieldOptions()) {
+        options = Object.assign(new InputChoiceFieldOptions(), options);
         super(options);
     }
 
@@ -862,8 +875,8 @@ class RadioField extends InputChoiceField {
 
 // A set of checkboxes.
 class CheckboxField extends InputChoiceField {
-    constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
-        options = Object.assign(new ChoiceFieldOptions(), options);
+    constructor(options: InputChoiceFieldOptions = new InputChoiceFieldOptions()) {
+        options = Object.assign(new InputChoiceFieldOptions(), options);
         super(options);
     }
 
@@ -899,6 +912,8 @@ class DropdownField extends ChoiceField {
 
         let selectElement = document.createElement('select');
         selectElement.id = this.id;
+        selectElement.classList.add(`edq-field-choices`);
+        selectElement.classList.add(`edq-field-choices-${this.constructor.name.toLowerCase().replace(/field$/, '')}`);
 
         if (this.options.name != null) {
             selectElement.setAttribute('name', this.options.name);

@@ -236,7 +236,7 @@ const inputFields = [
         'float': 3.14,
         'null': null,
     }}),
-    new edq.model.field.RadioField({'name': 'required-radio', label: 'Required Radio', choiceLabelBefore: true, required: true, choices: {
+    new edq.model.field.RadioField({'name': 'required-radio', label: 'Required Radio', choiceLabelBefore: true, required: true, inline: true, choices: {
         'Yes': true,
         'No': false,
     }}),
@@ -247,7 +247,7 @@ const inputFields = [
         'float': 3.14,
         'null': null,
     }}),
-    new edq.model.field.CheckboxField({'name': 'required-checkbox', label: 'Required Checkbox', choiceLabelBefore: true, required: true, choices: {
+    new edq.model.field.CheckboxField({'name': 'required-checkbox', label: 'Required Checkbox', choiceLabelBefore: true, required: true, inline: true, choices: {
         'Yes': true,
         'No': false,
     }}),
