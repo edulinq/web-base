@@ -135,6 +135,11 @@ button:hover:not([disabled]) {
     transform: translateY(-1px);
 }
 
+button:active:not([disabled]) {
+    filter: brightness(0.75);
+    transform: translateY(1px);
+}
+
 button:focus:not([disabled]),
 input:focus:not([disabled]),
 select:focus:not([disabled]),
