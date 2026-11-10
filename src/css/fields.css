@@ -52,6 +52,7 @@
 
 .edq-field-choices-inputs.inline {
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .edq-field-choices-inputs > div {

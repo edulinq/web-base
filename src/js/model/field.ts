@@ -32,6 +32,7 @@ class FieldOptions {
     validateOnFocusOut: boolean = true;
 
     // An optional default value for the field.
+    // Users should prefer `null` to represent nil values, as `undefined` will generally be used internally to represent no set value.
     defaultValue: any | undefined = undefined
 
     // If this field must be non-empty during validation.
@@ -398,14 +399,14 @@ class TextField extends SimpleInputField {
     protected finalizeInput(element: HTMLInputElement) {
         element.type = 'text';
 
-        let options = (this.options as TextFieldOptions);
+        let typedOptions = (this.options as TextFieldOptions);
 
-        if (options.minLength != null) {
-            element.minLength = options.minLength;
+        if (typedOptions.minLength != null) {
+            element.minLength = typedOptions.minLength;
         }
 
-        if (options.maxLength != null) {
-            element.maxLength = options.maxLength;
+        if (typedOptions.maxLength != null) {
+            element.maxLength = typedOptions.maxLength;
         }
     }
 }
@@ -473,10 +474,10 @@ class SecretField extends TextField {
         super.finalizeInput(element);
         element.type = 'password';
 
-        let options = (this.options as SecretFieldOptions);
+        let typedOptions = (this.options as SecretFieldOptions);
 
-        if (options.autocomplete != null) {
-            element.autocomplete = options.autocomplete;
+        if (typedOptions.autocomplete != null) {
+            element.autocomplete = typedOptions.autocomplete;
         }
     }
 
@@ -523,14 +524,14 @@ class TextAreaField extends TextField {
 
     protected finalizeInput(rawElement: HTMLInputElement) {
         let element: HTMLTextAreaElement = ((rawElement as unknown) as HTMLTextAreaElement);
-        let options = (this.options as TextAreaFieldOptions);
+        let typedOptions = (this.options as TextAreaFieldOptions);
 
-        if (options.rows != null) {
-            element.rows = options.rows;
+        if (typedOptions.rows != null) {
+            element.rows = typedOptions.rows;
         }
 
-        if (options.cols != null) {
-            element.cols = options.cols;
+        if (typedOptions.cols != null) {
+            element.cols = typedOptions.cols;
         }
     }
 }
@@ -548,20 +549,20 @@ class NumericField extends SimpleInputField {
     }
 
     protected finalizeInput(element: HTMLInputElement) {
-        let options = (this.options as NumericFieldOptions);
+        let typedOptions = (this.options as NumericFieldOptions);
 
         element.type = 'number';
 
-        if (options.min != null) {
-            element.min = options.min.toString();
+        if (typedOptions.min != null) {
+            element.min = typedOptions.min.toString();
         }
 
-        if (options.max != null) {
-            element.max = options.max.toString();
+        if (typedOptions.max != null) {
+            element.max = typedOptions.max.toString();
         }
 
-        if (options.step != null) {
-            element.step = options.step.toString();
+        if (typedOptions.step != null) {
+            element.step = typedOptions.step.toString();
         }
     }
 
@@ -631,22 +632,22 @@ class DateField extends SimpleInputField {
     }
 
     protected finalizeInput(element: HTMLInputElement) {
-        let options = (this.options as DateFieldOptions);
+        let typedOptions = (this.options as DateFieldOptions);
 
         element.type = 'date';
 
-        if (options.min != null) {
-            element.min = timestamp.datestampToString(options.min);
+        if (typedOptions.min != null) {
+            element.min = timestamp.datestampToString(typedOptions.min);
         }
 
-        if (options.max != null) {
-            element.max = timestamp.datestampToString(options.max);
+        if (typedOptions.max != null) {
+            element.max = timestamp.datestampToString(typedOptions.max);
         }
     }
 
     protected getInnerValue(): any {
-        let options = (this.options as DateFieldOptions);
-        return timestamp.parse(super.getInnerValue(), options.localTimezone);
+        let typedOptions = (this.options as DateFieldOptions);
+        return timestamp.parse(super.getInnerValue(), typedOptions.localTimezone);
     }
 }
 
@@ -659,16 +660,16 @@ class LocalDatetimeField extends SimpleInputField {
     }
 
     protected finalizeInput(element: HTMLInputElement) {
-        let options = (this.options as DateFieldOptions);
+        let typedOptions = (this.options as DateFieldOptions);
 
         element.type = 'datetime-local';
 
-        if (options.min != null) {
-            element.min = timestamp.datestampToString(options.min);
+        if (typedOptions.min != null) {
+            element.min = timestamp.datestampToString(typedOptions.min);
         }
 
-        if (options.max != null) {
-            element.max = timestamp.datestampToString(options.max);
+        if (typedOptions.max != null) {
+            element.max = timestamp.datestampToString(typedOptions.max);
         }
     }
 
@@ -692,16 +693,16 @@ class TimeField extends SimpleInputField {
     }
 
     protected finalizeInput(element: HTMLInputElement) {
-        let options = (this.options as TimeFieldOptions);
+        let typedOptions = (this.options as TimeFieldOptions);
 
         element.type = 'time';
 
-        if (options.min != null) {
-            element.min = options.min;
+        if (typedOptions.min != null) {
+            element.min = typedOptions.min;
         }
 
-        if (options.max != null) {
-            element.max = options.max;
+        if (typedOptions.max != null) {
+            element.max = typedOptions.max;
         }
     }
 
@@ -728,26 +729,36 @@ class TimeField extends SimpleInputField {
 class ChoiceFieldOptions extends FieldOptions {
     // Mapping of label to value.
     choices: Record<string, any> = {};
+
+    // An array of all default values for this choice field.
+    // On construction a value held in `defaultValue` will be copied to here.
+    defaultValues: Array<any> = [];
 }
 
 // A set of "choices" (e.g., dropdown, radio buttons, or checkboxes).
-// Note that this class is more strict than normal HTML variants, because each choice has to have a unique label.
+// Note that this class is more strict than normal HTML variants, because each choice has to have a unique label
+// (but labels do not have to have unique values).
 abstract class ChoiceField extends Field {
-    constructor(options: ChoiceFieldOptions = new ChoiceFieldOptions()) {
-        options = Object.assign(new ChoiceFieldOptions(), options);
-        super(options);
+    constructor(rawOptions: ChoiceFieldOptions = new ChoiceFieldOptions()) {
+        rawOptions = Object.assign(new ChoiceFieldOptions(), rawOptions);
+        if (rawOptions.defaultValue !== undefined) {
+            rawOptions.defaultValues.push(rawOptions.defaultValue);
+        }
 
-        let foundDefault = false;
-        for (const [labelText, value] of Object.entries(options.choices)) {
-            if ((this.options.defaultValue != null) && (this.options.defaultValue === value)) {
-                foundDefault = true;
-                break;
+        super(rawOptions);
+
+        let typedOptions = (this.options as ChoiceFieldOptions);
+
+        let foundCount = 0;
+        for (const [labelText, value] of Object.entries(typedOptions.choices)) {
+            if (typedOptions.defaultValues.includes(value)) {
+                foundCount++;
             }
         }
 
-        if ((this.options.defaultValue != null) && !foundDefault) {
+        if (typedOptions.defaultValues.length !== foundCount) {
             console.error(this);
-            throw new Error(`Choice field has a default value that was not seen in the choices: '${this.options.defaultValue}'.`);
+            throw new Error(`Choice field has ${typedOptions.defaultValues.length} default values, but only ${foundCount} were seen in the choices.`);
         }
     }
 }
@@ -761,14 +772,14 @@ class InputChoiceFieldOptions extends ChoiceFieldOptions {
 }
 
 // A ChoiceField that uses input tags as the basis of the choices (radio buttons and checkboxes).
-abstract class InputChoiceField extends Field {
+abstract class InputChoiceField extends ChoiceField {
     constructor(options: InputChoiceFieldOptions = new InputChoiceFieldOptions()) {
         options = Object.assign(new InputChoiceFieldOptions(), options);
         super(options);
     }
 
     protected createInnerElements(): Array<HTMLElement> {
-        let options = (this.options as InputChoiceFieldOptions);
+        let typedOptions = (this.options as InputChoiceFieldOptions);
 
         let element = document.createElement('div');
         element.id = this.id;
@@ -776,11 +787,11 @@ abstract class InputChoiceField extends Field {
         element.classList.add(`edq-field-choices-inputs`);
         element.classList.add(`edq-field-choices-${this.constructor.name.toLowerCase().replace(/field$/, '')}`);
 
-        if (options.inline) {
+        if (typedOptions.inline) {
             element.classList.add('inline');
         }
 
-        for (const [labelText, value] of Object.entries(options.choices)) {
+        for (const [labelText, value] of Object.entries(typedOptions.choices)) {
             let label = document.createElement('label');
             label.innerText = labelText;
 
@@ -789,17 +800,17 @@ abstract class InputChoiceField extends Field {
             choice.value = value;
             choice.dataset.label = labelText;
 
-            if (this.options.name != null) {
-                choice.setAttribute('name', this.options.name);
+            if (typedOptions.name != null) {
+                choice.setAttribute('name', typedOptions.name);
             }
 
-            if ((this.options.defaultValue != null) && (this.options.defaultValue === value)) {
+            if (typedOptions.defaultValues.includes(value)) {
                 choice.checked = true;
             }
 
             let pair = document.createElement('div');
 
-            if (options.choiceLabelBefore) {
+            if (typedOptions.choiceLabelBefore) {
                 pair.appendChild(label);
                 pair.appendChild(choice);
             } else {
@@ -820,14 +831,14 @@ abstract class InputChoiceField extends Field {
 
     // Get all the checked choices.
     protected getChecked(): Record<string, any> {
-        let options = (this.options as ChoiceFieldOptions);
+        let typedOptions = (this.options as ChoiceFieldOptions);
 
         let checked: Record<string, any> = {};
         for (const choice of this.element.querySelectorAll<HTMLInputElement>(`input[type="${this.getInputType()}"]`)) {
             if (choice.checked) {
-                // Fetch the value from the passed in options to preserve types.
+                // Fetch the value from the passed in typedOptions to preserve types.
                 let label = (choice.dataset.label as string);
-                checked[label] = options.choices[label];
+                checked[label] = typedOptions.choices[label];
             }
         }
 
@@ -908,20 +919,20 @@ class DropdownField extends ChoiceField {
     }
 
     protected createInnerElements(): Array<HTMLElement> {
-        let options = (this.options as DropdownFieldOptions);
+        let typedOptions = (this.options as DropdownFieldOptions);
 
         let selectElement = document.createElement('select');
         selectElement.id = this.id;
         selectElement.classList.add(`edq-field-choices`);
         selectElement.classList.add(`edq-field-choices-${this.constructor.name.toLowerCase().replace(/field$/, '')}`);
 
-        if (this.options.name != null) {
-            selectElement.setAttribute('name', this.options.name);
+        if (typedOptions.name != null) {
+            selectElement.setAttribute('name', typedOptions.name);
         }
 
-        let allChoices = Object.entries(options.choices);
-        if (options.includeNoChoice) {
-            allChoices.unshift([options.noChoiceLabel, options.undefinedValue]);
+        let allChoices = Object.entries(typedOptions.choices);
+        if (typedOptions.includeNoChoice) {
+            allChoices.unshift([typedOptions.noChoiceLabel, typedOptions.undefinedValue]);
         }
 
         for (const [labelText, value] of allChoices) {
@@ -929,7 +940,7 @@ class DropdownField extends ChoiceField {
             choice.value = value;
             choice.textContent = labelText;
 
-            if ((this.options.defaultValue != null) && (this.options.defaultValue === value)) {
+            if (typedOptions.defaultValues.includes(value)) {
                 choice.selected = true;
             }
 
@@ -954,10 +965,10 @@ class DropdownField extends ChoiceField {
     }
 
     protected getInnerValue(): any {
-        let options = (this.options as DropdownFieldOptions);
+        let typedOptions = (this.options as DropdownFieldOptions);
 
         let rawValue = this.element.querySelector<HTMLSelectElement>('select')?.value;
-        if (rawValue === options.undefinedValue) {
+        if (rawValue === typedOptions.undefinedValue) {
             return undefined;
         }
 
@@ -982,12 +993,12 @@ class FileField extends SimpleInputField {
     }
 
     protected finalizeInput(element: HTMLInputElement) {
-        let options = (this.options as FileFieldOptions);
+        let typedOptions = (this.options as FileFieldOptions);
 
         element.type = 'file';
 
-        if (options.allowedTypes != null) {
-            let values = options.allowedTypes;
+        if (typedOptions.allowedTypes != null) {
+            let values = typedOptions.allowedTypes;
             if ((typeof(values)) === 'string') {
                 values = [values];
             }
@@ -995,8 +1006,8 @@ class FileField extends SimpleInputField {
             element.accept = values.join(',');
         }
 
-        if (options.multiple != null) {
-            element.multiple = options.multiple;
+        if (typedOptions.multiple != null) {
+            element.multiple = typedOptions.multiple;
         }
     }
 
