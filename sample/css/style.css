@@ -55,3 +55,15 @@ table.colorscheme .card span {
 .section-inputs .input-fields > div {
     flex-basis: 45%;
 }
+
+.section-loading .loading-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    margin-bottom: 0.5em;
+}
+
+.section-loading .loading-box {
+    padding: 1em;
+}

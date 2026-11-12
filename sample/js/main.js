@@ -165,6 +165,66 @@ function loadCards() {
     document.querySelector('.section-cards-large div').replaceChildren((new edq.render.cards.CardArea(largeCards)).getElement());
 }
 
+function loadLoadingBox() {
+    let container = document.createElement('div');
+
+    let loadingContainer = document.createElement('div');
+    loadingContainer.classList.add('loading-box');
+    loadingContainer.textContent = loremIpsum.slice(0, 4);
+
+    let buttons = document.createElement('div');
+    buttons.classList.add('loading-buttons');
+
+    let startButton = document.createElement('button');
+    startButton.textContent = 'Start';
+
+    let stopButton = document.createElement('button');
+    stopButton.textContent = 'Stop';
+    stopButton.disabled = true;
+
+    let waitButton = document.createElement('button');
+    waitButton.textContent = 'Wait 2 Seconds';
+
+    startButton.addEventListener('click', function(event) {
+        startButton.disabled = true;
+        stopButton.disabled = false;
+        waitButton.disabled = true;
+
+        edq.render.loading.activate(loadingContainer);
+    });
+
+    stopButton.addEventListener('click', function(event) {
+        stopButton.disabled = true;
+        startButton.disabled = false;
+        waitButton.disabled = false;
+
+        edq.render.loading.deactivate(loadingContainer);
+    });
+
+    waitButton.addEventListener('click', function(event) {
+        waitButton.disabled = true;
+        startButton.disabled = true;
+        stopButton.disabled = true;
+
+        let promise = new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                resolve();
+
+                waitButton.disabled = false;
+                startButton.disabled = false;
+                stopButton.disabled = true;
+            }, 2000);
+        });
+
+        edq.render.loading.withPromise(promise, loadingContainer);
+    });
+
+    buttons.replaceChildren(startButton, stopButton, waitButton);
+    container.replaceChildren(buttons, loadingContainer);
+
+    document.querySelector('.section-loading').appendChild(container);
+}
+
 function main() {
     edq.render.icons.replacePlaceholders();
 
@@ -178,6 +238,7 @@ function main() {
     loadCodeBlocks();
     loadInputFields();
     loadCards();
+    loadLoadingBox();
 }
 
 const loremIpsum = [

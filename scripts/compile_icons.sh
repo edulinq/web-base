@@ -32,7 +32,7 @@ function main() {
 
     for path in "${ICONS_SOURCE_DIR}"/*.svg ; do
         local baseName=$(basename "${path}" | sed 's/.svg$//')
-        local text=$(cat "${path}" | sed 's/<\/\?\(svg\|?xml\)[^>]*>//' | tr '\n' ' ' | sed 's/\s\+/ /g')
+        local text=$(cat "${path}" | sed 's/<\/\?\(svg\|?xml\|!--\)[^>]*>//' | tr '\n' ' ' | sed 's/\s\+/ /g')
 
         echo "    icons.add('${baseName}', '${text}');" >> "${ICONS_OUT_PATH}"
     done
