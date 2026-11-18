@@ -13,6 +13,9 @@
 
 :has(> .loading-overlay) {
     position: relative;
+
+    min-height: 1rem;
+    min-width: 1rem;
 }
 
 .loading-overlay {

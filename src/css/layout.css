@@ -23,7 +23,7 @@
 .site-header,
 .page-header,
 .page > .footer {
-    padding: 0 max(2rem, calc((100svw - var(--headfoot-max-width)) / 2));
+    padding: 0.25rem max(2rem, calc((100svw - var(--headfoot-max-width)) / 2));
 }
 
 .site-header {
@@ -31,8 +31,10 @@
     grid-template-columns: 1fr 3fr 1fr;
 }
 
-.site-branding span {
-    margin: 0.25em 0;
+.site-branding {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     font-size: var(--font-size-larger);
 }
