@@ -296,3 +296,23 @@ test("not found base", function() {
     routing.clearRoutes();
     testHandlerCounts = {};
 });
+
+test("makeRedirectHandler() base", function() {
+    routing.stop();
+    routing.clearRoutes();
+    testHandlerCounts = {};
+
+    routing.addRoute(new routing.StringRoute('original', testHandler));
+    routing.addRoute(new routing.StringRoute('redirect', routing.makeRedirectHandler('original')));
+
+    routing.route('redirect');
+
+    let expected = {
+        'original': 1,
+    };
+
+    expect(testHandlerCounts).toStrictEqual(expected);
+
+    routing.clearRoutes();
+    testHandlerCounts = {};
+});

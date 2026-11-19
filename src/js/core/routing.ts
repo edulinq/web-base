@@ -364,6 +364,21 @@ function setNotFound(handler: RoutingHandler): RoutingHandler {
     return oldHandler;
 }
 
+// Create a handler that will call route with a different path.
+function makeRedirectHandler(target: string, keepParams: boolean = true): RoutingHandler {
+    return function(request: RoutingRequest) {
+        request = structuredClone(request);
+
+        request.path = target;
+
+        if (!keepParams) {
+            request.params = {};
+        }
+
+        route(request);
+    };
+}
+
 // Return a standardized location that always has as leading hash.
 function getLocationHash(): string {
     let hash = window.location.hash.trim();
@@ -414,4 +429,5 @@ export {
     addRoute,
     clearRoutes,
     setNotFound,
+    makeRedirectHandler,
 }
