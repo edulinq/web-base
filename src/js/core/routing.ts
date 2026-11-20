@@ -23,6 +23,39 @@ let routes: Array<Route> = [];
 // Handler function to use when a route has been selected.
 type RoutingHandler = (request: RoutingRequest) => void;
 
+class RoutingOptions {
+    // Ignore requests that match the current (most recently routed request).
+    // In most systems, this can help avoid unnecessary routing when trivial changes are made
+    // (like switching to a canonical URL).
+    // A force option at the route() level will override this.
+    ignoreDuplicateRequests: boolean = true;
+}
+
+let moduleOptions: RoutingOptions = new RoutingOptions();
+
+function getOptions(): RoutingOptions {
+    return structuredClone(moduleOptions);
+}
+
+// Reset module options to their default values.
+function resetOptions() {
+    moduleOptions = new RoutingOptions();
+}
+
+// Set a single module-level option.
+// To set several options using default values, use setOptions().
+function setOption(key: string, value: any) {
+    // @ts-ignore
+    moduleOptions[key] = value;
+}
+
+// Set module-level routing options.
+// Any options not specified will use their default values.
+// To set a single option without touching any other, use setOption().
+function setOptions(options: RoutingOptions) {
+    moduleOptions = Object.assign(new RoutingOptions(), options);
+}
+
 // A request to route to some location.
 // This contains all the information present when deciding where to route.
 class RoutingRequest {
@@ -304,7 +337,7 @@ function route(request: string | RoutingRequest | undefined = undefined, force: 
     }
 
     // Skip routing if the current request matches this one.
-    if (!force && (currentRequest != null) && objects.deepEqual(currentRequest, request)) {
+    if (moduleOptions.ignoreDuplicateRequests && !force && (currentRequest != null) && objects.deepEqual(currentRequest, request)) {
         return;
     }
 
@@ -408,6 +441,12 @@ export {
     EVENT_ROUTING_START,
     EVENT_ROUTING_END,
 
+    RoutingOptions,
+    getOptions,
+    resetOptions,
+    setOption,
+    setOptions,
+
     RoutingHandler,
     RoutingRequest,
     Route,
@@ -430,4 +469,4 @@ export {
     clearRoutes,
     setNotFound,
     makeRedirectHandler,
-}
+moduleOptions}

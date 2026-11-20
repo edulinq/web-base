@@ -150,6 +150,7 @@ describe("RegexRoute.match() base", function() {
 
 test("route() with path", function() {
     routing.stop();
+    routing.resetOptions();
     routing.clearRoutes();
     testHandlerCounts = {};
 
@@ -169,6 +170,7 @@ test("route() with path", function() {
 
 test("route() with request", function() {
     routing.stop();
+    routing.resetOptions();
     routing.clearRoutes();
     testHandlerCounts = {};
 
@@ -189,6 +191,7 @@ test("route() with request", function() {
 
 test("route() with hash", function() {
     routing.stop();
+    routing.resetOptions();
     routing.clearRoutes();
     testHandlerCounts = {};
 
@@ -211,14 +214,17 @@ test("route() with hash", function() {
     testHandlerCounts = {};
 });
 
-test("route() skip current location", function() {
+test("route() ignore duplicates", function() {
     routing.stop();
+    routing.resetOptions();
     routing.clearRoutes();
     testHandlerCounts = {};
 
     for (const route of testRoutes) {
         routing.addRoute(route);
     }
+
+    // Base
 
     routing.route('index');
     routing.route('#index');
@@ -231,12 +237,44 @@ test("route() skip current location", function() {
 
     expect(testHandlerCounts).toStrictEqual(expected);
 
+    // Force
+
+    testHandlerCounts = {};
+
+    routing.route('index', true);
+    routing.route('#index', true);
+    routing.route('/index', true);
+    routing.route('index?', true);
+
+    expected = {
+        'index': 4,
+    };
+
+    expect(testHandlerCounts).toStrictEqual(expected);
+
+    // ignoreDuplicateRequests
+
+    testHandlerCounts = {};
+    routing.setOption('ignoreDuplicateRequests', false);
+
+    routing.route('index');
+    routing.route('#index');
+    routing.route('/index');
+    routing.route('index?');
+
+    expected = {
+        'index': 4,
+    };
+
+    expect(testHandlerCounts).toStrictEqual(expected);
+
     routing.clearRoutes();
     testHandlerCounts = {};
 });
 
 test("reload() base", function() {
     routing.stop();
+    routing.resetOptions();
     routing.clearRoutes();
     testHandlerCounts = {};
 
@@ -259,6 +297,7 @@ test("reload() base", function() {
 
 test("not found base", function() {
     routing.stop();
+    routing.resetOptions();
     routing.clearRoutes();
     testHandlerCounts = {};
 
@@ -276,6 +315,7 @@ test("not found base", function() {
     expect(log.getRecords().length).toBe(1);
 
     routing.stop();
+    routing.resetOptions();
     routing.setNotFound(testHandler);
 
     log.clearRecords();
@@ -299,6 +339,7 @@ test("not found base", function() {
 
 test("makeRedirectHandler() base", function() {
     routing.stop();
+    routing.resetOptions();
     routing.clearRoutes();
     testHandlerCounts = {};
 
